@@ -4,43 +4,45 @@
 <main>
   <!-- dans action mettre le nom de la page (ex: /profil)  -->
   <form action="" method="post" id="informations" name="informations">
-    <section class="section__informations">
-      <header>
-        <img src="src\assets\avatar-authors.png" alt="avatar authors default" />
+    <section
+      class="section__informations"
+      aria-labelledby="userpseudo userstatut"
+    >
+      <header aria-label="avatar pseudo statut">
+        <img
+          src="src\assets\avatar-authors.png"
+          alt="avatar par défaut des auteurs"
+        />
         <article class="article__pseudostatut">
-          <h1>Jean Bonbeur</h1>
-          <h2>Auteur</h2>
+          <h1 id="userpseudo">Jean Bonbeur</h1>
+          <h2 id="userstatut">Auteur</h2>
         </article>
       </header>
 
-      <article>
-        <label for="Nom">Nom : </label>
-        <input type="text" name="Nom" id="Nom" />
+      <article aria-label="informations personnelles">
+        <label for="nom">Nom : </label>
+        <input type="text" name="nom" id="nom" />
 
-        <label for="Prénom">Prénom : </label>
-        <input type="text" name="Prénom" id="Prénom" />
+        <label for="prénom">Prénom : </label>
+        <input type="text" name="prénom" id="prénom" />
 
-        <label for="Lieu">Lieu : </label>
-        <input type="text" name="Lieu" id="Lieu" />
+        <label for="lieu">Lieu : </label>
+        <input type="text" name="lieu" id="lieu" />
 
-        <label for="Date d'enregistrement">Date d'enregistrement : </label>
-        <input
-          type="text"
-          name="Date d'enregistrement"
-          id="Date d'enregistrement"
-        />
+        <label for="email">E-mail : </label>
+        <input type="email" name="E-mail" id="email" />
 
-        <label for="E-mail">E-mail : </label>
-        <input type="text" name="E-mail" id="E-mail" />
+        <label for="pwd">Mot de passe : </label>
+        <input type="password" name="pwd" id="pwd" />
 
-        <label for="Mot de passe">Mot de passe : </label>
-        <input type="text" name="Mot de passe" id="Mot de passe" />
+        <label for="DateEnregistrement">Date d'enregistrement : </label>
+        <p id="DateEnregistrement">Ici la date d'enregistrement</p>
       </article>
     </section>
 
-    <section class="section__statistics">
+    <section class="section__statistics" aria-labelledby="statistiques">
       <article>
-        <h3>Statistiques :</h3>
+        <h3 id="statistiques">Statistiques :</h3>
         <ol>
           <li>
             <h4>Tous mes articles :</h4>
@@ -50,10 +52,10 @@
       </article>
     </section>
 
-    <section class="section__writearticle">
+    <section class="section__writearticle" aria-labelledby="ecrire-un-article">
       <article>
-        <h3>Ecrire un article :</h3>
-        <label for="category"> Catégorie :</label>
+        <h3 id="ecrire-un-article">Ecrire un article :</h3>
+        <label for="category"> Catégorie de l'article :</label>
         <select id="category" name="category" required>
           <option value="0">Catégorie</option>
           <option value="1">Catégorie </option>
@@ -62,20 +64,32 @@
           <option value="4">Catégorie</option>
         </select>
 
-        <label for="Lieu">Lieu : </label>
-        <input type="text" name="Lieu" id="lieu" />
+        <label for="titre">Titre de l'article : </label>
+        <input type="text" name="titre" id="titre" />
 
-        <label for="Image" id="import">Avatar : </label>
-
+        <label for="image" id="import">Image de l'article : </label>
         <input
           type="file"
-          name="Image"
+          name="image"
           id="image"
           accept="image/png, image/jpeg, image/WebpImage"
           title="Importer une image"
           aria-label="Importer une image"
         />
 
+        <label for="textarea" id="textarea"> </label>
+        <textarea
+          name="textarea"
+          id="textarea"
+          maxlength="XXX"
+          placeholder="Ecrit de la bonne humeur ici"
+        />
+        <div class="the-count">
+          <p id="characterNotification">
+           <span id="characterCounter">XXX</span> /
+            <span id="maximum">XXX</span>
+          </p>
+        </div>
       </article>
     </section>
 
@@ -86,8 +100,15 @@
         name="submit"
         value="Enregistrer"
         spellcheck="false"
+        aria-label="Enregistrer les informations"
       />
-      <input class="reset" type="reset" name="reset" value="Réinitialiser" />
+      <input
+        class="reset"
+        type="reset"
+        name="reset"
+        value="Réinitialiser"
+        aria-label="Réinitialiser les informations"
+      />
     </div>
   </form>
 </main>
@@ -140,8 +161,12 @@
             padding: 1rem 0;
             font-weight: bolder;
           }
+          #image {
+            border: none;
+            background: none;
+            padding: 1rem 0;}
           input {
-            padding: 1rem 0;
+            padding: 1rem;
             background: rgba(136, 217, 143, 0.23);
             border: 1px solid white;
             border-radius: 5px;
@@ -217,10 +242,9 @@
             border-radius: 5px;
           }
 
-          input[type="file"]{
+          input[type="file"] {
             font-size: 1.5rem;
           }
-
 
           #image {
             border: none;
@@ -244,7 +268,6 @@
           border-radius: 5px;
           font-size: 1.5rem;
         }
-
       }
     }
   }
