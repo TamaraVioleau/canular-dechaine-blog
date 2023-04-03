@@ -2,7 +2,7 @@
 </script>
 
 <nav>
-  <img src="src\assets\logo-site.png" alt="logo site" />
+  <img src="src\assets\logo-site.png" alt="logo site" id="logo"/>
 
   <div class="nav__navigation">
     <header>
@@ -28,7 +28,7 @@
       </div>
     </header>
 
-    <div class="grid">
+    <div class="gridlinks">
       <ul>
         <li>Actualités</li>
         <li>Economie</li>
@@ -46,10 +46,17 @@
 </nav>
 
 <style lang="scss">
-  nav {
-    display: flex;
-    height: 200px;
+  nav {    display: flex;
+    align-items: center;
+    color: #312140;
+    background-color: #f8f8f8;
+
+    height: auto;
     padding: 3rem;
+    font-family:  Calibri, sans-serif;
+    #logo{
+      height:200px;
+    }
     header {
       display: flex;
       justify-content: right;
@@ -75,28 +82,31 @@
       .navigation__login {
         display: flex;
         align-items: center;
-        background-color: green($color: #000000);
         #login {
           display: flex;
           align-items: center;
           #buttonlogin {
-            height: 3rem;
+padding: 1rem 10rem;
+            border-radius: 10px;
             border: none;
-            background: none;
+            background: rgba(136, 217, 143, 0.23);
+            font-weight: bolder;
           }
           #avatar {
             height: 50px;
+
           }
         }
       }
     }
-    .grid {
+    .gridlinks {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       grid-auto-flow: dense;
       grid-gap: 1rem;
       justify-items: center;
       align-items: center;
+      margin-top: 5rem;
       ul {
         list-style: none;
         padding: 0;
