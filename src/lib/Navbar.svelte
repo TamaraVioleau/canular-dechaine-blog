@@ -61,9 +61,10 @@
 
     height: auto;
     padding: 3rem;
-    font-family: Calibri, sans-serif;
+    font-family: Tahoma;
     #logo {
       height: 200px;
+      margin-right: 1rem;
     }
     header {
       display: flex;
@@ -96,7 +97,10 @@
         display: flex;
         align-items: center;
         height: 100%;
-        border: 1px solid;
+        background: rgba(136, 217, 143, 0.23);
+    border: 1px solid white;
+    border-radius: 5px;
+    font-size: 1.5rem;
 
         #login {
           display: flex;
@@ -107,6 +111,7 @@
           justify-content: right;
           gap: 2rem;
           padding: 0 3rem;
+          
           #buttonlogin {
             border-radius: 10px;
             border: none;
