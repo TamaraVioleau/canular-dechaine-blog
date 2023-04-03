@@ -25,106 +25,109 @@
 <main>
   <!-- dans action mettre le nom de la page (ex: /profil)  -->
   <form action="" method="post" id="informations" name="informations">
-    <section
-      class="section__informations"
-      aria-labelledby="userpseudo userstatut"
-    >
-      <header aria-label="avatar pseudo statut">
-        <img
-          src="src\assets\avatar-authors.png"
-          alt="avatar par défaut des auteurs"
-        />
-        <article class="article__pseudostatut">
-          <h1 id="userpseudo">Jean Bonbeur</h1>
-          <h2 id="userstatut">Auteur</h2>
+    <wrapper class="wrapper__left">
+      <section
+        class="section__informations"
+        aria-labelledby="userpseudo userstatut"
+      >
+        <header aria-label="avatar pseudo statut">
+          <img
+            src="src/assets/avatar-authors.png"
+            alt="avatar par défaut des auteurs"
+          />
+          <article class="article__pseudostatut">
+            <h1 id="userpseudo">Jean Bonbeur</h1>
+            <h2 id="userstatut">Auteur</h2>
+          </article>
+        </header>
+        <article
+          class="article__infoperso"
+          aria-label="informations personnelles"
+        >
+          <label for="nom">Nom : </label>
+          <input type="text" name="nom" id="nom" />
+          <label for="prénom">Prénom : </label>
+          <input type="text" name="prénom" id="prénom" />
+          <label for="email">E-mail : </label>
+          <input type="email" name="E-mail" id="email" />
+          <label for="pwd">Mot de passe : </label>
+          <input type="password" name="pwd" id="pwd" />
+          <label for="DateEnregistrement">Date d'enregistrement : </label>
+          <p id="DateEnregistrement">Ici la date d'enregistrement</p>
         </article>
-      </header>
+      </section>
+      <section class="section__statistics" aria-labelledby="statistiques">
+        <article class="article__statistics">
+          <h3 id="statistiques">Statistiques :</h3>
+          <ol>
+            <li>
+              <h4>Tous mes articles :</h4>
+              <p>XX articles</p>
+            </li>
+          </ol>
+        </article>
+      </section>
+    </wrapper>
 
-      <article class="article__infoperso" aria-label="informations personnelles">
-        <label for="nom">Nom : </label>
-        <input type="text" name="nom" id="nom" />
-
-        <label for="prénom">Prénom : </label>
-        <input type="text" name="prénom" id="prénom" />
-
-        <label for="email">E-mail : </label>
-        <input type="email" name="E-mail" id="email" />
-
-        <label for="pwd">Mot de passe : </label>
-        <input type="password" name="pwd" id="pwd" />
-
-        <label for="DateEnregistrement">Date d'enregistrement : </label>
-        <p id="DateEnregistrement">Ici la date d'enregistrement</p>
-      </article>
-    </section>
-
-    <div>
-        <section class="section__statistics" aria-labelledby="statistiques">
-          <article class="article__statistics" >
-            <h3 id="statistiques">Statistiques :</h3>
-            <ol>
-              <li>
-                <h4>Tous mes articles :</h4>
-                XX articles
-              </li>
-            </ol>
-          </article>
-        </section>
-        <section class="section__writearticle" aria-labelledby="ecrire-un-article">
-          <article class="article__writearticle">
-            <h3 id="ecrire-un-article">Ecrire un article :</h3>
-            <label for="category"> Catégorie de l'article :</label>
-            <select id="category" name="category" required>
-              <option value="0">Catégorie</option>
-              <option value="1">Catégorie </option>
-              <option value="2">Catégorie</option>
-              <option value="3">Catégorie</option>
-              <option value="4">Catégorie</option>
-            </select>
-            <label for="titre">Titre de l'article : </label>
-            <input type="text" name="titre" id="titre" />
-            <label for="image">Image de l'article : </label>
-            <input
-              type="file"
-              name="image"
-              id="image"
-              accept="image/png, image/jpeg, image/WebpImage"
-              title="Importer une image"
-              aria-label="Importer une image"
-            />
-            <label for="textarea">Contenu de l'article :</label>
-            <textarea
-              name="textarea"
-              id="textarea"
-              maxlength={myMaxLength}
-              on:input={handleInput}
-              placeholder="Ecrit de la bonne humeur ici"
-            />
-            <p>
-              Nombre de caractères restant : <span id="characterCounter"
-                >{charactersRemaining}</span
-              >/<span id="maximum">{myMaxLength}</span>
-            </p>
-          </article>
-        </section>
-        <div class="buttons">
+    <wrapper class="wrapper__right">
+      <section
+        class="section__writearticle"
+        aria-labelledby="ecrire-un-article"
+      >
+        <article class="article__writearticle">
+          <h3 id="ecrire-un-article">Ecrire un article :</h3>
+          <label for="category"> Catégorie de l'article :</label>
+          <select id="category" name="category" required>
+            <option value="0">Catégorie</option>
+            <option value="1">Catégorie </option>
+            <option value="2">Catégorie</option>
+            <option value="3">Catégorie</option>
+            <option value="4">Catégorie</option>
+          </select>
+          <label for="titre">Titre de l'article : </label>
+          <input type="text" name="titre" id="titre" />
+          <label for="image">Image de l'article : </label>
           <input
-            class="submit"
-            type="submit"
-            name="submit"
-            value="Enregistrer"
-            spellcheck="false"
-            aria-label="Enregistrer les informations"
+            type="file"
+            name="image"
+            id="image"
+            accept="image/png, image/jpeg, image/WebpImage"
+            title="Importer une image"
+            aria-label="Importer une image"
           />
-          <input
-            class="reset"
-            type="reset"
-            name="reset"
-            value="Réinitialiser"
-            aria-label="Réinitialiser les informations"
+          <label for="textarea">Contenu de l'article :</label>
+          <textarea
+            name="textarea"
+            id="textarea"
+            maxlength={myMaxLength}
+            on:input={handleInput}
+            placeholder="Ecrit de la bonne humeur ici"
           />
-        </div>
-    </div>
+          <p>
+            Nombre de caractères restant : <span id="characterCounter"
+              >{charactersRemaining}</span
+            >/<span id="maximum">{myMaxLength}</span>
+          </p>
+        </article>
+      </section>
+      <div class="buttons">
+        <input
+          class="submit"
+          type="submit"
+          name="submit"
+          value="Enregistrer"
+          spellcheck="false"
+          aria-label="Enregistrer les informations"
+        />
+        <input
+          class="reset"
+          type="reset"
+          name="reset"
+          value="Réinitialiser"
+          aria-label="Réinitialiser les informations"
+        />
+      </div>
+    </wrapper>
   </form>
 </main>
 
@@ -139,6 +142,7 @@
     background-color: #f8f8f8;
     padding: 2.3rem;
     // padding: clamp(2.3rem, 5.5vw, 23rem);
+    min-height: 100vh;
     @media screen and (min-width: 580px) {
       padding: 3.5rem;
     }
@@ -149,30 +153,30 @@
       padding: 5rem 0rem;
     }
     form {
-        @media screen and (min-width: 580px) {
+      @media screen and (min-width: 580px) {
         width: 95%;
         margin: auto;
       }
-        @media screen and (min-width: 770px) {
+      @media screen and (min-width: 770px) {
         width: 90%;
         margin: auto;
       }
       @media screen and (min-width: 1024px) {
         display: flex;
-justify-content: space-evenly;
-        width: 100%;
+        justify-content: center;
+        gap : 10rem;
         margin: auto;
+        align-items: center;
+min-height: 100vh;
       }
-      @media screen and (min-width: 1200px){
-
-        }
+      @media screen and (min-width: 1200px) {
+      }
       .section__informations {
         @extend %glassmorphism;
         padding: 1.5rem;
         // padding: clamp(1.5rem, 5.5vw, 15rem);
-                @media screen and (min-width: 580px) {
+        @media screen and (min-width: 580px) {
           padding: 3.5rem;
-
         }
 
         header {
@@ -239,10 +243,11 @@ justify-content: space-evenly;
           padding: 1.5rem 3.5rem;
         }
         @media screen and (min-width: 1024px) {
-            margin-top: 0;
+          margin-top: 0;
+          margin-top: 2.3rem;
         }
 
-       .article__statistics {
+        .article__statistics {
           background-color: #f8f8f8;
           padding: 1.5rem;
           max-width: 500px;
@@ -271,6 +276,10 @@ justify-content: space-evenly;
         margin-top: 2.3rem;
         @media screen and (min-width: 580px) {
           padding: 1.5rem 3.5rem;
+          margin-top: 2.3rem;
+        }
+        @media screen and (min-width: 1024px) {
+          margin-top: 0;
         }
 
         .article__writearticle {
@@ -299,7 +308,7 @@ justify-content: space-evenly;
             max-width: 285px;
             select option {
               background-color: red;
-                        }
+            }
           }
           input {
             padding: 1rem;

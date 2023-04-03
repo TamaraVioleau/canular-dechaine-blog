@@ -1,9 +1,8 @@
 <script>
-  import PageProfilAuthors from "./lib/PageProfilAuthors.svelte";
-
+  import PageProfilMembers from "./lib/PageProfilMembers.svelte";
 </script>
 
-<PageProfilAuthors/>
+<PageProfilMembers/>
 
 <style lang="scss">
     </style>
