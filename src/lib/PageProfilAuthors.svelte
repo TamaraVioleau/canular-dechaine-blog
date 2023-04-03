@@ -178,6 +178,10 @@ min-height: 100vh;
         @media screen and (min-width: 580px) {
           padding: 3.5rem;
         }
+        @media screen and (min-width: 1024px) {
+          min-height:546px;
+        }
+      
 
         header {
           display: flex;
