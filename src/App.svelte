@@ -1,11 +1,8 @@
 <script>
-
+import Register from "./lib/Register.svelte";
 </script>
 
-<main>
- 
-  
-</main>
+<Register/>
 
 <style lang="scss">
 
