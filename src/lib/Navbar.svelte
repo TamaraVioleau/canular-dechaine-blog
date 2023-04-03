@@ -124,10 +124,11 @@
             }
           }
         }
-        @media screen and (max-width: 770px) {
-          #menu {
+        #menu {
           font-size: 5rem;
           cursor: pointer;
+          @media screen and (min-width: 770px) {
+            display: none;
           }
         }
       }
