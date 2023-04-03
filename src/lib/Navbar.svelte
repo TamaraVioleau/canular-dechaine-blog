@@ -2,7 +2,9 @@
 </script>
 
 <nav>
-  <img src="src\assets\logo-site.png" alt="logo site" id="logo"/>
+  <a href="/"
+    ><img src="src\assets\logo-site.png" alt="logo site" id="logo" /></a
+  >
 
   <div class="nav__navigation">
     <header>
@@ -46,10 +48,10 @@
 </nav>
 
 <style lang="scss">
-    @import "../utils/extends";
+  @import "../utils/extends";
   @import "../utils/mixins";
   @import "../utils/variables";
-  nav {    
+  nav {
     @extend %glassmorphism;
     display: flex;
     align-items: center;
@@ -59,29 +61,32 @@
 
     height: auto;
     padding: 3rem;
-    font-family:  Calibri, sans-serif;
-    #logo{
-      height:200px;
+    font-family: Calibri, sans-serif;
+    #logo {
+      height: 200px;
     }
     header {
       display: flex;
       justify-content: right;
+      height: 50px;
       .navigation__search {
         margin-right: 3rem;
         display: flex;
         align-items: center;
+        height: 100%;
         #formsearch {
           border: 1px solid #312140;
-          height: 3rem;
+          height: auto;
           display: flex;
           #search {
             border: none;
+            padding: 1.5rem;
           }
           #buttonsearch {
             border: none;
-            width: 3rem;
+            width: 4.5rem;
             background: rgba(136, 217, 143, 0.23);
-            border-left:1px solid #312140;
+            border-left: 1px solid #312140;
             i {
             }
           }
@@ -90,19 +95,27 @@
       .navigation__login {
         display: flex;
         align-items: center;
+        height: 100%;
+        border: 1px solid;
+
         #login {
           display: flex;
           align-items: center;
+          background: rgba(136, 217, 143, 0.23);
+          width: auto;
+          height: 100%;
+          justify-content: right;
+          gap: 2rem;
+          padding: 0 3rem;
           #buttonlogin {
-padding: 1rem 10rem;
             border-radius: 10px;
             border: none;
-            background: rgba(136, 217, 143, 0.23);
             font-weight: bolder;
+            height: 100%;
+            background: none;
           }
           #avatar {
-            height: 50px;
-
+            height: 35px;
           }
         }
       }
@@ -123,15 +136,11 @@ padding: 1rem 10rem;
         flex-wrap: wrap;
         justify-content: center;
         li {
-          background-color: #eee;
-          background-color: #eee;
           border-radius: 10px;
           padding: 1rem;
-          text-align: center;
-          font-size: 1.2rem;
-          font-weight: bold;
           margin: 0.5rem;
           min-width: 150px;
+          font-size: 2rem;
         }
       }
     }
