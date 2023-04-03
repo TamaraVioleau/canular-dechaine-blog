@@ -46,10 +46,16 @@
 </nav>
 
 <style lang="scss">
-  nav {    display: flex;
+    @import "../utils/extends";
+  @import "../utils/mixins";
+  @import "../utils/variables";
+  nav {    
+    @extend %glassmorphism;
+    display: flex;
     align-items: center;
     color: #312140;
     background-color: #f8f8f8;
+    border-radius: 0;
 
     height: auto;
     padding: 3rem;
@@ -65,7 +71,7 @@
         display: flex;
         align-items: center;
         #formsearch {
-          border: 1px solid black;
+          border: 1px solid #312140;
           height: 3rem;
           display: flex;
           #search {
@@ -74,6 +80,8 @@
           #buttonsearch {
             border: none;
             width: 3rem;
+            background: rgba(136, 217, 143, 0.23);
+            border-left:1px solid #312140;
             i {
             }
           }
