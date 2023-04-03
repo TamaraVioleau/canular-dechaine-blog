@@ -1,8 +1,8 @@
 <script>
-  import PageProfilMembers from "./lib/PageProfilMembers.svelte";
+import Register from "./lib/Register.svelte";
 </script>
 
-<PageProfilMembers/>
+<Register/>
 
 <style lang="scss">
     </style>
