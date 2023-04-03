@@ -67,8 +67,6 @@
           </ol>
         </article>
       </section>
-
-
     </wrapper>
   </form>
 </main>
@@ -83,7 +81,6 @@
     font-family: Tahoma;
     background-color: #f8f8f8;
     padding: 2.3rem;
-    // padding: clamp(2.3rem, 5.5vw, 23rem);
     min-height: 100vh;
     @media screen and (min-width: 580px) {
       padding: 3.5rem;
@@ -116,7 +113,6 @@
       .section__informations {
         @extend %glassmorphism;
         padding: 1.5rem;
-        // padding: clamp(1.5rem, 5.5vw, 15rem);
         @media screen and (min-width: 580px) {
           padding: 3.5rem;
         }
@@ -183,7 +179,7 @@
         margin-top: 2.3rem;
 
         @media screen and (min-width: 580px) {
-          padding: 1.5rem 3.5rem;
+          padding: 3.5rem;
         }
         @media screen and (min-width: 1024px) {
           margin-top: 0;
