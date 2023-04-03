@@ -1,12 +1,9 @@
 <script>
+  import Navbar from "./lib/Navbar.svelte";
 
 </script>
 
-<main>
- 
-  
-</main>
+<Navbar/>
 
 <style lang="scss">
-
 </style>
