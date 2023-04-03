@@ -244,7 +244,7 @@ min-height: 100vh;
         padding: 1.5rem;
         margin-top: 2.3rem;
         @media screen and (min-width: 580px) {
-          padding: 1.5rem 3.5rem;
+          padding: 3.5rem;
         }
         @media screen and (min-width: 1024px) {
           margin-top: 0;
