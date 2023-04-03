@@ -5,5 +5,4 @@ import Register from "./lib/Register.svelte";
 <Register/>
 
 <style lang="scss">
-
-</style>
+    </style>
