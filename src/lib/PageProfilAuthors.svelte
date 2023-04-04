@@ -141,7 +141,6 @@
     font-family: Tahoma;
     background-color: #f8f8f8;
     padding: 2.3rem;
-    // padding: clamp(2.3rem, 5.5vw, 23rem);
     min-height: 100vh;
     @media screen and (min-width: 580px) {
       padding: 3.5rem;
