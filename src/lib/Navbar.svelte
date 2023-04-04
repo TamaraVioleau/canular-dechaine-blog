@@ -29,6 +29,7 @@
         </a>
       </div>
 
+      <!-- ici le bouton du menu responsive -->
       <i class="fa-solid fa-bars" id="menu" />
     </div>
 
@@ -73,7 +74,11 @@
         display: flex;
         justify-content: right;
         height: 50px;
+
         .navigation__search {
+          @media screen and (max-width: 770px) {
+            display: none;
+          }
           margin-right: 3rem;
           display: flex;
           align-items: center;
@@ -98,6 +103,9 @@
         }
         .navigation__login {
           #login {
+            @media screen and (max-width: 770px) {
+              display: none;
+            }
             display: flex;
             align-items: center;
             width: auto;
@@ -134,6 +142,9 @@
       }
     }
     .gridlinks {
+      @media screen and (max-width: 770px) {
+        display: none;
+      }
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       grid-auto-flow: dense;
