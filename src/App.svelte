@@ -2,7 +2,7 @@
   import Homepage from "./lib/Homepage.svelte"; 
 </script>
 
-<PageProfilMembers/>
+<Homepage/>
 
-<style lang="scss">
-    </style>
+
+
