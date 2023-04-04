@@ -125,6 +125,7 @@
 
           img {
             height: 75px;
+            margin-right: 2.5rem;
           }
           .article__pseudostatut {
             text-align: center;

@@ -32,7 +32,7 @@
       >
         <header aria-label="avatar pseudo statut">
           <img
-            src="src/assets/avatar-authors.png"
+            src="src/assets/avatar-auteurs.png"
             alt="avatar par défaut des auteurs"
           />
           <article class="article__pseudostatut">
@@ -189,6 +189,7 @@
 
           img {
             height: 75px;
+            margin-right: 2.5rem;
           }
           .article__pseudostatut {
             text-align: center;
