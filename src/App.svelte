@@ -4,7 +4,7 @@
 import Register from "./lib/Register.svelte";
 </script>
 
-<PageProfilAuthors/>
+<Register/>
 
 
 <style lang="scss">
