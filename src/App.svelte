@@ -9,13 +9,13 @@ import Homepage from "./lib/HomePage.svelte";
 </script>
 
 <PageArticles/>
+
+<!-- 
 <Homepage/>
   <SearchPage/>
 <PageProfilAuthors/>
 <PageProfilMembers/>
 <Register/>
-<!-- 
-
  -->
 <Footer/>
 
