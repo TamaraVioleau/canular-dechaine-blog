@@ -72,6 +72,7 @@
 
   main {
     font-family: Tahoma;
+    background-color: #f8f8f8;
     @media screen and (min-width: 1024px) {
       display: flex;
       flex-direction: row;
@@ -104,7 +105,6 @@
         article {
           @media screen and (min-width: 770px) {
             display: flex;
-            
           }
 
           img {
