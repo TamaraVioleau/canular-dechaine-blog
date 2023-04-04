@@ -287,10 +287,10 @@
     padding: 10px;
     margin: 10px;
   }
-  @media screen and (max-width: 1023px) {
+
     img {
       display: none;
-    }
+ 
     .header:nth-child(n+4) {
     display: none;
   }
@@ -316,7 +316,8 @@
   img {
     display: block;
     grid-area: img;
-   max-width: 200px;
+width: 200px;
+height: 200px;
     border-radius: 10px;
     padding: 5px;
   }
