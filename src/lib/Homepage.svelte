@@ -3,58 +3,55 @@
 
 <main>
   <div class="wrapper__latest">
-    <h2 class="title_like">Articles les plus aimés</h2>
-    <article aria-label="Article">
-      <h3 aria-label="Titre de l'article">Titre article</h3>
-
-      <img src="https://picsum.photos/200/300/?blur" alt="photo" />
-
-      <p aria-label="Texte de l'article">
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis
-        fugiat aspernatur, alias iusto cumque repudiandae porro quam assumenda
-        eveniet deserunt earum labore numquam
-      </p>
-
-      <button class="btn-read-more" aria-label="Lire la suite"
-        ><a href="lien_vers_la_page_de_l'article">Lire la suite</a></button
-      >
-
-      <section class="section__dateauthor">
+    <h2>Articles les plus récents</h2>
+    <section aria-label="Article">
+              <h3 aria-label="Titre de l'article">Titre article</h3>
+              <article>
+        <img src="https://picsum.photos/200/300/?blur" alt="photo" />
+        <p aria-label="Texte de l'article">
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis
+          fugiat aspernatur, alias iusto cumque repudiandae porro quam assumenda
+          eveniet deserunt earum labore numquam
+        </p>
+ 
+      </article>
+       <button class="btn-read-more" aria-label="Lire la suite"
+          ><a href="lien_vers_la_page_de_l'article">Lire la suite</a></button
+        >
+      <footer class="footer__dateauthor">
         <aside class="date" aria-label="Date de publication">24/03/2023</aside>
-
         <aside class="author" aria-label="Auteur de l'article">
           Sarah Croche
         </aside>
-      </section>
-    </article>
-    
-  </div>
-  <div class="wrapper__like">
-    <h2 class="title_like">Articles les plus aimés</h2>
-    <article aria-label="Article">
-      <h3 aria-label="Titre de l'article">Titre article</h3>
+      </footer>
 
-      <img src="https://picsum.photos/200/300/?blur" alt="photo" />
+    </section>
+      </div>
+      <div class="wrapper__like">
+        <h2>Articles les plus aimés</h2>
+        <section aria-label="Article">
+          <h3 aria-label="Titre de l'article">Titre article</h3>
+          <article>
+    <img src="https://picsum.photos/200/300/?blur" alt="photo" />
+    <p aria-label="Texte de l'article">
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis
+      fugiat aspernatur, alias iusto cumque repudiandae porro quam assumenda
+      eveniet deserunt earum labore numquam
+    </p>
 
-      <p aria-label="Texte de l'article">
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis
-        fugiat aspernatur, alias iusto cumque repudiandae porro quam assumenda
-        eveniet deserunt earum labore numquam
-      </p>
+  </article>
+   <button class="btn-read-more" aria-label="Lire la suite"
+      ><a href="lien_vers_la_page_de_l'article">Lire la suite</a></button
+    >
+  <footer class="footer__dateauthor">
+    <aside class="date" aria-label="Date de publication">24/03/2023</aside>
+    <aside class="author" aria-label="Auteur de l'article">
+      Sarah Croche
+    </aside>
+  </footer>
 
-      <button class="btn-read-more" aria-label="Lire la suite"
-        ><a href="lien_vers_la_page_de_l'article">Lire la suite</a></button
-      >
-
-      <section class="section__dateauthor">
-        <aside class="date" aria-label="Date de publication">24/03/2023</aside>
-
-        <aside class="author" aria-label="Auteur de l'article">
-          Sarah Croche
-        </aside>
-      </section>
-    </article>
-  </div>
+</section>
+          </div>
 </main>
 
 <style lang="scss">
@@ -79,10 +76,9 @@
         padding: 3rem;
       }
 
-      article {
+      section {
         @extend %glassmorphism;
         margin: 3rem;
-
         h3 {
           text-align: center;
           font-weight: bold;
@@ -90,6 +86,10 @@
           font-family: Tahoma;
           padding: 2rem;
         }
+        article{
+          @media screen and (min-width: 1024px) {
+  display:flex;}
+
         img {
           display: none;
           @media screen and (min-width: 1024px) {
@@ -115,7 +115,7 @@
           padding-right: 1rem;
           text-align: left;
         }
-
+}
         button {
           background-color: #88d98f3b;
           border: 1px solid transparent;
@@ -129,7 +129,7 @@
           font-family: Tahoma;
         }
 
-        .section__dateauthor {
+        .footer__dateauthor {
           display: flex;
           justify-content: flex-end;
           padding: 1rem;
@@ -157,10 +157,9 @@
         padding: 3rem;
       }
 
-      article {
+      section {
         @extend %glassmorphism;
         margin: 3rem;
-
         h3 {
           text-align: center;
           font-weight: bold;
@@ -168,6 +167,10 @@
           font-family: Tahoma;
           padding: 2rem;
         }
+        article{
+          @media screen and (min-width: 1024px) {
+  display:flex;}
+
         img {
           display: none;
           @media screen and (min-width: 1024px) {
@@ -193,7 +196,7 @@
           padding-right: 1rem;
           text-align: left;
         }
-
+}
         button {
           background-color: #88d98f3b;
           border: 1px solid transparent;
@@ -207,7 +210,7 @@
           font-family: Tahoma;
         }
 
-       .section__dateauthor {
+        .footer__dateauthor {
           display: flex;
           justify-content: flex-end;
           padding: 1rem;
