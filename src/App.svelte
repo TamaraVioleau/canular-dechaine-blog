@@ -1,8 +1,5 @@
 <script>
-  import Homepage from "./lib/Homepage.svelte";
-
-
-  
+  import Homepage from "./lib/Homepage.svelte"; 
 </script>
 
 <Homepage/>
