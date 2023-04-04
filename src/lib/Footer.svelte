@@ -1,5 +1,5 @@
 <footer>
-  <button id="button__contact"><a href="/">Nous contacter</a></button>
+  <a href="/"> <button id="button__contact">Nous contacter</button></a>
   <div class="social">
     <button><a href=""><i class="fa-brands fa-facebook" /></a></button>
     <button><a href=""><i class="fa-brands fa-twitter" /></a></button>
@@ -26,24 +26,25 @@
     display: flex;
     flex-direction: column;
     background-color: #f8f8f8;
-    padding: 3rem;
-    gap: 3rem;
-    #button__contact {
+    padding: 6rem 3rem;
+    row-gap: 6rem;
+    a {
       display: flex;
-      align-self: center;
-      width: 100%;
       place-content: center;
-      padding: 2rem;
-      background: rgb(136 217 143 / 23%);
-      border: 1px solid white;
-      border-radius: 5px;
-      font-size: 1.6rem;
-      font-weight: bold;
-      max-width: 310px;
-      a {
-        text-decoration: none;
-        position: relative;
-        color: #312140;
+      text-decoration: none;
+      position: relative;
+      color: #312140;
+       #button__contact {     
+        cursor: pointer;
+        width: 100%;
+
+        padding: 2rem;
+        background: rgb(136 217 143 / 23%);
+        border: 1px solid white;
+        border-radius: 5px;
+        font-size: 1.6rem;
+        font-weight: bold;
+        max-width: 310px;
       }
     }
 
@@ -69,15 +70,18 @@
       @media screen and (min-width: 580px) {
         display: flex;
         flex-wrap: wrap;
-       column-gap: 10rem;
+        column-gap: 10rem;
       }
       @media screen and (min-width: 580px) {
-justify-content: center;
+        justify-content: left;
+      }
+      @media screen and (min-width: 770px) {
+        justify-content: center;
       }
       li:not(:last-child) {
         padding-bottom: 1.8rem;
       }
-            li:not(:last-child) {
+      li:not(:last-child) {
         padding-bottom: 1.8rem;
       }
       li:last-child {
@@ -87,6 +91,21 @@ justify-content: center;
         text-decoration: none;
         position: relative;
         color: #312140;
+        &:after {
+          content: "";
+          position: absolute;
+          left: 0;
+          bottom: -5px;
+          width: 100%;
+          height: 2px;
+          background-color: rgba(136, 217, 143, 0.23);
+          transform: scaleX(0); /* Masque le soulignement au départ */
+          transition: transform 0.2s ease-in-out; /* Transition fluide */
+          transform-origin: left; /* Modifie l'orientation du soulignement ici gauche à droite */
+        }
+        &:hover:after {
+          transform: scaleX(1); /* Affiche le soulignement au survol */
+        }
       }
     }
   }
