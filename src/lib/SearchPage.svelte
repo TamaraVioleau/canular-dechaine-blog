@@ -1,67 +1,66 @@
 <script>
 </script>
 
-<main>
-  <div class="wrapper__latest">
-    <h2>Articles les plus récents</h2>
-    <section aria-label="Article">
-      <h3 aria-label="Titre de l'article">Titre article</h3>
-      <article>
-        <img src="https://picsum.photos/200/300/?blur" alt="photo" />
-        <p aria-label="Texte de l'article">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis
-          fugiat aspernatur, alias iusto cumque repudiandae porro quam assumenda
-          eveniet deserunt earum labore numquam. Lorem ipsum, dolor sit amet
-          consectetur adipisicing elit. Perspiciatis fugiat aspernatur, sit amet
-          consectetur adipisicing elit. Lorem ipsum, dolor sit amet fugiat
-          aspernatur, sit amet.
-        </p>
-      </article>
-
-      <footer class="footer__dateauthor">
-        <aside
-          class="aside__dateauthor"
-          aria-label="Date de publication et auteur"
-        >
-          <time datetime="2023-04-05">5 avril 2023</time> <span> || </span>
-          <cite title="nom de l'auteur">Sarah Croche</cite>
-        </aside>
-
-        <button class="btn-read-more" aria-label="Lire la suite"
-          ><a href="lien_vers_la_page_de_l'article">Lire la suite</a></button
-        >
-      </footer>
-    </section>
-  </div>
-  <div class="wrapper__like">
-    <h2>Articles les plus aimés</h2>
-    <section aria-label="Article">
-      <h3 aria-label="Titre de l'article">Titre article</h3>
-      <article>
-        <img src="https://picsum.photos/200/300/?blur" alt="photo" />
-        <p aria-label="Texte de l'article">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis
-          fugiat aspernatur, alias iusto cumque repudiandae porro quam assumenda
-          eveniet deserunt earum labore numquam. Lorem ipsum, dolor sit amet
-          consectetur adipisicing elit. Perspiciatis fugiat aspernatur, sit amet
-          consectetur adipisicing elit. Lorem ipsum, dolor sit amet
-        </p>
-      </article>
-
-      <footer class="footer__dateauthor">
-        <aside
-          class="aside__dateauthor"
-          aria-label="Date de publication et auteur"
-        >
-          <time datetime="2023-04-05">5 avril 2023</time> <span> || </span>
-          <cite title="nom de l'auteur">Sarah Croche</cite>
-        </aside>
-
-        <button class="btn-read-more" aria-label="Lire la suite"
-          ><a href="lien_vers_la_page_de_l'article">Lire la suite</a></button
-        >
-      </footer>
-    </section>
+<main>    
+    <h2>Résultat de votre recherche pour [....]</h2>
+  <div>
+      <div class="wrapper__latest">
+        <section aria-label="Article">
+          <h3 aria-label="Titre de l'article">Titre article</h3>
+          <article>
+            <img src="https://picsum.photos/200/300/?blur" alt="photo" />
+            <p aria-label="Texte de l'article">
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis
+              fugiat aspernatur, alias iusto cumque repudiandae porro quam assumenda
+              eveniet deserunt earum labore numquam. Lorem ipsum, dolor sit amet
+              consectetur adipisicing elit. Perspiciatis fugiat aspernatur, sit amet
+              consectetur adipisicing elit. Lorem ipsum, dolor sit amet fugiat
+              aspernatur, sit amet.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis
+              fugiat aspernatur, alias iusto cumque repudiandae porro quam assumenda
+              eveniet deserunt earum labore numquam. 
+            </p>
+          </article>
+          <footer class="footer__dateauthor">
+            <aside
+              class="aside__dateauthor"
+              aria-label="Date de publication et auteur"
+            >
+              <time datetime="2023-04-05">5 avril 2023</time> <span> || </span>
+              <cite title="nom de l'auteur">Sarah Croche</cite>
+            </aside>
+            <button class="btn-read-more" aria-label="Lire la suite"
+              ><a href="lien_vers_la_page_de_l'article">Lire la suite</a></button
+            >
+          </footer>
+        </section>
+      </div>
+      <div class="wrapper__like">
+        <section aria-label="Article">
+          <h3 aria-label="Titre de l'article">Titre article</h3>
+          <article>
+            <img src="https://picsum.photos/200/300/?blur" alt="photo" />
+            <p aria-label="Texte de l'article">
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis
+              fugiat aspernatur, alias iusto cumque repudiandae porro quam assumenda
+              eveniet deserunt earum labore numquam. Lorem ipsum, dolor sit amet
+              consectetur adipisicing elit. Perspiciatis fugiat aspernatur, sit amet
+              consectetur adipisicing elit. Lorem ipsum, dolor sit amet
+            </p>
+          </article>
+          <footer class="footer__dateauthor">
+            <aside
+              class="aside__dateauthor"
+              aria-label="Date de publication et auteur"
+            >
+              <time datetime="2023-04-05">5 avril 2023</time> <span> || </span>
+              <cite title="nom de l'auteur">Sarah Croche</cite>
+            </aside>
+            <button class="btn-read-more" aria-label="Lire la suite"
+              ><a href="lien_vers_la_page_de_l'article">Lire la suite</a></button
+            >
+          </footer>
+        </section>
+      </div>
   </div>
 </main>
 
@@ -74,20 +73,20 @@
     font-family: Tahoma;
     background-color: #f8f8f8;
     padding: 3rem;
+      h2 {
+        font-weight: bold;
+        padding: 3rem;
+      }
+      div{
     @media screen and (min-width: 1024px) {
       display: flex;
       flex-direction: row;
     }
-
+     
     .wrapper__latest {
       @media screen and (min-width: 1024px) {
         width: 50%;
         border-right: 1px solid #312140;
-      }
-      h2 {
-        text-align: center;
-        font-weight: bold;
-        padding: 3rem;
       }
 
       section {
@@ -181,7 +180,8 @@
             border-radius: 5px;
             font-size: 14px;
             padding: 2rem;
-            margin: 2rem;
+            margin:2rem;
+            
           }
           .btn-read-more a {
             text-decoration: none;
@@ -195,17 +195,8 @@
     .wrapper__like {
       @media screen and (min-width: 1024px) {
         width: 50%;
+        
       }
-
-      h2 {
-        text-align: center;
-        padding-top: 5px;
-        font-weight: bold;
-        text-transform: uppercase;
-        position: relative;
-        padding: 3rem;
-      }
-
       section {
         @extend %glassmorphism;
         margin: 3rem;
@@ -307,5 +298,5 @@
         }
       }
     }
-  }
+  } }
 </style>
