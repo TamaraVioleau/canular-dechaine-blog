@@ -6,8 +6,8 @@ import Footer from "./lib/Footer.svelte";
 
 </script>
 
-<Footer/>
-<PageProfilMembers/>
 
+<PageProfilMembers/>
+<Footer/>
 <style lang="scss">
     </style>
