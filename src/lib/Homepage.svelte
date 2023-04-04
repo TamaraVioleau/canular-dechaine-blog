@@ -16,7 +16,7 @@
           eveniet deserunt earum labore numquam
         </p>
 
-        <button aria-label="Lire la suite">LIRE LA SUITE</button>
+        <button class="btn-read-more" aria-label="Lire la suite"><a href="lien_vers_la_page_de_l'article">LIRE LA SUITE</a></button>
 
         <section class="date_author">
           <aside class="date" aria-label="Date de publication">
@@ -41,7 +41,7 @@
           eveniet deserunt earum labore numquam
         </p>
 
-        <button aria-label="Lire la suite">LIRE LA SUITE</button>
+        <button class="btn-read-more" aria-label="Lire la suite"><a href="lien_vers_la_page_de_l'article">LIRE LA SUITE</a></button>
 
         <section class="date_author">
           <aside class="date" aria-label="Date de publication">
@@ -66,7 +66,7 @@
           eveniet deserunt earum labore numquam
         </p>
 
-        <button aria-label="Lire la suite">LIRE LA SUITE</button>
+        <button class="btn-read-more"aria-label="Lire la suite"><a href="lien_vers_la_page_de_l'article">LIRE LA SUITE</a></button>
 
         <section class="date_author">
           <aside class="date" aria-label="Date de publication">
@@ -91,7 +91,7 @@
           eveniet deserunt earum labore numquam
         </p>
 
-        <button aria-label="Lire la suite">LIRE LA SUITE</button>
+        <button class="btn-read-more"aria-label="Lire la suite"><a href="lien_vers_la_page_de_l'article">LIRE LA SUITE</a></button>
 
         <section class="date_author">
           <aside class="date" aria-label="Date de publication">
@@ -120,7 +120,7 @@
           eveniet deserunt earum labore numquam
         </p>
 
-        <button aria-label="Lire la suite">LIRE LA SUITE</button>
+        <button class="btn-read-more"aria-label="Lire la suite"><a href="lien_vers_la_page_de_l'article">LIRE LA SUITE</a></button>
 
         <section class="date_author">
           <aside class="date" aria-label="Date de publication">
@@ -146,7 +146,7 @@
           eveniet deserunt earum labore numquam
         </p>
 
-        <button aria-label="Lire la suite">LIRE LA SUITE</button>
+        <button class="btn-read-more"aria-label="Lire la suite"><a href="lien_vers_la_page_de_l'article">LIRE LA SUITE</a></button>
 
         <section class="date_author">
           <aside class="date" aria-label="Date de publication">
@@ -171,7 +171,7 @@
           eveniet deserunt earum labore numquam
         </p>
 
-        <button aria-label="Lire la suite">LIRE LA SUITE</button>
+        <button class="btn-read-more"aria-label="Lire la suite"><a href="lien_vers_la_page_de_l'article">LIRE LA SUITE</a></button>
 
         <section class="date_author">
           <aside class="date" aria-label="Date de publication">
@@ -197,7 +197,7 @@
           eveniet deserunt earum labore numquam
         </p>
 
-        <button aria-label="Lire la suite">LIRE LA SUITE</button>
+        <button class="btn-read-more" aria-label="Lire la suite"><a href="lien_vers_la_page_de_l'article">LIRE LA SUITE</a></button>
 
         <section class="date_author">
           <aside class="date" aria-label="Date de publication">
@@ -238,6 +238,7 @@
       font-family: Tahoma, sans-serif;
       padding-left: 1rem;
       padding-right: 1rem;
+      text-align: justify;
     }
     h2 {
       text-align: center;
@@ -253,7 +254,13 @@
       border-radius: 5px;
       font-size: 14px;
       padding: 10px;
+      
     }
+    .btn-read-more a {
+  text-decoration: none;
+}
+ 
+
     .date_author {
       display: flex;
       justify-content: flex-end;
@@ -287,6 +294,9 @@
     .header:nth-child(n+4) {
     display: none;
   }
+  .btn-read-more a {
+  text-decoration: none;
+}
 
   }
  
@@ -306,8 +316,9 @@
   img {
     display: block;
     grid-area: img;
-    max-width: 200px;
-    border-radius: 5px;
+   max-width: 200px;
+    border-radius: 10px;
+    padding: 5px;
   }
 
   h2 {
@@ -317,7 +328,10 @@
   p {
     grid-area: text;
     padding: 0;
-    margin-bottom: 0;
+    margin: -30px 5px 10px 5px;
+    text-align: left;
+    line-height: 1.5;
+   
   }
 
   button {
@@ -331,6 +345,9 @@
    
     
   }
+  .btn-read-more a {
+  text-decoration: none;
+}
   .title_latest,
   .title_like {
     position: relative;
@@ -348,7 +365,7 @@
     padding: 0;
     margin-top: 0;
     justify-self: start;
-    transform: translateY(-20px);
+    transform: translateY(-50px);
   }
 
   .header {
@@ -356,6 +373,7 @@
     flex-direction: column;
     padding: 20px;
     margin: 20px;
+    text-align: left;
    
   }
 
