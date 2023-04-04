@@ -164,10 +164,10 @@
       @media screen and (min-width: 1024px) {
         display: flex;
         justify-content: center;
-        gap : 10rem;
+        gap: 10rem;
         margin: auto;
         align-items: center;
-min-height: 100vh;
+        min-height: 100vh;
       }
       @media screen and (min-width: 1200px) {
       }
@@ -179,9 +179,8 @@ min-height: 100vh;
           padding: 3.5rem;
         }
         @media screen and (min-width: 1024px) {
-          min-height:546px;
+          min-height: 546px;
         }
-      
 
         header {
           display: flex;
@@ -256,6 +255,7 @@ min-height: 100vh;
           padding: 1.5rem;
           max-width: 500px;
           margin: auto;
+
           h3 {
             font-size: 2rem;
             font-weight: bolder;
@@ -284,6 +284,7 @@ min-height: 100vh;
         }
         @media screen and (min-width: 1024px) {
           margin-top: 0;
+          min-height: 635px;
         }
 
         .article__writearticle {
