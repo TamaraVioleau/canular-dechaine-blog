@@ -1,21 +1,14 @@
 <script>
   //SCRIPT COMPTEUR DE MOTS
   let myMaxLength = 500;
-
-  // Définir le seuil d'alerte pour informer l'utilisateur du nombre de caractères restants
-  let myAlertThreshold = 95;
-
-  // Initialiser le compteur de caractères à 0
+   // Initialiser le compteur de caractères à 0
   let characterCount = 0;
-
   // Initialiser les caractères restants avec la longueur maximale autorisée
   let charactersRemaining = myMaxLength;
-
   // Fonction pour gérer l'événement d'entrée (input) sur le textarea
   const handleInput = (e) => {
     // Mettre à jour le nombre de caractères en fonction de la longueur du texte dans le textarea
     characterCount = e.target.value.length;
-
     // Calculer les caractères restants en soustrayant le nombre de caractères actuels de la longueur maximale autorisée
     charactersRemaining = myMaxLength - characterCount;
   };
@@ -73,7 +66,7 @@
       name="textarea"
       id="textarea"
       maxlength={myMaxLength}
-      on:input={(handleInput, updatePreview)}
+      on:input={[handleInput, updatePreview]}
       bind:value={text}      
       spellcheck="true"
       placeholder="Ecrire ici pour modifier l'article"

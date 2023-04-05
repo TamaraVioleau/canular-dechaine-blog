@@ -9,15 +9,12 @@ import Footer from "./lib/Footer.svelte";
   import SearchPage from "./lib/SearchPage.svelte";
 </script>
 
-<PageArticles/>
-
-<!-- 
+<ModifiedArticle/>
 <Homepage/>
 <SearchPage/>
 <PageProfilAuthors/>
 <PageArticles/>
 <Register/>
 <PageProfilMembers/>
- -->
 <Footer/>
 
