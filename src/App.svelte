@@ -9,6 +9,12 @@ import Footer from "./lib/Footer.svelte";
   import SearchPage from "./lib/SearchPage.svelte";
 </script>
 
+
+<Navbar/>
+
+<style lang="scss">
+</style>
+
 <ModifiedArticle/>
 <Homepage/>
 <SearchPage/>
