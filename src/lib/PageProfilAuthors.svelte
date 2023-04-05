@@ -170,197 +170,204 @@
       }
       @media screen and (min-width: 1200px) {
       }
-      .section__informations {
-        @extend %glassmorphism;
-        padding: 1.5rem;
-        // padding: clamp(1.5rem, 5.5vw, 15rem);
-        @media screen and (min-width: 580px) {
-          padding: 3.5rem;
-        }
-        @media screen and (min-width: 1024px) {
-          min-height: 546px;
-        }
+      .wrapper__left {
+        min-width: 390px;
 
-        header {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          line-height: 3rem;
-
-          img {
-            height: 75px;
-            margin-right: 2.5rem;
-          }
-          .article__pseudostatut {
-            text-align: center;
-            background: none;
-
-            h1 {
-              font-size: 3rem;
-              font-weight: bolder;
-            }
-            h2 {
-              font-size: 2.4rem;
-            }
-          }
-        }
-
-        .article__infoperso {
-          margin-top: 2rem;
-          background-color: $color-white;
+        .section__informations {
+          @extend %glassmorphism;
           padding: 1.5rem;
-          display: flex;
-          flex-direction: column;
-          max-width: 500px;
-          margin: auto;
-          label {
-            padding: 1rem 0;
-            font-weight: bolder;
+          // padding: clamp(1.5rem, 5.5vw, 15rem);
+          @media screen and (min-width: 580px) {
+            padding: 3.5rem;
           }
-          #image {
-            border: none;
-            background: none;
-            padding: 1rem 0;
+          @media screen and (min-width: 1024px) {
+            min-height: 546px;
           }
-          input {
-            padding: 1rem;
-            background: $color-greenlight;
-            border: 1px solid white;
-            border-radius: 5px;
-            max-width: 285px;
-          }
-          .buttons {
+
+          header {
             display: flex;
             justify-content: center;
-            margin-top: 2.3rem;
-            gap: 1.5rem;
+            align-items: center;
+            line-height: 3rem;
+
+            img {
+              height: 75px;
+              margin-right: 2.5rem;
+            }
+            .article__pseudostatut {
+              text-align: center;
+              background: none;
+
+              h1 {
+                font-size: 3rem;
+                font-weight: bolder;
+              }
+              h2 {
+                font-size: 2.4rem;
+              }
+            }
+          }
+
+          .article__infoperso {
+            margin-top: 2rem;
+            background-color: $color-white;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            max-width: 500px;
+            margin: auto;
+            label {
+              padding: 1rem 0;
+              font-weight: bolder;
+            }
+            #image {
+              border: none;
+              background: none;
+              padding: 1rem 0;
+            }
+            input {
+              padding: 1rem;
+              background: $color-greenlight;
+              border: 1px solid white;
+              border-radius: 5px;
+              max-width: 285px;
+            }
+            .buttons {
+              display: flex;
+              justify-content: center;
+              margin-top: 2.3rem;
+              gap: 1.5rem;
+            }
           }
         }
-      }
 
-      .section__statistics {
-        @extend %glassmorphism;
-        padding: 1.5rem;
-        margin-top: 2.3rem;
-        @media screen and (min-width: 580px) {
-          padding: 3.5rem;
-        }
-        @media screen and (min-width: 1024px) {
-          margin-top: 0;
-          margin-top: 2.3rem;
-        }
-
-        .article__statistics {
-          background-color: $color-white;
+        .section__statistics {
+          @extend %glassmorphism;
           padding: 1.5rem;
-          max-width: 500px;
-          margin: auto;
-
-          h3 {
-            font-size: 2rem;
-            font-weight: bolder;
-            margin-bottom: 2rem;
+          margin-top: 2.3rem;
+          @media screen and (min-width: 580px) {
+            padding: 3.5rem;
           }
-          ol {
-            list-style: disc;
-            margin-left: 4rem;
-            li {
-              h4 {
-                font-weight: bold;
-                margin-bottom: 1rem;
+          @media screen and (min-width: 1024px) {
+            margin-top: 0;
+            margin-top: 2.3rem;
+          }
+
+          .article__statistics {
+            background-color: $color-white;
+            padding: 1.5rem;
+            max-width: 500px;
+            margin: auto;
+
+            h3 {
+              font-size: 2rem;
+              font-weight: bolder;
+              margin-bottom: 2rem;
+            }
+            ol {
+              list-style: disc;
+              margin-left: 4rem;
+              li {
+                h4 {
+                  font-weight: bold;
+                  margin-bottom: 1rem;
+                }
               }
             }
           }
         }
       }
 
-      .section__writearticle {
-        @extend %glassmorphism;
-        padding: 1.5rem;
-        margin-top: 2.3rem;
-        @media screen and (min-width: 580px) {
-          padding: 1.5rem 3.5rem;
+      .wrapper__right {
+        min-width: 390px;
+
+        .section__writearticle {
+          @extend %glassmorphism;
+          padding: 1.5rem;
           margin-top: 2.3rem;
-        }
-        @media screen and (min-width: 1024px) {
-          margin-top: 0;
-          min-height: 635px;
+          @media screen and (min-width: 580px) {
+            padding: 1.5rem 3.5rem;
+            margin-top: 2.3rem;
+          }
+          @media screen and (min-width: 1024px) {
+            margin-top: 0;
+            min-height: 635px;
+          }
+
+          .article__writearticle {
+            background-color: $color-white;
+            padding: 1.5rem;
+            max-width: 500px;
+            margin-top: 2rem;
+            background-color: $color-white;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            margin: auto;
+            h3 {
+              font-size: 2rem;
+              font-weight: bolder;
+              margin-bottom: 2rem;
+            }
+            label {
+              padding: 1rem 0;
+              font-weight: bolder;
+            }
+            select {
+              width: 100%;
+              padding: 1rem;
+              font-size: 1.5rem;
+              max-width: 285px;
+            }
+            input {
+              padding: 1rem;
+              background: $color-greenlight;
+              border: 1px solid white;
+              border-radius: 5px;
+              max-width: 285px;
+            }
+            input[type="file"] {
+              font-size: 1.5rem;
+              max-width: 285px;
+            }
+
+            #image {
+              border: none;
+              background: none;
+              padding: 1rem 0;
+            }
+            #textarea {
+              height: 200px;
+            }
+
+            p {
+              font-size: 1.2rem;
+              padding: 1rem;
+            }
+          }
         }
 
-        .article__writearticle {
-          background-color: $color-white;
-          padding: 1.5rem;
-          max-width: 500px;
-          margin-top: 2rem;
-          background-color: $color-white;
-          padding: 1.5rem;
+        .buttons {
+          @extend %glassmorphism;
+          margin-top: 2.3rem;
           display: flex;
-          flex-direction: column;
-          margin: auto;
-          h3 {
-            font-size: 2rem;
-            font-weight: bolder;
-            margin-bottom: 2rem;
-          }
-          label {
-            padding: 1rem 0;
-            font-weight: bolder;
-          }
-          select {
-            width: 100%;
-            padding: 1rem;
-            font-size: 1.5rem;
-            max-width: 285px;
+          justify-content: center;
+          padding: 2rem;
+          @media screen and (min-width: 580px) {
+            padding: 1.5rem 3.5rem;
           }
           input {
             padding: 1rem;
+            margin: 1rem;
             background: $color-greenlight;
             border: 1px solid white;
             border-radius: 5px;
-            max-width: 285px;
-          }
-          input[type="file"] {
             font-size: 1.5rem;
+            font-weight: bold;
             max-width: 285px;
           }
-
-          #image {
-            border: none;
-            background: none;
-            padding: 1rem 0;
-          }
-          #textarea {
-            height: 200px;
-          }
-
-          p {
-            font-size: 1.2rem;
-            padding: 1rem;
-          }
-        }
-      }
-
-      .buttons {
-        @extend %glassmorphism;
-        margin-top: 2.3rem;
-        display: flex;
-        justify-content: center;
-        padding: 2rem;
-        @media screen and (min-width: 580px) {
-          padding: 1.5rem 3.5rem;
-        }
-        input {
-          padding: 1rem;
-          margin: 1rem;
-          background: $color-greenlight;
-          border: 1px solid white;
-          border-radius: 5px;
-          font-size: 1.5rem;
-          font-weight: bold;
-          max-width: 285px;
         }
       }
     }
   }
 </style>
-

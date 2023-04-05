@@ -31,8 +31,8 @@
           <label for="DateEnregistrement">Date d'enregistrement : </label>
           <p id="DateEnregistrement">Ici la date d'enregistrement</p>
         </article>
-      </section>     
-       <div class="buttons">
+      </section>
+      <div class="buttons">
         <input
           class="submit"
           type="submit"
@@ -61,9 +61,9 @@
               <p>XX commentaires</p>
             </li>
             <li>
-                <h4>Tous mes likes :</h4>
-                <p>XX likes</p>
-              </li>
+              <h4>Tous mes likes :</h4>
+              <p>XX likes</p>
+            </li>
           </ol>
         </article>
       </section>
@@ -110,125 +110,130 @@
       }
       @media screen and (min-width: 1200px) {
       }
-      .section__informations {
-        @extend %glassmorphism;
-        padding: 1.5rem;
-        @media screen and (min-width: 580px) {
-          padding: 3.5rem;
-        }
+      .wrapper__left {
+        min-width: 390px;
 
-        header {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          line-height: 3rem;
-
-          img {
-            height: 75px;
-            margin-right: 2.5rem;
-          }
-          .article__pseudostatut {
-            text-align: center;
-            background: none;
-
-            h1 {
-              font-size: 3rem;
-              font-weight: bolder;
-            }
-            h2 {
-              font-size: 2.4rem;
-            }
-          }
-        }
-
-        .article__infoperso {
-          margin-top: 2rem;
-          background-color: $color-white;
+        .section__informations {
+          @extend %glassmorphism;
           padding: 1.5rem;
-          display: flex;
-          flex-direction: column;
-          max-width: 500px;
-          margin: auto;
-          label {
-            padding: 1rem 0;
-            font-weight: bolder;
+          @media screen and (min-width: 580px) {
+            padding: 3.5rem;
           }
-          #image {
-            border: none;
-            background: none;
-            padding: 1rem 0;
-          }
-          input {
-            padding: 1rem;
-            background: $color-greenlight;
-            border: 1px solid white;
-            border-radius: 5px;
-            max-width: 285px;
-          }
-          .buttons {
+
+          header {
             display: flex;
             justify-content: center;
-            margin-top: 2.3rem;
-            gap: 1.5rem;
-          }
-        }
-      }
+            align-items: center;
+            line-height: 3rem;
 
-      .section__statistics {
-        @extend %glassmorphism;
-        padding: 1.5rem;
-        margin-top: 2.3rem;
+            img {
+              height: 75px;
+              margin-right: 2.5rem;
+            }
+            .article__pseudostatut {
+              text-align: center;
+              background: none;
 
-        @media screen and (min-width: 580px) {
-          padding: 3.5rem;
-        }
-        @media screen and (min-width: 1024px) {
-          margin-top: 0;
-            min-height:635px;
-        }
-
-        .article__statistics {
-          background-color: $color-white;
-          padding: 1.5rem;
-          max-width: 500px;
-          margin: auto;
-          h3 {
-            font-size: 2rem;
-            font-weight: bolder;
-            margin-bottom: 2rem;
-          }
-          ol {
-            list-style: disc;
-            margin-left: 4rem;
-            li {
-                margin-bottom: 1rem;
-              h4 {
-                font-weight: bold;
-                margin-bottom: 1rem;
+              h1 {
+                font-size: 3rem;
+                font-weight: bolder;
+              }
+              h2 {
+                font-size: 2.4rem;
               }
             }
           }
+
+          .article__infoperso {
+            margin-top: 2rem;
+            background-color: $color-white;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            max-width: 500px;
+            margin: auto;
+            label {
+              padding: 1rem 0;
+              font-weight: bolder;
+            }
+            #image {
+              border: none;
+              background: none;
+              padding: 1rem 0;
+            }
+            input {
+              padding: 1rem;
+              background: $color-greenlight;
+              border: 1px solid white;
+              border-radius: 5px;
+              max-width: 285px;
+            }
+            .buttons {
+              display: flex;
+              justify-content: center;
+              margin-top: 2.3rem;
+              gap: 1.5rem;
+            }
+          }
+        }
+        .buttons {
+          @extend %glassmorphism;
+          margin-top: 2.3rem;
+          display: flex;
+          justify-content: center;
+          padding: 2rem;
+          @media screen and (min-width: 580px) {
+            padding: 1.5rem 3.5rem;
+          }
+          input {
+            padding: 1rem;
+            margin: 1rem;
+            background: $color-greenlight;
+            border: 1px solid white;
+            border-radius: 5px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            max-width: 285px;
+          }
         }
       }
+      .wrapper__right {
+        min-width: 390px;
+                .section__statistics {
+          @extend %glassmorphism;
+          padding: 1.5rem;
+          margin-top: 2.3rem;
 
-      .buttons {
-        @extend %glassmorphism;
-        margin-top: 2.3rem;
-        display: flex;
-        justify-content: center;
-        padding: 2rem;
-        @media screen and (min-width: 580px) {
-          padding: 1.5rem 3.5rem;
-        }
-        input {
-          padding: 1rem;
-          margin: 1rem;
-          background: $color-greenlight;
-          border: 1px solid white;
-          border-radius: 5px;
-          font-size: 1.5rem;
-          font-weight: bold;
-          max-width: 285px;
+          @media screen and (min-width: 580px) {
+            padding: 3.5rem;
+          }
+          @media screen and (min-width: 1024px) {
+            margin-top: 0;
+            min-height: 635px;
+          }
+
+          .article__statistics {
+            background-color: $color-white;
+            padding: 1.5rem;
+            max-width: 500px;
+            margin: auto;
+            h3 {
+              font-size: 2rem;
+              font-weight: bolder;
+              margin-bottom: 2rem;
+            }
+            ol {
+              list-style: disc;
+              margin-left: 4rem;
+              li {
+                margin-bottom: 1rem;
+                h4 {
+                  font-weight: bold;
+                  margin-bottom: 1rem;
+                }
+              }
+            }
+          }
         }
       }
     }
