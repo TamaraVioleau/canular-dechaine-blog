@@ -77,9 +77,9 @@
   @import "../utils/variables";
 
   main {
-    color: #312140;
-    font-family: Tahoma;
-    background-color: #f8f8f8;
+    color: $color-black;
+    font-family: $police;
+    background-color: $color-white;
     padding: 2.3rem;
     min-height: 100vh;
     @media screen and (min-width: 580px) {
@@ -143,7 +143,7 @@
 
         .article__infoperso {
           margin-top: 2rem;
-          background-color: #f8f8f8;
+          background-color: $color-white;
           padding: 1.5rem;
           display: flex;
           flex-direction: column;
@@ -160,7 +160,7 @@
           }
           input {
             padding: 1rem;
-            background: rgba(136, 217, 143, 0.23);
+            background: $color-greenlight;
             border: 1px solid white;
             border-radius: 5px;
             max-width: 285px;
@@ -188,7 +188,7 @@
         }
 
         .article__statistics {
-          background-color: #f8f8f8;
+          background-color: $color-white;
           padding: 1.5rem;
           max-width: 500px;
           margin: auto;
@@ -223,7 +223,7 @@
         input {
           padding: 1rem;
           margin: 1rem;
-          background: rgb(136 217 143 / 23%);
+          background: $color-greenlight;
           border: 1px solid white;
           border-radius: 5px;
           font-size: 1.5rem;

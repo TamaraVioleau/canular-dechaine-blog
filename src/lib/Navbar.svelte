@@ -95,12 +95,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: #312140;
-    background-color: #f8f8f8;
+    color: $color-black;
+    background-color: $color-white;
     border-radius: 0;
     height: auto;
     padding: 3rem;
-    font-family: Tahoma;
+    font-family: $police;
     #logo {
       height: 100px;
       margin-right: 1rem;
@@ -114,7 +114,6 @@
         display: flex;
         justify-content: right;
         height: 50px;
-
         .navigation__search {
           display: none;
           @media screen and (min-width: 770px) {
@@ -124,7 +123,7 @@
             height: 100%;
           }
           #formsearch {
-            border: 1px solid #312140;
+            border: 1px solid $color-black;
             height: auto;
             display: flex;
             border-radius: 5px;
@@ -138,8 +137,8 @@
             #buttonsearch {
               border: none;
               width: 4.5rem;
-              background: rgba(136, 217, 143, 0.23);
-              border-left: 1px solid #312140;
+              background: $color-greenlight;
+              border-left: 1px solid $color-black;
               i {
               }
             }
@@ -148,7 +147,6 @@
         .navigation__login {
           #login {
             display: none;
-            //@media screen and (min-width: 770px) {
             display: flex;
             align-items: center;
             width: auto;
@@ -156,12 +154,12 @@
             justify-content: right;
             gap: 2rem;
             padding: 0 3rem;
-            background: rgb(136 217 143 / 70%);
+            background: $color-greendark;
             border: 1px solid white;
             border-radius: 5px;
             text-decoration: none;
             box-shadow: 0 2px 5px 0 rgba(31, 38, 135, 0.45);
-            //  }
+
             #buttonlogin {
               border-radius: 10px;
               border: none;
@@ -215,7 +213,7 @@
             a {
               text-decoration: none;
               position: relative;
-              color: #312140;
+              color: $color-black;
               &:after {
                 content: "";
                 position: absolute;
@@ -223,7 +221,7 @@
                 bottom: -5px;
                 width: 100%;
                 height: 2px;
-                background-color: rgba(136, 217, 143, 0.23);
+                background-color: $color-greenlight;
                 transform: scaleX(0); /* Masque le soulignement au départ */
                 transition: transform 0.2s ease-in-out; /* Transition fluide */
                 transform-origin: left; /* Modifie l'orientation du soulignement ici gauche à droite */
@@ -245,7 +243,7 @@
     width: 100%;
     top: 16rem;
     right: 0rem;
-    background-color: #f8f8f8;
+    background-color: $color-white;
     padding: 3rem;
     display: none;
 
@@ -258,7 +256,7 @@
         a {
           text-decoration: none;
           position: relative;
-          color: #312140;
+          color: $color-black;
           &:after {
             content: "";
             position: absolute;
@@ -266,7 +264,7 @@
             bottom: -5px;
             width: 100%;
             height: 2px;
-            background-color: rgba(136, 217, 143, 0.23);
+            background-color: $color-greenlight;
             transform: scaleX(0); /* Masque le soulignement au départ */
             transition: transform 0.2s ease-in-out; /* Transition fluide */
             transform-origin: left; /* Modifie l'orientation du soulignement ici gauche à droite */

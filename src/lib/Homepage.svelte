@@ -71,8 +71,8 @@
   @import "../utils/variables";
 
   main {
-    font-family: Tahoma;
-    background-color: #f8f8f8;
+    font-family: $police;
+    background-color: $color-white;
     padding: 3rem;
     @media screen and (min-width: 1024px) {
       display: flex;
@@ -82,7 +82,7 @@
     .wrapper__latest {
       @media screen and (min-width: 1024px) {
         width: 50%;
-        border-right: 1px solid #312140;
+        border-right: 1px solid $color-black;
       }
       h2 {
         text-align: center;
@@ -96,8 +96,7 @@
         h3 {
           text-align: center;
           font-weight: bold;
-          color: #312140;
-          font-family: Tahoma;
+          color: $color-black;
           padding: 2rem;
         }
         article {
@@ -135,7 +134,6 @@
 
           p {
             line-height: 2rem;
-            font-family: Tahoma;
             padding: 1rem;
             text-align: left;
             height: 112px;
@@ -176,7 +174,7 @@
             }
           }
           button {
-            background-color: #88d98f3b;
+            background-color: rgba(136, 217, 143, 0.7);
             border: 1px solid transparent;
             border-radius: 5px;
             font-size: 14px;
@@ -185,8 +183,8 @@
           }
           .btn-read-more a {
             text-decoration: none;
-            color: #312140;
-            font-family: Tahoma;
+            color: $color-black;
+            font-family: $police;
           }
         }
       }
@@ -212,8 +210,6 @@
         h3 {
           text-align: center;
           font-weight: bold;
-          color: #312140;
-          font-family: Tahoma;
           padding: 2rem;
         }
         article {
@@ -251,7 +247,6 @@
 
           p {
             line-height: 2rem;
-            font-family: Tahoma;
             padding: 1rem;
             text-align: left;
             height: 112px;
@@ -292,7 +287,7 @@
             }
           }
           button {
-            background-color: #88d98f3b;
+            background-color: rgba(136, 217, 143, 0.7);
             border: 1px solid transparent;
             border-radius: 5px;
             font-size: 14px;
@@ -301,8 +296,8 @@
           }
           .btn-read-more a {
             text-decoration: none;
-            color: #312140;
-            font-family: Tahoma;
+            color: $color-black;
+            font-family: $police;
           }
         }
       }

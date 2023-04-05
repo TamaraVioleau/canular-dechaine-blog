@@ -11,15 +11,16 @@
 </script>
 
 <Navbar/>
-<Register />
 
-<!-- <SearchPage />
-  <Homepage />
-  <ModifiedArticle />
 <PageProfilAuthors />
-<PageArticles />
-
 <PageProfilMembers /> 
+
+<!-- <Homepage />
+<ModifiedArticle />
+<PageArticles />
+  <Register />
+<SearchPage />
+  
  -->
 <Footer />
 <style lang="scss">
