@@ -179,6 +179,7 @@
         #menu {
           font-size: 5rem;
           cursor: pointer;
+          margin-left: 3rem;
           @media screen and (min-width: 770px) {
             display: none;
           }
