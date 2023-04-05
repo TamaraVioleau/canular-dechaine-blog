@@ -1,4 +1,15 @@
 <script>
+  var details = document.querySelectorAll("details");
+
+  details.forEach(function (detail) {
+    detail.addEventListener("click", function () {
+      details.forEach(function (otherDetail) {
+        if (otherDetail !== detail) {
+          otherDetail.open = false;
+        }
+      });
+    });
+  });
 </script>
 
 <main>
@@ -6,33 +17,36 @@
 
   <wrapper class="wrapper__left">
     <form action="" method="post" id="connexion" name="connexion">
-      <section class="section__login" aria-labelledby="login">
+      <section class="section__login section__title" aria-labelledby="login">
         <h1 id="login">Se connecter</h1>
 
-        <article class="article__login" aria-label="formulaire de connexion">
-          <label for="pseudo">Pseudo : </label>
-          <input type="text" name="pseudo" id="pseudo" />
-          <label for="pwd">Mot de passe : </label>
-          <input type="password" name="pwd" id="pwd" />
-        </article>
+        <details open>
+          <summary>Voir le formulaire</summary>
+          <article class="article__login" aria-label="formulaire de connexion">
+            <label for="pseudo">Pseudo : </label>
+            <input type="text" name="pseudo" id="pseudo" />
+            <label for="pwd">Mot de passe : </label>
+            <input type="password" name="pwd" id="pwd" />
+          </article>
+          <div class="buttons">
+            <input
+              class="submit"
+              type="submit"
+              name="submit"
+              value="Se connecter"
+              spellcheck="false"
+              aria-label="connexion"
+            />
+            <input
+              class="reset"
+              type="reset"
+              name="reset"
+              value="Réinitialiser"
+              aria-label="réinitialisation"
+            />
+          </div>
+        </details>
       </section>
-      <div class="buttons">
-        <input
-          class="submit"
-          type="submit"
-          name="submit"
-          value="Se connecter"
-          spellcheck="false"
-          aria-label="connexion"
-        />
-        <input
-          class="reset"
-          type="reset"
-          name="reset"
-          value="Réinitialiser"
-          aria-label="réinitialisation"
-        />
-      </div>
     </form>
   </wrapper>
 
@@ -41,39 +55,42 @@
       <section class="section__register" aria-labelledby="register">
         <h1 id="statistiques">S'enregistrer :</h1>
 
-        <article
-          class="article__register"
-          aria-label="formulaire d'inscription"
-        >
-          <label for="pseudo">Pseudo : </label>
-          <input type="text" name="pseudo" id="pseudo" />
-          <label for="name">Nom : </label>
-          <input type="text" name="name" id="name" />
-          <label for="firstname">Prénom : </label>
-          <input type="text" name="firstname" id="firstname" />
-          <label for="email">E-mail : </label>
-          <input type="email" name="email" id="email" />
-          <label for="pwd">Mot de passe : </label>
-          <input type="password" name="pwd" id="pwd" />
-        </article>
+        <details>
+          <summary>Voir le formulaire</summary>
+          <article
+            class="article__register"
+            aria-label="formulaire d'inscription"
+          >
+            <label for="pseudo">Pseudo : </label>
+            <input type="text" name="pseudo" id="pseudo" />
+            <label for="name">Nom : </label>
+            <input type="text" name="name" id="name" />
+            <label for="firstname">Prénom : </label>
+            <input type="text" name="firstname" id="firstname" />
+            <label for="email">E-mail : </label>
+            <input type="email" name="email" id="email" />
+            <label for="pwd">Mot de passe : </label>
+            <input type="password" name="pwd" id="pwd" />
+          </article>
+          <div class="buttons">
+            <input
+              class="submit"
+              type="submit"
+              name="submit"
+              value="Se connecter"
+              spellcheck="false"
+              aria-label="connexion"
+            />
+            <input
+              class="reset"
+              type="reset"
+              name="reset"
+              value="Réinitialiser"
+              aria-label="réinitialisation"
+            />
+          </div>
+        </details>
       </section>
-      <div class="buttons">
-        <input
-          class="submit"
-          type="submit"
-          name="submit"
-          value="Se connecter"
-          spellcheck="false"
-          aria-label="connexion"
-        />
-        <input
-          class="reset"
-          type="reset"
-          name="reset"
-          value="Réinitialiser"
-          aria-label="réinitialisation"
-        />
-      </div>
     </form>
   </wrapper>
 </main>
@@ -136,44 +153,51 @@
             line-height: 3rem;
             justify-content: center;
           }
-
-          .article__login {
-            margin-top: 2rem;
-            background-color: #f8f8f8;
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            max-width: 500px;
-            margin: auto;
-            label {
-              padding: 1rem 0;
-              font-weight: bolder;
+          details {
+            summary {
+              padding: 2rem;
+              cursor: pointer;
+              font-weight: bold;
             }
-            input {
-              padding: 1rem;
-              background: rgba(136, 217, 143, 0.23);
-              border: 1px solid white;
-              border-radius: 5px;
-              max-width: 285px;
+
+            .article__login {
+              margin-top: 2rem;
+              background-color: #f8f8f8;
+              padding: 1.5rem;
+              display: flex;
+              flex-direction: column;
+              max-width: 500px;
+              margin: auto;
+
+              label {
+                padding: 1rem 0;
+                font-weight: bolder;
+              }
+              input {
+                padding: 1rem;
+                background: rgba(136, 217, 143, 0.23);
+                border: 1px solid white;
+                border-radius: 5px;
+                max-width: 285px;
+              }
             }
           }
-        }
-        .buttons {
-          @extend %glassmorphism;
-          display: flex;
-          justify-content: center;
-          margin-top: 2.3rem;
-          gap: 1.5rem;
+          .buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 2.3rem;
+            gap: 1.5rem;
 
-          input {
-            padding: 1rem;
-            margin: 1rem;
-            background: rgb(136 217 143 / 23%);
-            border: 1px solid white;
-            border-radius: 5px;
-            font-size: 1.5rem;
-            font-weight: bold;
-            max-width: 285px;
+            input {
+              padding: 1rem;
+              margin: 1rem;
+              background: rgb(136 217 143 / 23%);
+              border: 1px solid white;
+              border-radius: 5px;
+              font-size: 1.5rem;
+              font-weight: bold;
+              max-width: 285px;
+            }
           }
         }
       }
@@ -215,44 +239,51 @@
             justify-content: center;
           }
 
-          .article__register {
-            margin-top: 2rem;
-            background-color: #f8f8f8;
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            max-width: 500px;
-            margin: auto;
-            label {
-              padding: 1rem 0;
-              font-weight: bolder;
+          details {
+            summary {
+              padding: 2rem;
+              cursor: pointer;
+              font-weight: bold;
             }
+
+            .article__register {
+              margin-top: 2rem;
+              background-color: #f8f8f8;
+              padding: 1.5rem;
+              display: flex;
+              flex-direction: column;
+              max-width: 500px;
+              margin: auto;
+              label {
+                padding: 1rem 0;
+                font-weight: bolder;
+              }
+
+              input {
+                padding: 1rem;
+                background: rgba(136, 217, 143, 0.23);
+                border: 1px solid white;
+                border-radius: 5px;
+                max-width: 285px;
+              }
+            }
+          }
+          .buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 2.3rem;
+            gap: 1.5rem;
 
             input {
               padding: 1rem;
-              background: rgba(136, 217, 143, 0.23);
+              margin: 1rem;
+              background: rgb(136 217 143 / 23%);
               border: 1px solid white;
               border-radius: 5px;
+              font-size: 1.5rem;
+              font-weight: bold;
               max-width: 285px;
             }
-          }
-        }
-        .buttons {
-          @extend %glassmorphism;
-          display: flex;
-          justify-content: center;
-          margin-top: 2.3rem;
-          gap: 1.5rem;
-
-          input {
-            padding: 1rem;
-            margin: 1rem;
-            background: rgb(136 217 143 / 23%);
-            border: 1px solid white;
-            border-radius: 5px;
-            font-size: 1.5rem;
-            font-weight: bold;
-            max-width: 285px;
           }
         }
       }
