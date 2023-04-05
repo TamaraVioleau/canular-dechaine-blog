@@ -3,11 +3,12 @@
   import PageProfilMembers from "./lib/PageProfilMembers.svelte";
 import Register from "./lib/Register.svelte";
 import Footer from "./lib/Footer.svelte";
+  import ModifiedArticle from "./lib/ModifiedArticle.svelte";
 
 </script>
+<ModifiedArticle/>
 
 
-<PageProfilMembers/>
-<Footer/>
+
 <style lang="scss">
     </style>
