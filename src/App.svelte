@@ -11,7 +11,6 @@
 </script>
 
 <Navbar/>
-
 <SearchPage />
 
 <!-- <Homepage />

@@ -277,8 +277,10 @@
       }
     }
   }
+
   .searchandlinks.visible {
     display: block;
+
     @media screen and (min-width: 770px) {
       display: none;
     }
