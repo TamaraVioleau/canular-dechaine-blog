@@ -8,12 +8,12 @@
       >
         <header aria-label="avatar pseudo statut">
           <img
-            src="src/assets/avatar-authors.png"
+            src="src/assets/avatar-membres.png"
             alt="avatar par défaut des auteurs"
           />
           <article class="article__pseudostatut">
-            <h1 id="userpseudo">Jean Bonbeur</h1>
-            <h2 id="userstatut">Auteur</h2>
+            <h1 id="userpseudo">Lucie Fer</h1>
+            <h2 id="userstatut">Membre</h2>
           </article>
         </header>
         <article
@@ -125,6 +125,7 @@
 
           img {
             height: 75px;
+            margin-right: 2.5rem;
           }
           .article__pseudostatut {
             text-align: center;
