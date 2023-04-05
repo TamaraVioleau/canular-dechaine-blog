@@ -12,13 +12,14 @@
 
 <Navbar/>
 
+  <Register />
 <PageProfilAuthors />
 <PageProfilMembers /> 
 
 <!-- <Homepage />
 <ModifiedArticle />
 <PageArticles />
-  <Register />
+
 <SearchPage />
   
  -->

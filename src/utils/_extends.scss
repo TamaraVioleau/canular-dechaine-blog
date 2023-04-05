@@ -1,3 +1,6 @@
+@import "../utils/variables";
+
+//All page
 %glassmorphism {
     // background: rgb(136 217 143 / 23%);
     box-shadow: 0 2px 10px 0 rgb(31 38 135 / 45%);
@@ -7,3 +10,49 @@
     border: 1px solid rgba(255, 255, 255, 0.18);
   }
 
+
+  //Page profil authors and members, register
+  %blocprofilregister{
+    color: $color-black;
+    font-family: $police;
+    background-color: $color-white;
+    padding: 2.3rem;
+    @media screen and (min-width: 580px) {
+      padding: 3.5rem;
+    }
+    @media screen and (min-width: 770px) {
+      padding: 5rem 10rem;
+    }
+    @media screen and (min-width: 1024px) {
+      display: flex;
+      justify-content: center;
+      gap: 10rem;
+      margin: auto;
+      padding: 10rem 5rem;
+    }
+  }
+
+  %paddingprofilregister{
+    padding: 1.5rem;
+    @media screen and (min-width: 580px) {
+      padding: 3.5rem;
+    }
+  }
+
+  %buttonsform{
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    gap: 1.5rem;
+  }
+
+  %inputformbutton{
+    padding: 1rem;
+    margin: 1rem;
+    background: $color-greenlight;
+    border: 1px solid white;
+    border-radius: 5px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    max-width: 285px;
+  }

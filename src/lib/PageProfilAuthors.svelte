@@ -137,20 +137,7 @@
   @import "../utils/variables";
 
   main {
-    color: $color-black;
-    font-family: $police;
-    background-color: $color-white;
-    padding: 2.3rem;
-    min-height: 100vh;
-    @media screen and (min-width: 580px) {
-      padding: 3.5rem;
-    }
-    @media screen and (min-width: 770px) {
-      padding: 5rem 10rem;
-    }
-    @media screen and (min-width: 1024px) {
-      padding: 5rem 0rem;
-    }
+    @extend %blocprofilregister;
     form {
       @media screen and (min-width: 580px) {
         width: 95%;
@@ -165,8 +152,6 @@
         justify-content: center;
         gap: 10rem;
         margin: auto;
-        align-items: center;
-        min-height: 100vh;
       }
       @media screen and (min-width: 1200px) {
       }
@@ -175,8 +160,8 @@
 
         .section__informations {
           @extend %glassmorphism;
-          padding: 1.5rem;
-          // padding: clamp(1.5rem, 5.5vw, 15rem);
+          @extend %paddingprofilregister;
+
           @media screen and (min-width: 580px) {
             padding: 3.5rem;
           }
@@ -235,7 +220,7 @@
             .buttons {
               display: flex;
               justify-content: center;
-              margin-top: 2.3rem;
+              margin-top: 2rem;
               gap: 1.5rem;
             }
           }
@@ -243,15 +228,8 @@
 
         .section__statistics {
           @extend %glassmorphism;
-          padding: 1.5rem;
-          margin-top: 2.3rem;
-          @media screen and (min-width: 580px) {
-            padding: 3.5rem;
-          }
-          @media screen and (min-width: 1024px) {
-            margin-top: 0;
-            margin-top: 2.3rem;
-          }
+          @extend %paddingprofilregister;
+          margin-top: 2rem;
 
           .article__statistics {
             background-color: $color-white;
@@ -283,15 +261,10 @@
 
         .section__writearticle {
           @extend %glassmorphism;
-          padding: 1.5rem;
-          margin-top: 2.3rem;
-          @media screen and (min-width: 580px) {
-            padding: 1.5rem 3.5rem;
-            margin-top: 2.3rem;
-          }
+          @extend %paddingprofilregister;
+          margin-top: 2rem;
           @media screen and (min-width: 1024px) {
             margin-top: 0;
-            min-height: 635px;
           }
 
           .article__writearticle {
@@ -349,7 +322,7 @@
 
         .buttons {
           @extend %glassmorphism;
-          margin-top: 2.3rem;
+          margin-top: 2rem;
           display: flex;
           justify-content: center;
           padding: 2rem;
@@ -357,14 +330,7 @@
             padding: 1.5rem 3.5rem;
           }
           input {
-            padding: 1rem;
-            margin: 1rem;
-            background: $color-greenlight;
-            border: 1px solid white;
-            border-radius: 5px;
-            font-size: 1.5rem;
-            font-weight: bold;
-            max-width: 285px;
+            @extend  %inputformbutton;
           }
         }
       }
