@@ -155,7 +155,7 @@
             gap: 1.5rem;
 
             input {
-@extend  %inputformbutton;
+              @extend %inputformbutton;
             }
           }
         }
@@ -231,7 +231,7 @@
             gap: 1.5rem;
 
             input {
-@extend  %inputformbutton;
+              @extend %inputformbutton;
             }
           }
         }
