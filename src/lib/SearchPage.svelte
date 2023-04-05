@@ -4,7 +4,7 @@
 <main>    
     <h2>Résultat de votre recherche pour [....]</h2>
   <div>
-      <div class="wrapper__latest">
+      <div class="wrapper__left">
         <section aria-label="Article">
           <h3 aria-label="Titre de l'article">Titre article</h3>
           <article>
@@ -34,7 +34,7 @@
           </footer>
         </section>
       </div>
-      <div class="wrapper__like">
+      <div class="wrapper__right">
         <section aria-label="Article">
           <h3 aria-label="Titre de l'article">Titre article</h3>
           <article>
@@ -83,7 +83,7 @@
       flex-direction: row;
     }
      
-    .wrapper__latest {
+    .wrapper__left {
       @media screen and (min-width: 1024px) {
         width: 50%;
         border-right: 1px solid #312140;
@@ -192,7 +192,7 @@
       }
     }
 
-    .wrapper__like {
+    .wrapper__right {
       @media screen and (min-width: 1024px) {
         width: 50%;
         
