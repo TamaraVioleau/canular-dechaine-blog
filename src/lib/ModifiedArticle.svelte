@@ -96,7 +96,7 @@
 
   main {
     padding: 3rem;
-    font-family: Tahoma;
+    font-family: $police;
 
     article {
       display: block;
@@ -117,7 +117,7 @@
         font-weight: bolder;
       }
       #preview {
-        font-family: Tahoma;
+        font-family: $police;
         padding: 2rem;
         line-height: 2rem;
       }
@@ -162,7 +162,7 @@
     }
 
     .submit {
-      background-color: rgba(136, 217, 143, 0.23);
+      background-color: $color-greenlight;
       color: rgb(19, 18, 18);
       padding: 1rem 2rem;
       border: none;

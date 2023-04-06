@@ -1,5 +1,4 @@
 <script>
-
   import ErrorPage from "./lib/ErrorPage.svelte";
   import Footer from "./lib/Footer.svelte";
   import PageArticles from "./lib/PageArticles.svelte";
@@ -9,17 +8,13 @@
   import ModifiedArticle from "./lib/ModifiedArticle.svelte";
   import SearchPage from "./lib/SearchPage.svelte";
   import Navbar from "./lib/Navbar.svelte";
-
-
 </script>
 
 <Navbar/>
-
 <ErrorPage/>
 <Footer />
 
-<!-- 
-
+<!--
   <SearchPage/>
 <PageProfilAuthors/>
 <PageProfilMembers/>

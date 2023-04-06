@@ -160,10 +160,10 @@
   @import "../utils/variables";
 
   main {
-    font-family: Tahoma;
-    background-color: #f8f8f8;
+    font-family: $police;
+    background-color: $color-white;
     padding: 3rem;
-
+          color: #312140;
     h2 {
       font-weight: bold;
       padding: 3rem;
@@ -185,8 +185,6 @@
         h3 {
           text-align: center;
           font-weight: bold;
-          color: #312140;
-          font-family: Tahoma;
           padding: 2rem;
         }
         article {
@@ -221,7 +219,6 @@
 
           p {
             line-height: 2rem;
-            font-family: Tahoma;
             padding: 1rem;
             text-align: left;
             height: 112px;
@@ -262,7 +259,7 @@
             }
           }
           button {
-            background-color: #88d98f3b;
+            background-color: $color-greenlight;
             border: 1px solid transparent;
             border-radius: 5px;
             font-size: 14px;
@@ -272,7 +269,7 @@
           .btn-read-more a {
             text-decoration: none;
             color: #312140;
-            font-family: Tahoma;
+            font-family: $police;
           }
         }
       }
