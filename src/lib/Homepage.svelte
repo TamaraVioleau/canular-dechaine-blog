@@ -75,16 +75,18 @@
     font-family: $police;
     background-color: $color-white;
     padding: 3rem;
-    @media screen and (min-width: 1024px) {
+   @media screen and (min-width: 1024px) {
       display: flex;
       flex-direction: row;
+      justify-content: center;
     }
 
     .wrapper__latest {
       @media screen and (min-width: 1024px) {
-        width: 50%;
-        border-right: 1px solid $color-black;
-      }
+        max-width:535px;
+        margin-top: 3rem;
+           }
+
       h2 {
         text-align: center;
         font-weight: bold;
@@ -188,12 +190,14 @@
             font-family: $police;
           }
         }
-      }
-    }
+      }     
+      
+    }      
 
     .wrapper__like {
       @media screen and (min-width: 1024px) {
-        width: 50%;
+        max-width:535px;
+        margin-top: 3rem;
       }
 
       h2 {

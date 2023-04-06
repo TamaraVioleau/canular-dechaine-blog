@@ -1,14 +1,13 @@
 <script>
-
 </script>
 
 <main>
   <h2>Les articles pour la catégorie [.....]</h2>
   <div class="wrapper">
     <section aria-label="Article">
-      <h3 aria-label="Titre de l'article">Titre article</h3>
       <article>
         <img src="https://picsum.photos/900/400" alt="photo" />
+        <h3 aria-label="Titre de l'article">Titre article</h3>
         <p aria-label="Texte de l'article">
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis
           fugiat aspernatur, alias iusto cumque repudiandae porro quam assumenda
@@ -37,9 +36,9 @@
 
     <!-- SUITE DES ARTICLES -->
     <section aria-label="Article">
-      <h3 aria-label="Titre de l'article">Titre article</h3>
       <article>
         <img src="https://picsum.photos/900/400" alt="photo" />
+        <h3 aria-label="Titre de l'article">Titre article</h3>
         <p aria-label="Texte de l'article">
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis
           fugiat aspernatur, alias iusto cumque repudiandae porro quam assumenda
@@ -66,9 +65,9 @@
       </footer>
     </section>
     <section aria-label="Article">
-      <h3 aria-label="Titre de l'article">Titre article</h3>
       <article>
         <img src="https://picsum.photos/900/400" alt="photo" />
+        <h3 aria-label="Titre de l'article">Titre article</h3>
         <p aria-label="Texte de l'article">
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis
           fugiat aspernatur, alias iusto cumque repudiandae porro quam assumenda
@@ -95,9 +94,9 @@
       </footer>
     </section>
     <section aria-label="Article">
-      <h3 aria-label="Titre de l'article">Titre article</h3>
       <article>
         <img src="https://picsum.photos/900/400" alt="photo" />
+        <h3 aria-label="Titre de l'article">Titre article</h3>
         <p aria-label="Texte de l'article">
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis
           fugiat aspernatur, alias iusto cumque repudiandae porro quam assumenda
@@ -124,9 +123,9 @@
       </footer>
     </section>
     <section aria-label="Article">
-      <h3 aria-label="Titre de l'article">Titre article</h3>
       <article>
         <img src="https://picsum.photos/900/400" alt="photo" />
+        <h3 aria-label="Titre de l'article">Titre article</h3>
         <p aria-label="Texte de l'article">
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis
           fugiat aspernatur, alias iusto cumque repudiandae porro quam assumenda
@@ -164,7 +163,7 @@
     font-family: $police;
     background-color: $color-white;
     padding: 3rem;
-          color: #312140;
+    color:  $color-black;
     h2 {
       font-weight: bold;
       padding: 3rem;
@@ -175,19 +174,21 @@
         flex-wrap: wrap;
         justify-content: center;
       }
+      @media screen and (min-width: 1440px) {
+        padding-inline: 5rem;
+        max-width: 1380px;
+      }
 
       section {
         @extend %glassmorphism;
         margin: 3rem;
         @media screen and (min-width: 1024px) {
-          width: 25vw;
+          max-width: 255px;
+        }
+        @media screen and (min-width: 1440px) {
+          max-width: 360px;
         }
 
-        h3 {
-          text-align: center;
-          font-weight: bold;
-          padding: 2rem;
-        }
         article {
           display: flex;
           flex-direction: column;
@@ -216,8 +217,14 @@
               min-width: 160px;
               height: 300px;
             }
+
           }
 
+            h3 {
+              text-align: center;
+              font-weight: bold;
+              padding: 2rem;
+            }
           p {
             line-height: 2rem;
             padding: 1rem;
@@ -276,7 +283,10 @@
       }
       section:first-of-type {
         @media screen and (min-width: 1024px) {
-          width: 55vw;
+          max-width: 570px;
+          @media screen and (min-width: 1440px) {
+            max-width: 780px;
+          }
         }
       }
     }
