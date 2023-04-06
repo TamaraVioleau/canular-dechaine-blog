@@ -10,11 +10,13 @@
   import PageArticle from "./lib/PageArticle.svelte";
   import Navbar from "./lib/Navbar.svelte";
   import CommentsArticlePage from "./components/CommentsArticlePage.svelte";
+  import UpDown from "./components/UpDown.svelte";
 
 
 </script>
 <Navbar/>
 <PageArticle/>
+<UpDown/>
 <Footer/>
 
 
