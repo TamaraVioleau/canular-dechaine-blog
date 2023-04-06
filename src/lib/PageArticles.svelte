@@ -1,17 +1,21 @@
 <script>
-  import { onMount } from 'svelte';
-  import { params as routerParams } from 'svelte-spa-router';
-
   export let params;
 
+  // Initialise les variables pour stocker l'ID de la catégorie, le nom de la catégorie et les articles
   let categoryId;
+  let categoryName;
   let articles = [];
 
+  // Le $: permet de réagir aux changements de params.id et mettre à jour categoryId, categoryName, et articles
   $: if (params.id) {
     categoryId = params.id;
+    // Appelle la fonction 'getCategoryName()' pour récupérer le nom de la catégorie
+    getCategoryName();
+    // Appelle la fonction 'getArticles()' pour récupérer les articles de la catégorie
     getArticles();
   }
 
+  // Récupération des articles de la catégorie
   const getArticles = async () => {
     const endpoint = `${
       import.meta.env.VITE_URL_DIRECTUS
@@ -21,13 +25,20 @@
     articles = json.data;
   };
 
+  // Récupération du nom de la catégorie
+  const getCategoryName = async () => {
+    const endpoint = `${
+      import.meta.env.VITE_URL_DIRECTUS
+    }/items/categories/${categoryId}`;
+    const response = await fetch(endpoint);
+    const json = await response.json();
+    categoryName = json.data.name;
+  };
 </script>
 
-
 <main>
-  <h2>Les articles pour la catégorie {categoryId}</h2>
+  <h2>Les articles pour la catégorie {categoryName}</h2>
   <div class="wrapper">
-    <p>Chargement de la liste...</p>
     {#each articles as article}
       <section aria-label="Article">
         <article>
