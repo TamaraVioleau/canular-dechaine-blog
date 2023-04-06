@@ -12,27 +12,22 @@ import Homepage from "./lib/Homepage.svelte";
   import ModifiedArticle from "./lib/ModifiedArticle.svelte";
   import SearchPage from "./lib/SearchPage.svelte";
   import Navbar from "./lib/Navbar.svelte";
+  import PageArticle from "./lib/PageArticle.svelte";
 </script>
 
 
 <Navbar/>
-<Homepage/>
+<ErrorPage/>
 <Footer />
 
 
-<!-- 
-
-<SearchPage/>
-
-<ErrorPage/>
-
-
-
+<!--
   <SearchPage/>
 <PageProfilAuthors/>
 <PageProfilMembers/>
 <Register/>
 <PageArticles/>
+
  -->
 
 
