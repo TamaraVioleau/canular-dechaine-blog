@@ -37,7 +37,6 @@
        #button__contact {     
         cursor: pointer;
         width: 100%;
-
         padding: 2rem;
         background: rgb(136 217 143 / 23%);
         border: 1px solid white;
