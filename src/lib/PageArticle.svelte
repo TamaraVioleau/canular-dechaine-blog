@@ -134,6 +134,7 @@
   main {
     padding: 3rem;
     font-family: $police;
+    background-color: $color-white;
 
     article {
       display: block;
@@ -142,6 +143,7 @@
 
       img {
         min-width: 100%;
+        width: 100%;
         max-height: 160px;
         object-fit: cover;
         @extend %glassmorphism;
