@@ -8,9 +8,7 @@
   };
 
   //Lorsque l'utilisateur est connecté
-
   const isLogged = window.localStorage.getItem("token") != null;
-
   const logins = [
     {
       text: isLogged ? "Se déconnecter" : "Se connecter",
@@ -97,7 +95,7 @@
     <div class="gridlinks">
       <ul>
         {#each categories as category}
-          <li><a use:link href="/articles" value={category.id}>{category.name}</a></li>
+          <li><a use:link href={`/articles/${category.id}`}>{category.name}</a></li>
           {/each}
       </ul>
     </div>
