@@ -23,7 +23,7 @@
 
 <main>
   <article class="article">
-    <img src="https://picsum.photos/200" alt="foto" />
+    <img src="https://picsum.photos/900/400" alt="foto" />
     <h2>TITRE ARTICLE</h2>
     <p id="preview" aria-label="Texte de l'article">
       Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ratione quasi
@@ -140,14 +140,7 @@
       border-radius: 5px;
       border: 1px solid #ccc;
       padding: 1rem;
-
-      textarea::-webkit-resizer,
-      textarea::-moz-resizer,
-      textarea::-o-resizer,
-      textarea::-ms-resizer {
-        height: 100px; /* masque l'icon de redimensionnement pour les différents navigateurs */
-      }
-    }
+   }
 
     .counter {
       position: relative;

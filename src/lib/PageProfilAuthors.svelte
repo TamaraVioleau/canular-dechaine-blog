@@ -20,6 +20,21 @@
     // Calculer les caractères restants en soustrayant le nombre de caractères actuels de la longueur maximale autorisée
     charactersRemaining = myMaxLength - characterCount;
   };
+
+  //////////////// Requête pour récupérer les catégories /////////////////////////////////////////
+  //création d'une variable qui récupère les informations sous forme de tableau
+  let categories = [];
+
+  const getCategories = async () => {
+    const endpoint = import.meta.env.VITE_URL_DIRECTUS + "/items/categories";
+    const response = await fetch(endpoint);
+    const json = await response.json();
+
+    // Récupération des données et incrémentation dans le tableau
+    categories = json.data;
+  };
+  getCategories();
+
 </script>
 
 <main>
@@ -78,12 +93,11 @@
           <h3 id="ecrire-un-article">Ecrire un article :</h3>
           <label for="category"> Catégorie de l'article :</label>
           <select id="category" name="category" required>
-            <option value="0">Catégorie</option>
-            <option value="1">Catégorie </option>
-            <option value="2">Catégorie</option>
-            <option value="3">Catégorie</option>
-            <option value="4">Catégorie</option>
-          </select>
+      <option value="">Choisir la catégorie</option>
+      {#each categories as category}
+        <option value={category.id}>{category.name}</option>
+      {/each}
+    </select>
           <label for="titre">Titre de l'article : </label>
           <input type="text" name="titre" id="titre" />
           <label for="image">Image de l'article : </label>

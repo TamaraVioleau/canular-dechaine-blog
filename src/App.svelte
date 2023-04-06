@@ -1,6 +1,9 @@
 <script>
-  import ErrorPage from "./lib/ErrorPage.svelte";
+  import Router from "svelte-spa-router";
+
   import Footer from "./lib/Footer.svelte";
+  import Homepage from "./lib/Homepage.svelte";
+  import ErrorPage from "./lib/ErrorPage.svelte";
   import PageArticles from "./lib/PageArticles.svelte";
   import PageProfilAuthors from "./lib/PageProfilAuthors.svelte";
   import PageProfilMembers from "./lib/PageProfilMembers.svelte";
@@ -8,22 +11,31 @@
   import ModifiedArticle from "./lib/ModifiedArticle.svelte";
   import SearchPage from "./lib/SearchPage.svelte";
   import Navbar from "./lib/Navbar.svelte";
-  import Homepage from "./lib/Homepage.svelte";
+
+
+  const routes = {
+    "/": Homepage,
+    "/login": Register,
+    "/articles": PageArticles,
+    
+  }
 </script>
 
-<Navbar />
+<Navbar/>
+<Router {routes}/>
+<Footer/>
+
+<!--
+  <Navbar />
 <Homepage />
-<PageArticles/>
+<Footer />
+<SearchPage/>
 <PageProfilAuthors/>
 <PageProfilMembers/>
 <SearchPage/>
 <Register/>
-<ModifiedArticle/>
-<Footer />
-
-<!--
-  
-<ErrorPage/>
+<PageArticles/>
+<ErrorPage />
  -->
 
 <style lang="scss">

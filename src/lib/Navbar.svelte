@@ -1,4 +1,7 @@
 <script>
+
+import {link} from "svelte-spa-router"
+
   let searchLinksVisible = false;
   const handleClick = () => {
     searchLinksVisible = !searchLinksVisible;
@@ -6,7 +9,7 @@
 </script>
 
 <nav>
-  <a href="/"
+  <a use:link href="/"
     ><img src="src\assets\logo-site.png" alt="logo site" id="logo" /></a
   >
 
@@ -23,7 +26,7 @@
       </div>
 
       <div class="navigation__login">
-        <a href="/" id="login">
+        <a use:link href="/login" id="login">
           <button type="submit" id="buttonlogin">Login</button>
           <img
             src="src\assets\avatar-default.png"
@@ -54,7 +57,7 @@
           </form>
         </div>
         <ul>
-          <li><a href="/">Economie</a></li>
+          <li><a use:link href="/articles">Economie</a></li>
           <li><a href="/">Sciences</a></li>
           <li><a href="/">Ecologie</a></li>
           <li><a href="/">Santé</a></li>
@@ -70,7 +73,7 @@
 
     <div class="gridlinks">
       <ul>
-        <li><a href="/">Economie</a></li>
+        <li><a use:link href="/articles">Economie</a></li>
         <li><a href="/">Sciences</a></li>
         <li><a href="/">Ecologie</a></li>
         <li><a href="/">Santé</a></li>

@@ -1,4 +1,5 @@
 <script>
+
 </script>
 
 <main>
@@ -7,7 +8,7 @@
     <section aria-label="Article">
       <h3 aria-label="Titre de l'article">Titre article</h3>
       <article>
-        <img src="https://picsum.photos/200/300/?blur" alt="photo" />
+        <img src="https://picsum.photos/900/400" alt="photo" />
         <p aria-label="Texte de l'article">
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis
           fugiat aspernatur, alias iusto cumque repudiandae porro quam assumenda
@@ -38,7 +39,7 @@
     <section aria-label="Article">
       <h3 aria-label="Titre de l'article">Titre article</h3>
       <article>
-        <img src="https://picsum.photos/200/300/?blur" alt="photo" />
+        <img src="https://picsum.photos/900/400" alt="photo" />
         <p aria-label="Texte de l'article">
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis
           fugiat aspernatur, alias iusto cumque repudiandae porro quam assumenda
@@ -67,7 +68,7 @@
     <section aria-label="Article">
       <h3 aria-label="Titre de l'article">Titre article</h3>
       <article>
-        <img src="https://picsum.photos/200/300/?blur" alt="photo" />
+        <img src="https://picsum.photos/900/400" alt="photo" />
         <p aria-label="Texte de l'article">
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis
           fugiat aspernatur, alias iusto cumque repudiandae porro quam assumenda
@@ -96,7 +97,7 @@
     <section aria-label="Article">
       <h3 aria-label="Titre de l'article">Titre article</h3>
       <article>
-        <img src="https://picsum.photos/200/300/?blur" alt="photo" />
+        <img src="https://picsum.photos/900/400" alt="photo" />
         <p aria-label="Texte de l'article">
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis
           fugiat aspernatur, alias iusto cumque repudiandae porro quam assumenda
@@ -125,7 +126,7 @@
     <section aria-label="Article">
       <h3 aria-label="Titre de l'article">Titre article</h3>
       <article>
-        <img src="https://picsum.photos/200/300/?blur" alt="photo" />
+        <img src="https://picsum.photos/900/400" alt="photo" />
         <p aria-label="Texte de l'article">
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis
           fugiat aspernatur, alias iusto cumque repudiandae porro quam assumenda
