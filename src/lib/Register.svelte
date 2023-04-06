@@ -1,20 +1,176 @@
 <script>
+  var details = document.querySelectorAll("details");
+  
+  details.forEach(function (detail) {
+    detail.addEventListener("click", function () {
+      details.forEach(function (otherDetail) {
+        if (otherDetail !== detail) {
+          otherDetail.open = false;
+        }
+      });
+    });
+  });
+
+  /////////// login ///////////
+
+  //fonction push qui permet de naviguer entre les différentes pages de l'application
+  import { push } from "svelte-spa-router";
+
+  // variable reload qui permet de déterminer si la page doit être rechargée après l'authentification
+  export let reload = false;
+
+  // variables pour stocker les identifiants
+  let email = "";
+  let password = "";
+
+  // variable qui vérifie si un token est déjà présent dans le localStorage (si oui, token supprimé et rechargement de la page)
+  const isLogged = window.localStorage.getItem("token") != null;
+  if (isLogged) {
+    window.localStorage.removeItem("token");
+    location.reload();
+  }
+
+  // Fonction appelée lors de la soumission du formulaire et qui appelle la fonction login pour obtenir un token pour le stocker dans le localStorage
+  const handleSubmitForm = async (event) => {
+    event.preventDefault();
+    const token = await login();
+    window.localStorage.setItem("token", token);
+
+    if (reload) {
+      location.reload();
+    } else {
+      // Naviguer vers la page d'accueil grace à svelte-spa-router
+      push("/Homepage");
+    }
+  };
+
+  // fonction login qui permet de récupérer le token
+  const login = async () => {
+    const endpoint = import.meta.env.VITE_URL_DIRECTUS + "/auth/login";
+
+    const response = await fetch(endpoint, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+    });
+
+    // Extraction du contenu du body de la réponse au format json
+    const json = await response.json();
+
+    // Lit uniquement le token du json
+    const token = json.data.access_token;
+    return token;
+  };
+
+  /////////// Register ///////////////
+
+  let pseudo = "";
+  let name = "";
+  let firstname = "";
+  let mail = "";
+  let pwd = "";
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const data = {
+      pseudo: pseudo,
+      name: name,
+      firstname: firstname,
+      mail: mail,
+      pwd: pwd,
+    };
+
+    try {
+      const token = await register(data);
+
+      // Rediriger vers la page de confirmation d'inscription avec le jeton d'accès API Directus
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  async function register(data) {
+    const endpoint = import.meta.env.VITE_URL_DIRECTUS + "/users";
+
+    try {
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: data.email,
+          password: data.password,
+          first_name: data.firstname,
+          last_name: data.name,
+          status: "active" // définir le statut de l'utilisateur sur actif
+          
+        }),
+      });
+
+      if (response.ok) {
+        const json = await response.json();
+
+        const token = await getDirectusToken(data.email, data.password);
+
+        return token;
+      } else {
+        throw new Error("Failed to register user");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  async function getDirectusToken(mail, pwd) {
+    const endpoint = import.meta.env.VITE_URL_DIRECTUS + "/auth/authenticate";
+
+    try {
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          mail: mail,
+          pwd: pwd,
+        }),
+      });
+
+      if (response.ok) {
+        const json = await response.json();
+
+        const token = "Bearer " + json.data.token;
+
+        return token;
+      } else {
+        throw new Error("Failed to generate Directus token");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
 </script>
 
 <main>
   <wrapper class="wrapper--left">
     <!-- dans action mettre le nom de la page (ex: /profil)  -->
-    <form action="" method="post" id="connexion" name="connexion">
+    <form on:submit={handleSubmitForm} action="" method="post" id="connexion" name="connexion">
       <section class="section--login" aria-labelledby="login">
         <h1 id="login">Se connecter</h1>
 
         <details open>
           <summary>Voir le formulaire</summary>
           <article class="article--login" aria-label="formulaire de connexion">
-            <label for="pseudo">Pseudo : </label>
-            <input type="text" name="pseudo" id="pseudo" required/>
+            <label for="email">E-mail : </label>
+              <input type="email" name="email" bind:value={email} id="email" required/>
             <label for="pwd">Mot de passe : </label>
-            <input type="password" name="pwd" id="pwd" required/>
+            <input type="password" name="pwd" id="pwd" bind:value={password} required/>
           </article>
           <div class="buttons">
             <input
@@ -39,7 +195,7 @@
   </wrapper>
 
   <wrapper class="wrapper--right"
-    ><form action="" method="post" id="inscription" name="inscription">
+    ><form on:submit={handleSubmit} action="" method="post" id="inscription" name="inscription">
       <section class="section--register" aria-labelledby="register">
         <h1 id="statistiques">S'enregistrer :</h1>
 
@@ -50,11 +206,11 @@
             aria-label="formulaire d'inscription"
           >
             <label for="pseudo">Pseudo : </label>
-            <input type="text" name="pseudo" id="pseudo" required/>
+            <input type="text" name="pseudo" id="pseudo" bind:value={pseudo} required/>
             <label for="email">E-mail : </label>
-            <input type="email" name="email" id="email" required/>
+            <input type="email" name="email" id="email" bind:value={email} required/>
             <label for="pwd">Mot de passe : </label>
-            <input type="password" name="pwd" id="pwd" required/>
+            <input type="password" name="pwd" id="pwd" bind:value={password} required/>
           </article>
           <div class="buttons">
             <input
