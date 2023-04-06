@@ -10,7 +10,6 @@
   import Register from "./lib/Register.svelte";
   import ModifiedArticle from "./lib/ModifiedArticle.svelte";
   import SearchPage from "./lib/SearchPage.svelte";
-
   import PageArticle from "./lib/PageArticle.svelte";
   import ErrorPage from "./lib/ErrorPage.svelte";
   import Footer from "./lib/Footer.svelte";
@@ -29,14 +28,18 @@
 <Navbar />
 <Router {routes} />
 <!-- <PageArticles /> -->
-<SearchPage />
+
+<!-- 
+  <SearchPage />
 
 <PageArticle />
-<!-- <ModifiedArticle /> -->
-
-<Register />
+  <ModifiedArticle /> 
+  <Register />
 <PageProfilAuthors />
 <PageProfilMembers />
+
+-->
+
 
 <Footer />
 
