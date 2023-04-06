@@ -64,10 +64,6 @@
    .contain{
 	height: 400px;
 	width: 400px;
-	left: 50%;
-	top: 50%;
-	position: absolute;
-	transform: translatex(-50%) translatey(-50%);
 	svg{
 		vertical-align: top;
 		width: 100%;
