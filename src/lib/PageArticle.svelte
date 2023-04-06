@@ -195,6 +195,7 @@
 
           .heart-count {
             margin-right: 1rem;
+            font-size: 2rem;
           }
         }
       }
