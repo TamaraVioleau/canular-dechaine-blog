@@ -31,8 +31,8 @@
           <label for="DateEnregistrement">Date d'enregistrement : </label>
           <p id="DateEnregistrement">Ici la date d'enregistrement</p>
         </article>
-      </section>     
-       <div class="buttons">
+      </section>
+      <div class="buttons">
         <input
           class="submit"
           type="submit"
@@ -61,9 +61,9 @@
               <p>XX commentaires</p>
             </li>
             <li>
-                <h4>Tous mes likes :</h4>
-                <p>XX likes</p>
-              </li>
+              <h4>Tous mes likes :</h4>
+              <p>XX likes</p>
+            </li>
           </ol>
         </article>
       </section>
@@ -77,20 +77,7 @@
   @import "../utils/variables";
 
   main {
-    color: #312140;
-    font-family: Tahoma;
-    background-color: #f8f8f8;
-    padding: 2.3rem;
-    min-height: 100vh;
-    @media screen and (min-width: 580px) {
-      padding: 3.5rem;
-    }
-    @media screen and (min-width: 770px) {
-      padding: 5rem 10rem;
-    }
-    @media screen and (min-width: 1024px) {
-      padding: 5rem 0rem;
-    }
+    @extend %blocprofilregister;
     form {
       @media screen and (min-width: 580px) {
         width: 95%;
@@ -105,130 +92,123 @@
         justify-content: center;
         gap: 10rem;
         margin: auto;
-        align-items: center;
-        min-height: 100vh;
       }
       @media screen and (min-width: 1200px) {
       }
-      .section__informations {
-        @extend %glassmorphism;
-        padding: 1.5rem;
-        @media screen and (min-width: 580px) {
-          padding: 3.5rem;
-        }
+      .wrapper__left {
+        min-width: 390px;
 
-        header {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          line-height: 3rem;
+        .section__informations {
+          @extend %glassmorphism;
+          @extend %paddingprofilregister;
 
-          img {
-            height: 75px;
-            margin-right: 2.5rem;
-          }
-          .article__pseudostatut {
-            text-align: center;
-            background: none;
-
-            h1 {
-              font-size: 3rem;
-              font-weight: bolder;
-            }
-            h2 {
-              font-size: 2.4rem;
-            }
-          }
-        }
-
-        .article__infoperso {
-          margin-top: 2rem;
-          background-color: #f8f8f8;
-          padding: 1.5rem;
-          display: flex;
-          flex-direction: column;
-          max-width: 500px;
-          margin: auto;
-          label {
-            padding: 1rem 0;
-            font-weight: bolder;
-          }
-          #image {
-            border: none;
-            background: none;
-            padding: 1rem 0;
-          }
-          input {
-            padding: 1rem;
-            background: rgba(136, 217, 143, 0.23);
-            border: 1px solid white;
-            border-radius: 5px;
-            max-width: 285px;
-          }
-          .buttons {
+          header {
             display: flex;
             justify-content: center;
-            margin-top: 2.3rem;
-            gap: 1.5rem;
-          }
-        }
-      }
+            align-items: center;
+            line-height: 3rem;
 
-      .section__statistics {
-        @extend %glassmorphism;
-        padding: 1.5rem;
-        margin-top: 2.3rem;
+            img {
+              height: 75px;
+              margin-right: 2.5rem;
+            }
+            .article__pseudostatut {
+              text-align: center;
+              background: none;
 
-        @media screen and (min-width: 580px) {
-          padding: 3.5rem;
-        }
-        @media screen and (min-width: 1024px) {
-          margin-top: 0;
-            min-height:635px;
-        }
-
-        .article__statistics {
-          background-color: #f8f8f8;
-          padding: 1.5rem;
-          max-width: 500px;
-          margin: auto;
-          h3 {
-            font-size: 2rem;
-            font-weight: bolder;
-            margin-bottom: 2rem;
-          }
-          ol {
-            list-style: disc;
-            margin-left: 4rem;
-            li {
-                margin-bottom: 1rem;
-              h4 {
-                font-weight: bold;
-                margin-bottom: 1rem;
+              h1 {
+                font-size: 3rem;
+                font-weight: bolder;
+              }
+              h2 {
+                font-size: 2.4rem;
               }
             }
           }
+
+          .article__infoperso {
+            margin-top: 2rem;
+            background-color: $color-white;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            max-width: 500px;
+            margin: auto;
+            label {
+              padding: 1rem 0;
+              font-weight: bolder;
+            }
+            #image {
+              border: none;
+              background: none;
+              padding: 1rem 0;
+            }
+
+            .buttons {
+              display: flex;
+              justify-content: center;
+              margin-top: 2rem;
+              gap: 1.5rem;
+            }           
+             input {
+              padding: 1rem;
+                background: $color-greenlight;
+                border: 1px solid white;
+                border-radius: 5px;
+                max-width: 285px;
+            }
+          }
+        }
+        .buttons {
+          @extend %glassmorphism;
+          margin-top: 2rem;
+          display: flex;
+          justify-content: center;
+          padding: 2rem;
+          @media screen and (min-width: 580px) {
+            padding: 1.5rem 3.5rem;
+          }
+          input {
+            @extend    %inputformbutton;
+          }
         }
       }
+      .wrapper__right {
+        min-width: 390px;
+        .section__statistics {
+          @extend %glassmorphism;
+          @extend %paddingprofilregister;
+          margin-top: 2rem;
+          @media screen and (min-width: 580px) {
+            padding: 3.5rem;
+          }
+          @media screen and (min-width: 1024px) {
+            margin-top: 0;
+            min-height: 635px;
+          }
 
-      .buttons {
-        @extend %glassmorphism;
-        margin-top: 2.3rem;
-        display: flex;
-        justify-content: center;
-        padding: 2rem;
-        @media screen and (min-width: 580px) {
-          padding: 1.5rem 3.5rem;
-        }
-        input {
-          padding: 1rem;
-          margin: 1rem;
-          background: rgb(136 217 143 / 23%);
-          border: 1px solid white;
-          border-radius: 5px;
-          font-size: 1.5rem;
-          font-weight: bold;
-          max-width: 285px;
+          .article__statistics {
+            background-color: $color-white;
+            padding: 1.5rem;
+            max-width: 500px;
+            margin: auto;
+            h3 {
+              font-size: 2rem;
+              font-weight: bolder;
+              margin-bottom: 2rem;
+            }
+            ol {
+              list-style: disc;
+              margin-left: 4rem;
+              li {
+                margin-bottom: 1rem;
+                h4 {
+                  font-weight: bold;
+                  margin-bottom: 1rem;
+                }
+              }
+            }
+          }
         }
       }
     }

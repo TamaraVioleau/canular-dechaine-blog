@@ -70,9 +70,10 @@
   @import "../utils/variables";
 
   main {
-    font-family: Tahoma;
-    background-color: #f8f8f8;
-    padding: 3rem;
+    font-family: $police;
+    background-color: $color-white;
+    padding: 3rem;          
+    color: $color-black;
       h2 {
         font-weight: bold;
         padding: 3rem;
@@ -86,7 +87,7 @@
     .wrapper__left {
       @media screen and (min-width: 1024px) {
         width: 50%;
-        border-right: 1px solid #312140;
+        border-right: 1px solid $color-black;
       }
 
       section {
@@ -95,8 +96,6 @@
         h3 {
           text-align: center;
           font-weight: bold;
-          color: #312140;
-          font-family: Tahoma;
           padding: 2rem;
         }
         article {
@@ -134,7 +133,6 @@
 
           p {
             line-height: 2rem;
-            font-family: Tahoma;
             padding: 1rem;
             text-align: left;
             height: 112px;
@@ -185,8 +183,8 @@
           }
           .btn-read-more a {
             text-decoration: none;
-            color: #312140;
-            font-family: Tahoma;
+            color: $color-black;
+            font-family: $police;
           }
         }
       }
@@ -203,8 +201,6 @@
         h3 {
           text-align: center;
           font-weight: bold;
-          color: #312140;
-          font-family: Tahoma;
           padding: 2rem;
         }
         article {
@@ -242,12 +238,10 @@
 
           p {
             line-height: 2rem;
-            font-family: Tahoma;
             padding: 1rem;
             text-align: left;
             height: 112px;
             margin: 1rem;
-
             display: -webkit-box;
             -webkit-line-clamp: 5;
             -webkit-box-orient: vertical;
@@ -283,7 +277,7 @@
             }
           }
           button {
-            background-color: #88d98f3b;
+            background-color: $color-greenlight;
             border: 1px solid transparent;
             border-radius: 5px;
             font-size: 14px;
@@ -292,8 +286,8 @@
           }
           .btn-read-more a {
             text-decoration: none;
-            color: #312140;
-            font-family: Tahoma;
+            color: $color-black;
+            font-family: $police;
           }
         }
       }

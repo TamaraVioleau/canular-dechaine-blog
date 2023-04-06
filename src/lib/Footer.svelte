@@ -18,14 +18,14 @@
   @import "../utils/variables";
 
   footer {
-    color: #312140;
+    color: $color-black;
     font-family: Tahoma;
     font-size: 2rem;
     @extend %glassmorphism;
     border-radius: 0;
     display: flex;
     flex-direction: column;
-    background-color: #f8f8f8;
+    background-color: $color-white;
     padding: 6rem 3rem;
     row-gap: 6rem;
     a {
@@ -33,12 +33,12 @@
       place-content: center;
       text-decoration: none;
       position: relative;
-      color: #312140;
+      color: $color-black;
        #button__contact {     
         cursor: pointer;
         width: 100%;
         padding: 2rem;
-        background: rgb(136 217 143 / 23%);
+        background: $color-greenlight;
         border: 1px solid white;
         border-radius: 5px;
         font-size: 1.6rem;
@@ -58,7 +58,7 @@
           font-size: 5rem;
           text-decoration: none;
           position: relative;
-          color: #312140;
+          color: $color-black;
           i {
           }
         }
@@ -89,7 +89,7 @@
       a {
         text-decoration: none;
         position: relative;
-        color: #312140;
+        color: $color-black;
         &:after {
           content: "";
           position: absolute;
@@ -97,7 +97,7 @@
           bottom: -5px;
           width: 100%;
           height: 2px;
-          background-color: rgba(136, 217, 143, 0.23);
+          background-color: $color-greenlight;
           transform: scaleX(0); /* Masque le soulignement au départ */
           transition: transform 0.2s ease-in-out; /* Transition fluide */
           transform-origin: left; /* Modifie l'orientation du soulignement ici gauche à droite */
