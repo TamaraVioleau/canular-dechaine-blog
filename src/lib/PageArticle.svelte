@@ -21,7 +21,8 @@
     localStorage.setItem("heartCount", count);
     localStorage.setItem("heartActive", isActive);
     // Met à jour le texte du compteur de likes
-    document.querySelector(".heart-count").textContent = count;
+    document.querySelector(".heart-count").textContent = parseInt(count);
+
   }
 
   // Utilise la fonction onMount pour exécuter du code dès que l'élément HTML est prêt à être utilisé
