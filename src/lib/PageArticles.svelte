@@ -42,7 +42,7 @@
     {#each articles as article}
       <section aria-label="Article">
         <article>
-          <img src={article.image} alt="photo" />
+          <img src={article.image} alt="{article.alt}" />
           <h3 aria-label="Titre de l'article">{article.title}</h3>
           <p aria-label={article.content}>
             Lorem ipsum, dolor sit amet consectetur adipisicing elit.
