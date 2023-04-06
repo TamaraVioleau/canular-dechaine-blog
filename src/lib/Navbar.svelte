@@ -17,6 +17,21 @@
       url: "/connexion",
     },
   ];
+
+  //Récupération des catégories de la BDD
+
+  let categories = [];
+
+  const getCategories = async () => {
+    const endpoint = import.meta.env.VITE_URL_DIRECTUS + "/items/categories";
+    const response = await fetch(endpoint);
+    const json = await response.json();
+
+    // Récupération des données et incrémentation dans le tableau
+    categories = json.data;
+  };
+  getCategories();
+
 </script>
 
 <nav>
@@ -70,15 +85,10 @@
           </form>
         </div>
         <ul>
-          <li><a use:link href="/articles">Economie</a></li>
-          <li><a href="/">Sciences</a></li>
-          <li><a href="/">Ecologie</a></li>
-          <li><a href="/">Santé</a></li>
-          <li><a href="/">Culture</a></li>
-          <li><a href="/">Tourisme</a></li>
-          <li><a href="/">Animaux</a></li>
-          <li><a href="/">People</a></li>
-          <li><a href="/">Astrologie</a></li>
+          {#each categories as category}
+          <li><a use:link href="/articles" value={category.id}>{category.name}</a></li>
+          {/each}
+          
         </ul>
       </div>
       <!-- ici fini le bouton du menu responsive -->
@@ -86,15 +96,9 @@
 
     <div class="gridlinks">
       <ul>
-        <li><a use:link href="/articles">Economie</a></li>
-        <li><a href="/">Sciences</a></li>
-        <li><a href="/">Ecologie</a></li>
-        <li><a href="/">Santé</a></li>
-        <li><a href="/">Culture</a></li>
-        <li><a href="/">Tourisme</a></li>
-        <li><a href="/">Animaux</a></li>
-        <li><a href="/">People</a></li>
-        <li><a href="/">Astrologie</a></li>
+        {#each categories as category}
+          <li><a use:link href="/articles" value={category.id}>{category.name}</a></li>
+          {/each}
       </ul>
     </div>
   </div>

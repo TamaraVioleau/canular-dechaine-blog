@@ -28,14 +28,18 @@
 <Navbar />
 <Router {routes} />
 <!-- <PageArticles /> -->
-<SearchPage />
+
+<!-- 
+  <SearchPage />
 
 <PageArticle />
-<!-- <ModifiedArticle /> -->
-
-<Register />
+  <ModifiedArticle /> 
+  <Register />
 <PageProfilAuthors />
 <PageProfilMembers />
+
+-->
+
 
 <Footer />
 
