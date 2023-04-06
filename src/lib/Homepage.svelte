@@ -1,4 +1,5 @@
 <script>
+  import {link} from "svelte-spa-router"
 </script>
 
 <main>
@@ -28,7 +29,7 @@
         </aside>
 
         <button class="btn-read-more" aria-label="Lire la suite"
-          ><a href="lien_vers_la_page_de_l'article">Lire la suite</a></button
+          ><a use:link href="/article">Lire la suite</a></button
         >
       </footer>
     </section>
