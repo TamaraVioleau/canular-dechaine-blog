@@ -1,8 +1,10 @@
 <script>
+
   import Footer from "./lib/Footer.svelte";
-import Homepage from "./lib/HomePage.svelte"; 
+import Homepage from "./lib/Homepage.svelte"; 
+
   import ErrorPage from "./lib/ErrorPage.svelte";
-  import Footer from "./lib/Footer.svelte";
+  
   import PageArticles from "./lib/PageArticles.svelte";
   import PageProfilAuthors from "./lib/PageProfilAuthors.svelte";
   import PageProfilMembers from "./lib/PageProfilMembers.svelte";
@@ -12,21 +14,29 @@ import Homepage from "./lib/HomePage.svelte";
   import Navbar from "./lib/Navbar.svelte";
 </script>
 
-<SearchPage/>
 
-<!-- <Homepage/>
 <Navbar/>
-<ErrorPage/>
+<Homepage/>
 <Footer />
 
-<!--
+
+<!-- 
+
+<SearchPage/>
+
+<ErrorPage/>
+
+
+
   <SearchPage/>
 <PageProfilAuthors/>
 <PageProfilMembers/>
 <Register/>
 <PageArticles/>
  -->
-<Footer />
+
+
+
 
 
 <style lang="scss">
