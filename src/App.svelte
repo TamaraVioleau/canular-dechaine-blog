@@ -16,9 +16,6 @@
 
   import CommentsArticlePage from "./components/CommentsArticlePage.svelte";
   import UpDown from "./components/UpDown.svelte";
-  import PaginationBar from "./components/PaginationBar.svelte";
-
-
 
   const routes = {
     "/": Homepage,
