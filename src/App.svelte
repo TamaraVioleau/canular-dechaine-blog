@@ -9,11 +9,15 @@
   import SearchPage from "./lib/SearchPage.svelte";
   import PageArticle from "./lib/PageArticle.svelte";
   import Navbar from "./lib/Navbar.svelte";
+  import CommentsArticlePage from "./components/CommentsArticlePage.svelte";
+
 
 </script>
-<Navbar />
+<Navbar/>
+<PageArticle/>
+<CommentsArticlePage/>
+<Footer/>
 
-<Footer />
 
 
 <!--
