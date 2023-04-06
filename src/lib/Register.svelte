@@ -19,6 +19,7 @@
   // variable reload qui permet de déterminer si la page doit être rechargée après l'authentification
   export let reload = false;
 
+  
   // variables pour stocker les identifiants
   let email = "";
   let password = "";
@@ -40,7 +41,8 @@
       location.reload();
     } else {
       // Naviguer vers la page d'accueil grace à svelte-spa-router
-      push("/Homepage");
+      push("/");
+      
     }
   };
 

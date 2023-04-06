@@ -1,11 +1,22 @@
 <script>
+  import { link } from "svelte-spa-router";
 
-import {link} from "svelte-spa-router"
-
+  // JS pour le menu burger
   let searchLinksVisible = false;
   const handleClick = () => {
     searchLinksVisible = !searchLinksVisible;
   };
+
+  //Lorsque l'utilisateur est connecté
+
+  const isLogged = window.localStorage.getItem("token") != null;
+
+  const logins = [
+    {
+      text: isLogged ? "Se déconnecter" : "Se connecter",
+      url: "/connexion",
+    },
+  ];
 </script>
 
 <nav>
@@ -26,14 +37,16 @@ import {link} from "svelte-spa-router"
       </div>
 
       <div class="navigation__login">
-        <a use:link href="/login" id="login">
-          <button type="submit" id="buttonlogin">Login</button>
-          <img
-            src="src\assets\avatar-default.png"
-            alt="avatar par défaut"
-            id="avatar"
-          />
-        </a>
+        {#each logins as login}
+          <a use:link href={login.url} id="login">
+            <button type="submit" id="buttonlogin">{login.text}</button>
+            <img
+              src="src\assets\avatar-default.png"
+              alt="avatar par défaut"
+              id="avatar"
+            />
+          </a>
+        {/each}
       </div>
 
       <!-- ici le bouton du menu responsive -->
