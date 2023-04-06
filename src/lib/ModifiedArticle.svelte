@@ -23,7 +23,7 @@
 
 <main>
   <article class="article">
-    <img src="https://picsum.photos/200" alt="foto" />
+    <img src="https://picsum.photos/900/400" alt="foto" />
     <h2>TITRE ARTICLE</h2>
     <p id="preview" aria-label="Texte de l'article">
       Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ratione quasi
