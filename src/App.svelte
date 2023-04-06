@@ -14,14 +14,15 @@
 
 <Navbar/>
 <PageArticle/>
-<Footer />
-
-<!--
 <SearchPage/>
 <PageProfilAuthors/>
 <PageProfilMembers/>
 <Register/>
 <PageArticles/>
+<ModifiedArticle/>
+<Footer />
+
+<!--
 
  -->
 
