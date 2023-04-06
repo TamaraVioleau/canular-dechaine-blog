@@ -140,14 +140,7 @@
       border-radius: 5px;
       border: 1px solid #ccc;
       padding: 1rem;
-
-      textarea::-webkit-resizer,
-      textarea::-moz-resizer,
-      textarea::-o-resizer,
-      textarea::-ms-resizer {
-        height: 100px; /* masque l'icon de redimensionnement pour les différents navigateurs */
-      }
-    }
+   }
 
     .counter {
       position: relative;
