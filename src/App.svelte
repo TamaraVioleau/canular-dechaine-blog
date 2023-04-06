@@ -15,7 +15,6 @@
 </script>
 <Navbar/>
 <PageArticle/>
-<CommentsArticlePage/>
 <Footer/>
 
 

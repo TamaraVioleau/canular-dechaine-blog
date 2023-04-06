@@ -1,7 +1,7 @@
 <script>
 </script>
 
-<main>
+
   <section>
     <article>
       <header class="header__dateauthor">
@@ -45,22 +45,20 @@
       />
     </div>
   </div>
-</main>
+
 
 <style lang="scss">
   @import "../utils/extends";
   @import "../utils/mixins";
   @import "../utils/variables";
 
-  main {
-    padding: 3rem;
-    font-family: $police;
-    background-color: $color-white;
+
 
     section {
       display: block;
       padding: 00.625rem;
       @extend %glassmorphism;
+      margin-top: 30px;
     }
 
     .header__dateauthor {
@@ -97,7 +95,7 @@
       display: block;
       @extend %glassmorphism;
       width: 100%;
-      margin-top: 30px;
+      margin-top: 3rem;
     }
 
     #textarea {
@@ -128,5 +126,5 @@
       border-radius: 5px;
       cursor: pointer;
     }
-  }
+
 </style>
