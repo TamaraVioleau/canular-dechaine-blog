@@ -8,20 +8,23 @@
   import ModifiedArticle from "./lib/ModifiedArticle.svelte";
   import SearchPage from "./lib/SearchPage.svelte";
   import Navbar from "./lib/Navbar.svelte";
+  import Homepage from "./lib/Homepage.svelte";
 </script>
 
-<Navbar/>
-<ErrorPage/>
+<Navbar />
+<Homepage />
+<PageArticles/>
+<PageProfilAuthors/>
+<PageProfilMembers/>
+<SearchPage/>
+<Register/>
+<ModifiedArticle/>
 <Footer />
 
 <!--
-  <SearchPage/>
-<PageProfilAuthors/>
-<PageProfilMembers/>
-<Register/>
-<PageArticles/>
+  
+<ErrorPage/>
  -->
-
 
 <style lang="scss">
 </style>
