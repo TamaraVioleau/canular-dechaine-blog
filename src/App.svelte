@@ -11,26 +11,48 @@
   import Register from "./lib/Register.svelte";
   import ModifiedArticle from "./lib/ModifiedArticle.svelte";
   import SearchPage from "./lib/SearchPage.svelte";
-  import PageArticle from "./lib/PageArticle.svelte";
   import Navbar from "./lib/Navbar.svelte";
+  import PageArticle from "./lib/PageArticle.svelte";
+
   import CommentsArticlePage from "./components/CommentsArticlePage.svelte";
+  import UpDown from "./components/UpDown.svelte";
 
-  
-
+  const routes = {
+    "/": Homepage,
+    "/connexion": Register,
+    "/articles": PageArticles,
+    "/article": PageArticle,
+  }
 </script>
+
 <Navbar/>
 
 <Router {routes}/>
 
+<Footer/>
+
+<!--
+  <Navbar />
 <Homepage />
+<Footer />
+
 <PageArticle/>
-<ModifiedArticle/>
-<PageArticles/>
+<UpDown/>
+
 <SearchPage/>
 
 <Register/>
 <PageProfilAuthors/>
 <PageProfilMembers/>
+<SearchPage/>
+<Register/>
+<PageArticles/>
+<ModifiedArticle/>
+<PaginationBar/>
+<Footer/>
+
+ -->
+
 
 <Footer/>
 <style lang="scss">
