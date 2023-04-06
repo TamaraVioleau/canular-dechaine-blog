@@ -10,8 +10,13 @@
   import ModifiedArticle from "./lib/ModifiedArticle.svelte";
   import SearchPage from "./lib/SearchPage.svelte";
   import Navbar from "./lib/Navbar.svelte";
+
   import Homepage from "./lib/Homepage.svelte";
   import PageArticle from "./lib/PageArticle.svelte";
+
+  import CommentsArticlePage from "./components/CommentsArticlePage.svelte";
+  import UpDown from "./components/UpDown.svelte";
+
 
 
   const routes = {
@@ -23,6 +28,7 @@
 </script>
 
 <Navbar/>
+
 <Router {routes}/>
 <Footer/>
 
@@ -30,6 +36,10 @@
   <Navbar />
 <Homepage />
 <Footer />
+
+<PageArticle/>
+<UpDown/>
+
 <SearchPage/>
 <PageProfilAuthors/>
 <PageProfilMembers/>
@@ -37,6 +47,8 @@
 <Register/>
 <PageArticles/>
 <ModifiedArticle/>
+<Footer/>
+
  -->
 
 
