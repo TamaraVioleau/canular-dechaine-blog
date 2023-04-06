@@ -17,18 +17,18 @@
 <Navbar/>
 <PageArticle/>
 <UpDown/>
-<Footer/>
-
-
-
-<!--
-<PageArticle/>
 <SearchPage/>
 <PageProfilAuthors/>
 <PageProfilMembers/>
 <Register/>
 <PageArticles/>
 <ModifiedArticle/>
+<Footer/>
+
+
+
+<!--
+
  -->
 
 <style lang="scss">

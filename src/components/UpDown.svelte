@@ -30,6 +30,9 @@
   @import "../utils/mixins";
   @import "../utils/variables";
 
+  button {
+    display: none;
+  }
   @media screen and (min-width: 580px) {
     button {
       display: flex;
