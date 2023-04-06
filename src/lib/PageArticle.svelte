@@ -1,19 +1,34 @@
 <script>
-  import { onMount } from "svelte";
+  import { onMount, onDestroy } from "svelte";
 
+  let count = localStorage.getItem("heartCount") || 0;
   let isActive = localStorage.getItem("heartActive") === "true";
 
   function toggleHeart() {
-    isActive = !isActive;
-    localStorage.setItem("heartActive", isActive);
+  if (isActive) {
+    count -= 1;
+  } else {
+    count += 1;
   }
+  isActive = !isActive;
+  localStorage.setItem("heartCount", count);
+  localStorage.setItem("heartActive", isActive);
+  document.querySelector(".heart-count").textContent = count;
+}
 
   onMount(() => {
     const heart = document.querySelector(".heart");
+    const countEl = document.querySelector(".heart-count");
+    countEl.textContent = count;
     if (isActive) {
       heart.classList.add("active");
     }
     heart.addEventListener("click", toggleHeart);
+  });
+
+  onDestroy(() => {
+    const heart = document.querySelector(".heart");
+    heart.removeEventListener("click", toggleHeart);
   });
 </script>
 
@@ -21,6 +36,7 @@
   <article class="article">
     <img src="https://picsum.photos/200" alt="foto" />
     <div class="heart" class:active={isActive}>
+      <span class="heart-count" />
       <i class="fa-regular fa-heart" id="heart-empty" />
       <i class="fa-solid fa-heart hidden" id="heart-filled" />
     </div>
@@ -109,6 +125,7 @@
         @extend %glassmorphism;
       }
       .heart {
+  position: relative;
   cursor: pointer;
 
   i {
@@ -127,7 +144,16 @@
   &.active #heart-filled {
     display: inline-block;
   }
+
+  .heart-count {
+    position: absolute;
+    left: -1.5rem;
+    top: 0.25rem;
+    font-size: 0.8rem;
+    font-weight: bold;
+  }
 }
+
 
       h2 {
         text-align: center;
