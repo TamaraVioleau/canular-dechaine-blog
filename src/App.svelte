@@ -11,6 +11,7 @@
   import Navbar from "./lib/Navbar.svelte";
   import CommentsArticlePage from "./components/CommentsArticlePage.svelte";
   import UpDown from "./components/UpDown.svelte";
+  import PaginationBar from "./components/PaginationBar.svelte";
 
 
 </script>
@@ -23,6 +24,7 @@
 <Register/>
 <PageArticles/>
 <ModifiedArticle/>
+<PaginationBar/>
 <Footer/>
 
 
