@@ -1,4 +1,8 @@
 <script>
+
+  import Router from "svelte-spa-router";
+
+  import Homepage from "./lib/Homepage.svelte";
   import ErrorPage from "./lib/ErrorPage.svelte";
   import Footer from "./lib/Footer.svelte";
   import PageArticles from "./lib/PageArticles.svelte";
@@ -11,21 +15,23 @@
   import Navbar from "./lib/Navbar.svelte";
   import CommentsArticlePage from "./components/CommentsArticlePage.svelte";
 
+  
 
 </script>
 <Navbar/>
-<PageArticle/>
-<Footer />
 
-<!--
+<Router {routes}/>
+
+<Homepage />
+<PageArticle/>
+<ModifiedArticle/>
+<PageArticles/>
 <SearchPage/>
+
+<Register/>
 <PageProfilAuthors/>
 <PageProfilMembers/>
-<Register/>
-<PageArticles/>
-<ModifiedArticle/>
- -->
 
-
+<Footer/>
 <style lang="scss">
 </style>
