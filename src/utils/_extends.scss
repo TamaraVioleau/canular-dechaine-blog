@@ -9,6 +9,24 @@
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
+//Affiche le soulignement des liens 
+%a-after{
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 100%;
+  height: 2px;
+  background-color: $color-greendark;
+  transform: scaleX(0); /* Masque le soulignement au départ */
+  transition: transform 0.2s ease-in-out; /* Transition fluide */
+  transform-origin: left; /* Modifie l'orientation du soulignement ici gauche à droite */
+}
+
+%ahoverafter{
+  transform: scaleX(1); /* Affiche le soulignement au survol */
+}
+
 %button {
   padding: 2rem;
   margin: 2rem;
@@ -34,7 +52,6 @@
 border: 1px solid rgba(0, 0, 0, 0.01);
 transform: translateY(2px);
 }
-
 
 
 //Page profil authors and members, register

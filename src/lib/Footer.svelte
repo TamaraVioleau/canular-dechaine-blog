@@ -8,7 +8,7 @@
     use:link
     href="/"
     role="button"
-    aria-label="Aller à la nouvelle page">Lire la suite</a
+    aria-label="Aller à la page contact">Nous contacter</a
   >
   <div class="social">
     <a href=""><i class="fa-brands fa-facebook" /></a>
@@ -113,19 +113,9 @@
         position: relative;
         color: $color-black;
         &:after {
-          content: "";
-          position: absolute;
-          left: 0;
-          bottom: -5px;
-          width: 100%;
-          height: 2px;
-          background-color: $color-greenlight;
-          transform: scaleX(0); /* Masque le soulignement au départ */
-          transition: transform 0.2s ease-in-out; /* Transition fluide */
-          transform-origin: left; /* Modifie l'orientation du soulignement ici gauche à droite */
-        }
+@extend %a-after;        }
         &:hover:after {
-          transform: scaleX(1); /* Affiche le soulignement au survol */
+@extend %ahoverafter;
         }
       }
     }

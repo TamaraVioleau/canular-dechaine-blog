@@ -33,7 +33,7 @@
             class="btn-read-more"
             href="/articles"
             role="button"
-            aria-label="Aller à la nouvelle page">Lire la suite</a
+            aria-label="Aller à la page de l'article">Lire la suite</a
           >
         </footer>
       </section>
@@ -64,7 +64,7 @@
             class="btn-read-more"
             href="/articles"
             role="button"
-            aria-label="Aller à la nouvelle page">Lire la suite</a
+            aria-label="Aller à la page de l'article">Lire la suite</a
           >
         </footer>
       </section>
