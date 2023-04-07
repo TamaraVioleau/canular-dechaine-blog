@@ -1,5 +1,5 @@
 <script>
-    import TextareaComments from "../components/TextareaComments.svelte";
+    import TextareaComments from "../components/TextareaModificationArticle.svelte";
 </script>
 
 <main>
@@ -38,10 +38,24 @@
     background-color: $color-white;
     padding: 3rem;
     color: $color-black;
+    @media screen and (min-width: 580px) {
+      padding: 3rem;
+      @media screen and (min-width: 1024px) {
+        display: flex;
+      justify-content: center;
+      flex-direction: column;}
+    }
+
     article {
       display: block;
       padding: 2rem;
+      margin: 3rem;
+    align-self: center;
       @extend %glassmorphism;
+      @media screen and (min-width: 1024px) {
+      max-width:965px;
+    }
+      
 
       img {
         min-width: 100%;

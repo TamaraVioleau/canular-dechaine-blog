@@ -95,11 +95,20 @@
     padding: 3rem;
     font-family: $police;
     background-color: $color-white;
-
+    @media screen and (min-width: 580px) {
+      padding: 3rem;
+    }
+    display: flex;
+      justify-content: center;
+      flex-direction: column;
     article {
       display: block;
       padding: 2rem;
+      margin: 3rem;
       @extend %glassmorphism;
+      @media screen and (min-width: 1024px) {
+      max-width:965px;
+    }
 
       img {
         min-width: 100%;
@@ -122,6 +131,7 @@
 
       .footer__dateauthor {
         display: flex;
+        flex-wrap: wrap;
         padding: 1rem;
         margin: 1rem;
         justify-content: space-between;
@@ -142,10 +152,9 @@
           display: flex;
           cursor: pointer;
           font-size: 4rem;
+          justify-content: right;
+          margin-top: 2rem;
           color: rgb(229 62 62);
-          i {
-          }
-
           #heart-filled {
             display: none;
           }
@@ -163,6 +172,11 @@
             font-size: 2rem;
           }
         }
+      }
+
+      .footer__dateauthor > *:nth-child(1),
+      .footer__dateauthor > *:nth-child(2) {
+        width: 100%;
       }
     }
   }
