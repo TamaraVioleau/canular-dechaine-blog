@@ -1,5 +1,5 @@
 <script>
-  import {link} from "svelte-spa-router"
+  import { link } from "svelte-spa-router";
 </script>
 
 <main>
@@ -28,9 +28,13 @@
           <cite title="nom de l'auteur">Sarah Croche</cite>
         </aside>
 
-        <button class="btn-read-more" aria-label="Lire la suite"
-          ><a use:link href="/article">Lire la suite</a></button
-        >
+        <a
+        class="btn-read-more"
+        use:link href="/articles"
+        role="button"
+        aria-label="Aller à la nouvelle page">Lire la suite</a
+      >
+
       </footer>
     </section>
   </div>
@@ -58,9 +62,12 @@
           <cite title="nom de l'auteur">Sarah Croche</cite>
         </aside>
 
-        <button class="btn-read-more" aria-label="Lire la suite"
-          ><a href="lien_vers_la_page_de_l'article">Lire la suite</a></button
-        >
+        <a
+        class="btn-read-more"
+        use:link href="/articles"
+        role="button"
+        aria-label="Aller à la nouvelle page">Lire la suite</a
+      >
       </footer>
     </section>
   </div>
@@ -75,7 +82,7 @@
     font-family: $police;
     background-color: $color-white;
     padding: 3rem;
-   @media screen and (min-width: 1024px) {
+    @media screen and (min-width: 1024px) {
       display: flex;
       flex-direction: row;
       justify-content: center;
@@ -83,9 +90,9 @@
 
     .wrapper__latest {
       @media screen and (min-width: 1024px) {
-        max-width:535px;
+        max-width: 535px;
         margin-top: 3rem;
-           }
+      }
 
       h2 {
         text-align: center;
@@ -176,27 +183,19 @@
               font-weight: bold;
             }
           }
-          button {
-            background-color: rgba(136, 217, 143, 0.7);
-            border: 1px solid transparent;
-            border-radius: 5px;
-            font-size: 14px;
-            padding: 2rem;
-            margin: 2rem;
+          .btn-read-more {
+            @extend %button;
           }
-          .btn-read-more a {
-            text-decoration: none;
-            color: $color-black;
-            font-family: $police;
+          .btn-read-more:hover {
+            background-color: $color-greenlight;
           }
         }
-      }     
-      
-    }      
+      }
+    }
 
     .wrapper__like {
       @media screen and (min-width: 1024px) {
-        max-width:535px;
+        max-width: 535px;
         margin-top: 3rem;
       }
 
@@ -291,18 +290,11 @@
               font-weight: bold;
             }
           }
-          button {
-            background-color: rgba(136, 217, 143, 0.7);
-            border: 1px solid transparent;
-            border-radius: 5px;
-            font-size: 14px;
-            padding: 2rem;
-            margin: 2rem;
+          .btn-read-more {
+            @extend %button;
           }
-          .btn-read-more a {
-            text-decoration: none;
-            color: $color-black;
-            font-family: $police;
+          .btn-read-more:hover {
+            background-color: $color-greenlight;
           }
         }
       }

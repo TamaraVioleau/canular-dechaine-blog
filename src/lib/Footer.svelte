@@ -1,9 +1,19 @@
+<script>
+  import { link } from "svelte-spa-router";
+</script>
+
 <footer>
-  <a href="/"> <button id="button__contact">Nous contacter</button></a>
+  <a
+    id="button__contact"
+    use:link
+    href="/"
+    role="button"
+    aria-label="Aller à la nouvelle page">Lire la suite</a
+  >
   <div class="social">
-    <button><a href=""><i class="fa-brands fa-facebook" /></a></button>
-    <button><a href=""><i class="fa-brands fa-twitter" /></a></button>
-    <button><a href=""><i class="fa-brands fa-instagram" /></a></button>
+    <a href=""><i class="fa-brands fa-facebook" /></a>
+    <a href=""><i class="fa-brands fa-twitter" /></a>
+    <a href=""><i class="fa-brands fa-instagram" /></a>
   </div>
   <ul>
     <li><a href="">Mentions légales</a></li>
@@ -24,44 +34,56 @@
     @extend %glassmorphism;
     border-radius: 0;
     display: flex;
+    align-items: center;
     flex-direction: column;
     background-color: $color-white;
     padding: 6rem 3rem;
     row-gap: 6rem;
-    a {
-      display: flex;
-      place-content: center;
-      text-decoration: none;
-      position: relative;
-      color: $color-black;
-       #button__contact {     
-        cursor: pointer;
-        width: 100%;
-        padding: 2rem;
-        background: $color-greenlight;
-        border: 1px solid white;
-        border-radius: 5px;
-        font-size: 1.6rem;
-        font-weight: bold;
-        max-width: 310px;
-      }
+
+    #button__contact {
+      @extend %button;
+      padding: 2rem 5rem;
+      max-width: 50%;
     }
+    #button__contact:hover {
+      background-color: $color-greenlight;
+    } 
 
     .social {
       display: flex;
       gap: 4rem;
       justify-content: center;
-      button {
-        background-color: transparent;
-        border: none;
-        a {
-          font-size: 5rem;
-          text-decoration: none;
-          position: relative;
-          color: $color-black;
-          i {
+      font-size: 5rem;
+      a {
+        display: flex;
+        height: 75px;
+        width: 75px;
+        margin: 0 15px;
+        border-radius: 8px;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        i {
+          transition: transform 0.5s;
+          a:hover {
+            transform: scale(0.9);
           }
         }
+      }
+      a:hover .fa-facebook {
+        transform: translateY(2px);
+        transition: transform 0.2s ease-in-out;
+        color: #3b5998;
+      }
+      a:hover .fa-twitter {
+        transform: translateY(2px);
+        transition: transform 0.2s ease-in-out;
+        color: #00acee;
+      }
+      a:hover .fa-instagram {
+        transform: translateY(2px);
+        transition: transform 0.2s ease-in-out;
+        color: #f14843;
       }
     }
 

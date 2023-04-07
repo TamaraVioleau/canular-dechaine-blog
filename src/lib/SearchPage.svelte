@@ -3,7 +3,7 @@
 
 <main>
   <h2>Résultat de votre recherche pour [....]</h2>
-  <div>
+  <div class="flex">
     <div class="wrapper__left">
       <section aria-label="Article">
         <h3 aria-label="Titre de l'article">Titre article</h3>
@@ -29,8 +29,11 @@
             <time datetime="2023-04-05">5 avril 2023</time> <span> || </span>
             <cite title="nom de l'auteur">Sarah Croche</cite>
           </aside>
-          <button class="btn-read-more" aria-label="Lire la suite"
-            ><a href="lien_vers_la_page_de_l'article">Lire la suite</a></button
+          <a
+            class="btn-read-more"
+            href="/articles"
+            role="button"
+            aria-label="Aller à la nouvelle page">Lire la suite</a
           >
         </footer>
       </section>
@@ -57,8 +60,11 @@
             <time datetime="2023-04-05">5 avril 2023</time> <span> || </span>
             <cite title="nom de l'auteur">Sarah Croche</cite>
           </aside>
-          <button class="btn-read-more" aria-label="Lire la suite"
-            ><a href="lien_vers_la_page_de_l'article">Lire la suite</a></button
+          <a
+            class="btn-read-more"
+            href="/articles"
+            role="button"
+            aria-label="Aller à la nouvelle page">Lire la suite</a
           >
         </footer>
       </section>
@@ -80,7 +86,7 @@
       font-weight: bold;
       padding: 3rem;
     }
-    div {
+    .flex {
       @media screen and (min-width: 1024px) {
         display: flex;
         flex-direction: row;
@@ -175,18 +181,11 @@
                 font-weight: bold;
               }
             }
-            button {
-              background-color: #88d98f3b;
-              border: 1px solid transparent;
-              border-radius: 5px;
-              font-size: 14px;
-              padding: 2rem;
-              margin: 2rem;
+            .btn-read-more {
+              @extend %button;
             }
-            .btn-read-more a {
-              text-decoration: none;
-              color: $color-black;
-              font-family: $police;
+            .btn-read-more:hover {
+              background-color: $color-greenlight;
             }
           }
         }
@@ -278,18 +277,11 @@
                 font-weight: bold;
               }
             }
-            button {
-              background-color: $color-greenlight;
-              border: 1px solid transparent;
-              border-radius: 5px;
-              font-size: 14px;
-              padding: 2rem;
-              margin: 2rem;
+            .btn-read-more {
+              @extend %button;
             }
-            .btn-read-more a {
-              text-decoration: none;
-              color: $color-black;
-              font-family: $police;
+            .btn-read-more:hover {
+              background-color: $color-greenlight;
             }
           }
         }
