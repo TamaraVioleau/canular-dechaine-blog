@@ -61,6 +61,8 @@
       justify-content: center;
       flex-direction: column;
       max-width: 965px;
+      min-width: 965px;
+
     }
   }
 

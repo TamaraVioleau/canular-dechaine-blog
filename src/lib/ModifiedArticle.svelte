@@ -1,5 +1,5 @@
 <script>
-    import TextareaComments from "../components/TextareaModificationArticle.svelte";
+  import TextareaComments from "../components/TextareaModificationArticle.svelte";
 </script>
 
 <main>
@@ -25,7 +25,7 @@
     </p>
   </article>
 
-<TextareaComments/>
+  <TextareaComments />
 </main>
 
 <style lang="scss">
@@ -42,20 +42,21 @@
       padding: 3rem;
       @media screen and (min-width: 1024px) {
         display: flex;
-      justify-content: center;
-      flex-direction: column;}
+        justify-content: center;
+        flex-direction: column;
+      }
     }
 
     article {
       display: block;
       padding: 2rem;
       margin: 3rem;
-    align-self: center;
       @extend %glassmorphism;
       @media screen and (min-width: 1024px) {
-      max-width:965px;
-    }
-      
+        max-width: 965px;
+        min-width: 965px;
+        align-self: center;
+      }
 
       img {
         min-width: 100%;
