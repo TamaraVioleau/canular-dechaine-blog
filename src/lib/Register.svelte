@@ -1,6 +1,6 @@
 <script>
   var details = document.querySelectorAll("details");
-  
+
   details.forEach(function (detail) {
     detail.addEventListener("click", function () {
       details.forEach(function (otherDetail) {
@@ -19,7 +19,6 @@
   // variable reload qui permet de déterminer si la page doit être rechargée après l'authentification
   export let reload = false;
 
-  
   // variables pour stocker les identifiants
   let email = "";
   let password = "";
@@ -42,7 +41,6 @@
     } else {
       // Naviguer vers la page d'accueil grace à svelte-spa-router
       push("/");
-      
     }
   };
 
@@ -72,8 +70,6 @@
   /////////// Register ///////////////
 
   let pseudo = "";
-  let name = "";
-  let firstname = "";
   let mail = "";
   let pwd = "";
 
@@ -82,16 +78,12 @@
 
     const data = {
       pseudo: pseudo,
-      name: name,
-      firstname: firstname,
       mail: mail,
       pwd: pwd,
     };
 
     try {
-      const token = await register(data);
-
-      // Rediriger vers la page de confirmation d'inscription avec le jeton d'accès API Directus
+      await register(data);
     } catch (error) {
       console.error(error);
     }
@@ -99,6 +91,7 @@
 
   async function register(data) {
     const endpoint = import.meta.env.VITE_URL_DIRECTUS + "/users";
+    const membersRoleID = "213b3c24-fb05-446d-ab79-fd05adbbd6e2";
 
     try {
       const response = await fetch(endpoint, {
@@ -107,51 +100,18 @@
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          email: data.email,
-          password: data.password,
-          first_name: data.firstname,
-          last_name: data.name,
-          status: "active" // définir le statut de l'utilisateur sur actif
-          
+          email: data.mail,
+          password: data.pwd,
+          pseudo: data.pseudo,
+          role: membersRoleID,
+          status: "active", // définir le statut de l'utilisateur sur actif
         }),
       });
 
       if (response.ok) {
         const json = await response.json();
-
-        const token = await getDirectusToken(data.email, data.password);
-
-        return token;
       } else {
         throw new Error("Failed to register user");
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  }
-  async function getDirectusToken(mail, pwd) {
-    const endpoint = import.meta.env.VITE_URL_DIRECTUS + "/auth/authenticate";
-
-    try {
-      const response = await fetch(endpoint, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          mail: mail,
-          pwd: pwd,
-        }),
-      });
-
-      if (response.ok) {
-        const json = await response.json();
-
-        const token = "Bearer " + json.data.token;
-
-        return token;
-      } else {
-        throw new Error("Failed to generate Directus token");
       }
     } catch (error) {
       console.error(error);
@@ -162,7 +122,13 @@
 <main>
   <wrapper class="wrapper--left">
     <!-- dans action mettre le nom de la page (ex: /profil)  -->
-    <form on:submit={handleSubmitForm} action="" method="post" id="connexion" name="connexion">
+    <form
+      on:submit={handleSubmitForm}
+      action=""
+      method="post"
+      id="connexion"
+      name="connexion"
+    >
       <section class="section--login" aria-labelledby="login">
         <h1 id="login">Se connecter</h1>
 
@@ -170,9 +136,21 @@
           <summary>Voir le formulaire</summary>
           <article class="article--login" aria-label="formulaire de connexion">
             <label for="email">E-mail : </label>
-              <input type="email" name="email" bind:value={email} id="email" required/>
+            <input
+              type="email"
+              name="email"
+              bind:value={email}
+              id="email"
+              required
+            />
             <label for="pwd">Mot de passe : </label>
-            <input type="password" name="pwd" id="pwd" bind:value={password} required/>
+            <input
+              type="password"
+              name="pwd"
+              id="pwd"
+              bind:value={password}
+              required
+            />
           </article>
           <div class="buttons">
             <input
@@ -197,7 +175,13 @@
   </wrapper>
 
   <wrapper class="wrapper--right"
-    ><form on:submit={handleSubmit} action="" method="post" id="inscription" name="inscription">
+    ><form
+      on:submit={handleSubmit}
+      action=""
+      method="post"
+      id="inscription"
+      name="inscription"
+    >
       <section class="section--register" aria-labelledby="register">
         <h1 id="statistiques">S'enregistrer :</h1>
 
@@ -208,11 +192,29 @@
             aria-label="formulaire d'inscription"
           >
             <label for="pseudo">Pseudo : </label>
-            <input type="text" name="pseudo" id="pseudo" bind:value={pseudo} required/>
+            <input
+              type="text"
+              name="pseudo"
+              id="pseudo"
+              bind:value={pseudo}
+              required
+            />
             <label for="email">E-mail : </label>
-            <input type="email" name="email" id="email" bind:value={email} required/>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              bind:value={mail}
+              required
+            />
             <label for="pwd">Mot de passe : </label>
-            <input type="password" name="pwd" id="pwd" bind:value={password} required/>
+            <input
+              type="password"
+              name="pwd"
+              id="pwd"
+              bind:value={pwd}
+              required
+            />
           </article>
           <div class="buttons">
             <input
