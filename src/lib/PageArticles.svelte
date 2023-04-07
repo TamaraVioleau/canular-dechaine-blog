@@ -1,38 +1,75 @@
 <script>
+  export let params;
+
+  // Initialise les variables pour stocker l'ID de la catégorie, le nom de la catégorie et les articles
+  let categoryId;
+  let categoryName;
+  let articles = [];
+
+  // Le $: permet de réagir aux changements de params.id et mettre à jour categoryId, categoryName, et articles
+  $: if (params.id) {
+    categoryId = params.id;
+    // Appelle la fonction 'getCategoryName()' pour récupérer le nom de la catégorie
+    getCategoryName();
+    // Appelle la fonction 'getArticles()' pour récupérer les articles de la catégorie
+    getArticles();
+  }
+
+  // Récupération des articles de la catégorie
+  const getArticles = async () => {
+    const endpoint = `${
+      import.meta.env.VITE_URL_DIRECTUS
+    }/items/articles?filter[categories_id][_eq]=${categoryId}`;
+    const response = await fetch(endpoint);
+    const json = await response.json();
+    articles = json.data;
+  };
+
+  // Récupération du nom de la catégorie
+  const getCategoryName = async () => {
+    const endpoint = `${
+      import.meta.env.VITE_URL_DIRECTUS
+    }/items/categories/${categoryId}`;
+    const response = await fetch(endpoint);
+    const json = await response.json();
+    categoryName = json.data.name;
+  };
 </script>
 
 <main>
-  <h2>Les articles pour la catégorie [.....]</h2>
+  <h2>Les articles pour la catégorie {categoryName}</h2>
   <div class="wrapper">
-    <section aria-label="Article">
-      <article>
-        <img src="https://picsum.photos/900/400" alt="photo" />
-        <h3 aria-label="Titre de l'article">Titre article</h3>
-        <p aria-label="Texte de l'article">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis
-          fugiat aspernatur, alias iusto cumque repudiandae porro quam assumenda
-          eveniet deserunt earum labore numquam. Lorem ipsum, dolor sit amet
-          consectetur adipisicing elit. Perspiciatis fugiat aspernatur, sit amet
-          consectetur adipisicing elit. Lorem ipsum, dolor sit amet fugiat
-          aspernatur, sit amet.Lorem ipsum, dolor sit amet consectetur
-          adipisicing elit. Perspiciatis fugiat aspernatur, alias iusto cumque
-          repudiandae porro quam assumenda eveniet deserunt earum labore
-          numquam.
-        </p>
-      </article>
-      <footer class="footer__dateauthor">
-        <aside
-          class="aside__dateauthor"
-          aria-label="Date de publication et auteur"
-        >
-          <time datetime="2023-04-05">5 avril 2023</time> <span> || </span>
-          <cite title="nom de l'auteur">Sarah Croche</cite>
-        </aside>
-        <button class="btn-read-more" aria-label="Lire la suite"
-          ><a href="lien_vers_la_page_de_l'article">Lire la suite</a></button
-        >
-      </footer>
-    </section>
+    {#each articles as article}
+      <section aria-label="Article">
+        <article>
+          <img src={article.image} alt="{article.alt}" />
+          <h3 aria-label="Titre de l'article">{article.title}</h3>
+          <p aria-label={article.content}>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+            Perspiciatis fugiat aspernatur, alias iusto cumque repudiandae porro
+            quam assumenda eveniet deserunt earum labore numquam. Lorem ipsum,
+            dolor sit amet consectetur adipisicing elit. Perspiciatis fugiat
+            aspernatur, sit amet consectetur adipisicing elit. Lorem ipsum,
+            dolor sit amet fugiat aspernatur, sit amet.Lorem ipsum, dolor sit
+            amet consectetur adipisicing elit. Perspiciatis fugiat aspernatur,
+            alias iusto cumque repudiandae porro quam assumenda eveniet deserunt
+            earum labore numquam.
+          </p>
+        </article>
+        <footer class="footer__dateauthor">
+          <aside
+            class="aside__dateauthor"
+            aria-label="Date de publication et auteur"
+          >
+            <time datetime="2023-04-05">5 avril 2023</time> <span> || </span>
+            <cite title="nom de l'auteur">Sarah Croche</cite>
+          </aside>
+          <button class="btn-read-more" aria-label="Lire la suite"
+            ><a href="lien_vers_la_page_de_l'article">Lire la suite</a></button
+          >
+        </footer>
+      </section>
+    {/each}
 
     <!-- SUITE DES ARTICLES -->
     <section aria-label="Article">
@@ -163,7 +200,7 @@
     font-family: $police;
     background-color: $color-white;
     padding: 3rem;
-    color:  $color-black;
+    color: $color-black;
     h2 {
       font-weight: bold;
       padding: 3rem;
@@ -217,14 +254,13 @@
               min-width: 160px;
               height: 300px;
             }
-
           }
 
-            h3 {
-              text-align: center;
-              font-weight: bold;
-              padding: 2rem;
-            }
+          h3 {
+            text-align: center;
+            font-weight: bold;
+            padding: 2rem;
+          }
           p {
             line-height: 2rem;
             padding: 1rem;

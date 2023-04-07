@@ -20,18 +20,18 @@
   const routes = {
     "/": Homepage,
     "/connexion": Register,
-    "/articles": PageArticles,
+    "/articles/:id": PageArticles,
     "/article": PageArticle,
   };
 </script>
 
 <Navbar />
 <Router {routes} />
-<!-- <PageArticles /> -->
+<Footer />
 
 <!-- 
   <SearchPage />
-
+<PageArticles />
 <PageArticle />
   <ModifiedArticle /> 
   <Register />
@@ -40,14 +40,6 @@
 
 -->
 
-
-<Footer />
-
 <!--
-
-
 <UpDown/>
  -->
-
-<style lang="scss">
-</style>
