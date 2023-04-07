@@ -1,5 +1,5 @@
-<script> 
- import CommentsArticlePage from "../components/CommentsArticlePage.svelte";
+<script>
+  import CommentsArticlePage from "../components/CommentsArticlePage.svelte";
   // Les fonctions onMount et onDestroy nous permettent de faire des choses spécifiques à des moments précis de l'application.
   // onMount nous permet de faire quelque chose dès que l'application est prête à être utilisée
   // onDestroy nous permet de faire quelque chose quand l'application se ferme ou qu'une partie de l'application est supprimée.
@@ -23,7 +23,6 @@
     localStorage.setItem("heartActive", isActive);
     // Met à jour le texte du compteur de likes
     document.querySelector(".heart-count").textContent = parseInt(count);
-
   }
 
   // Utilise la fonction onMount pour exécuter du code dès que l'élément HTML est prêt à être utilisé
@@ -55,56 +54,17 @@
   <article class="article">
     <img src="https://picsum.photos/900/400" alt="foto" />
 
-    <h2>TITRE ARTICLE</h2>
+    <h2>Le confinement, période propice à la créativité humoristique</h2>
     <p id="paragraph" aria-label="Texte de l'article">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ultricies
-      nisl eget eros dapibus, vitae mattis tortor ultricies. Nunc malesuada
-      scelerisque tempus. Donec fringilla metus vitae tellus porta, sit amet
-      dignissim magna eleifend. Vestibulum pellentesque mi at eros vulputate
-      hendrerit. Maecenas at elit ligula. Integer sollicitudin tellus quis elit
-      lacinia semper. Fusce ac mattis mi. Maecenas consequat sapien sit amet
-      ullamcorper efficitur. Nullam facilisis odio augue, nec mattis odio
-      malesuada et. Suspendisse eget ante ut massa malesuada maximus. Nullam
-      porta semper convallis. Sed mattis urna metus, quis pharetra dui molestie
-      at. Vivamus vel varius dui. Fusce vitae commodo neque. Pellentesque eu
-      lectus tortor. Integer et tempor purus. Vivamus facilisis euismod mi
-      porttitor tincidunt. Nullam auctor libero sit amet mi bibendum pulvinar in
-      sed ante. Nulla ornare enim ut odio lobortis, quis molestie mauris
-      aliquet. Duis faucibus eros neque, ac suscipit felis lacinia et. Integer
-      pretium nulla et nisl vehicula scelerisque. In hac habitasse platea
-      dictumst. Maecenas efficitur urna efficitur, tempus nibh id, bibendum
-      dolor. Quisque gravida et turpis sit amet fringilla. Nam sodales leo ut
-      suscipit blandit. Praesent nec venenatis nisl, et condimentum nunc. Fusce
-      eu dictum nisl. Quisque nisi lectus, dictum sit amet risus non, tincidunt
-      ullamcorper nulla. Ut euismod quis libero in auctor. Cras in aliquet
-      lacus. Cras molestie neque sed dui accumsan iaculis. Nunc non leo in neque
-      lobortis pharetra at a lacus. Curabitur scelerisque, nunc eu consequat
-      sodales, nulla tellus auctor nibh, sed mollis ante turpis eu ipsum.
-      Aliquam molestie, dolor ut blandit sodales, augue leo mattis enim, non
-      ultricies nisl massa quis neque. Quisque tincidunt rhoncus quam, sit amet
-      congue dui malesuada non. Duis ornare sit amet neque in venenatis. Sed
-      arcu quam, gravida id aliquam et, dictum vel nunc. Donec posuere felis
-      velit. Nam non massa molestie, volutpat turpis et, congue nibh. Mauris a
-      dignissim lacus. Sed pretium ac risus luctus eleifend. Sed lobortis felis
-      eros, venenatis ullamcorper massa tristique in. Nunc condimentum enim nec
-      nibh euismod efficitur. Pellentesque nulla lorem, ultrices nec lectus at,
-      blandit elementum augue. Vivamus mi urna, semper vel commodo quis,
-      tristique et mauris. Proin et gravida orci, sagittis maximus nibh. Ut quis
-      dui lectus. Vestibulum ut mi erat. Aliquam vulputate lectus nec vestibulum
-      dapibus. Donec scelerisque augue id tellus tincidunt, at lacinia risus
-      varius. Morbi faucibus, ante sed consectetur cursus, odio erat facilisis
-      nisi, at suscipit nisi sem sed ligula. Orci varius natoque penatibus et
-      magnis dis parturient montes, nascetur ridiculus mus. Phasellus neque
-      diam, vehicula ut nulla a, vulputate laoreet nisl. Sed egestas venenatis
-      diam, volutpat finibus ligula porttitor quis. Suspendisse et lectus
-      ullamcorper, ultricies ante id, interdum mauris. Aliquam eleifend
-      malesuada egestas. Maecenas sagittis ante eget tellus fermentum, ut
-      convallis enim gravida. Fusce semper laoreet fermentum. Praesent turpis
-      velit, egestas quis velit quis, varius tincidunt orci. Nunc facilisis elit
-      a nisl semper blandit. Suspendisse pellentesque accumsan porta. Cras
-      blandit arcu vel urna posuere, ac tempor lorem interdum. Donec magna
-      libero, scelerisque eu massa vitae, dapibus scelerisque lacus. Fusce
-      sodales maximus auctor. Etiam est leo, sodales id ipsum.
+      Les réseaux sociaux ont été inondés de mèmes et de blagues sur la
+      livraison des colis en ce moment. Entre les retards, les colis perdus et
+      les livraisons aléatoires, certains ont commencé à se demander si les
+      livreurs ne seraient pas mieux en train de livrer eux-mêmes leurs propres
+      colis. Et puis, nous avons tous vu le fameux message "Votre colis a été
+      livré" alors que vous attendez encore patiemment sur votre porche.
+      Peut-être que les livreurs ont découvert une nouvelle forme de
+      téléportation ou qu'ils ont finalement réussi à contourner les lois de
+      l'espace-temps. Mystère.
     </p>
 
     <footer class="footer__dateauthor">
@@ -123,7 +83,7 @@
     </footer>
   </article>
 
-  <CommentsArticlePage/>
+  <CommentsArticlePage />
 </main>
 
 <style lang="scss">
@@ -138,7 +98,7 @@
 
     article {
       display: block;
-      padding: 00.625rem;
+      padding: 2rem;
       @extend %glassmorphism;
 
       img {

@@ -1,5 +1,6 @@
 <script>
   import { link } from "svelte-spa-router";
+
 </script>
 
 <main>
@@ -90,7 +91,7 @@
 
     .wrapper__latest {
       @media screen and (min-width: 1024px) {
-        max-width: 535px;
+        max-width: 485px;
         margin-top: 3rem;
       }
 
@@ -195,7 +196,7 @@
 
     .wrapper__like {
       @media screen and (min-width: 1024px) {
-        max-width: 535px;
+        max-width: 485px;
         margin-top: 3rem;
       }
 

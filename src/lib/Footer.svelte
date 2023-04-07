@@ -51,9 +51,10 @@
 
     .social {
       display: flex;
-      gap: 4rem;
+      gap: 3rem;
       justify-content: center;
       font-size: 5rem;
+
       a {
         display: flex;
         height: 75px;
@@ -62,7 +63,8 @@
         border-radius: 8px;
         align-items: center;
         justify-content: center;
-        text-decoration: none;
+        text-decoration: none;      
+        color: $color-black;
         i {
           transition: transform 0.5s;
           a:hover {

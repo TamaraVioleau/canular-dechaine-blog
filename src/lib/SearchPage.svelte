@@ -95,7 +95,7 @@
 
       .wrapper__left {
         @media screen and (min-width: 1024px) {
-          max-width: 535px;
+          max-width: 485px;
           margin-top: 3rem;
         }
 
@@ -193,7 +193,7 @@
 
       .wrapper__right {
         @media screen and (min-width: 1024px) {
-          max-width: 535px;
+          max-width: 485px;
           margin-top: 3rem;
         }
         section {
