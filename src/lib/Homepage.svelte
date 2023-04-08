@@ -159,21 +159,20 @@
           }
 
           p {
-            line-height: 2rem;
+            @extend %p;
             padding: 1rem;
-            text-align: left;
-            height: 112px;
+            height: 110px;
             margin: 1rem;
 
             display: -webkit-box;
-            -webkit-line-clamp: 5;
+            -webkit-line-clamp: 4;
             -webkit-box-orient: vertical;
             text-overflow: ellipsis;
             overflow: hidden;
             @media screen and (min-width: 1024px) {
               height: 172px;
               display: -webkit-box;
-              -webkit-line-clamp: 8;
+              -webkit-line-clamp: 7;
               -webkit-box-orient: vertical;
               overflow: hidden;
               text-overflow: ellipsis;
@@ -263,21 +262,20 @@
           }
 
           p {
-            line-height: 2rem;
+            @extend %p;
             padding: 1rem;
-            text-align: left;
-            height: 112px;
+            height: 110px;
             margin: 1rem;
 
             display: -webkit-box;
-            -webkit-line-clamp: 5;
+            -webkit-line-clamp: 4;
             -webkit-box-orient: vertical;
             text-overflow: ellipsis;
             overflow: hidden;
             @media screen and (min-width: 1024px) {
               height: 172px;
               display: -webkit-box;
-              -webkit-line-clamp: 8;
+              -webkit-line-clamp: 7;
               -webkit-box-orient: vertical;
               overflow: hidden;
               text-overflow: ellipsis;

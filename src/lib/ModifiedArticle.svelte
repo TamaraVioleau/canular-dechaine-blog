@@ -83,7 +83,7 @@
       #preview {
         font-family: $police;
         padding: 2rem;
-        line-height: 2rem;
+        @extend %p;
       }
     }
   }

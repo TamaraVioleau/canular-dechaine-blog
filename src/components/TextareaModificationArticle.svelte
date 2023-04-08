@@ -37,7 +37,7 @@
       >{charactersRemaining}</span
     >/<span id="maximum">{myMaxLength}</span>
   </p>
-  <div class="buttons">
+  <button>
     <input
       class="submit"
       type="submit"
@@ -46,7 +46,7 @@
       spellcheck="false"
       aria-label="Envoyer article"
     />
-  </div>
+  </button>
 </div>
 
 <style lang="scss">
@@ -88,15 +88,21 @@
     justify-content: center;
     padding-bottom: 2rem;
   }
-  .buttons {
+  button {
     display: flex;
     justify-content: center;
+    background: transparent;
+    border: none;
     .submit {
       @extend %button;
       min-width: 220px;
+      max-width: 100%;
     }
     .submit:active {
       @extend %buttonactive;
     }
+    .submit:hover {
+            background-color: $color-greenlight;
+          }
   }
 </style>

@@ -96,8 +96,12 @@
           <time datetime="2023-04-05">5 avril 2023</time> <span> || </span>
           <cite title="nom de l'auteur">Sarah Croche</cite>
         </aside>
-        <button class="btn-read-more" aria-label="Lire la suite"
-          ><a href="lien_vers_la_page_de_l'article">Lire la suite</a></button
+        <a
+          class="btn-read-more"
+          use:link
+          href="/articles"
+          role="button"
+          aria-label="Aller à la page de l'article">Lire la suite</a
         >
       </footer>
     </section>
@@ -125,8 +129,12 @@
           <time datetime="2023-04-05">5 avril 2023</time> <span> || </span>
           <cite title="nom de l'auteur">Sarah Croche</cite>
         </aside>
-        <button class="btn-read-more" aria-label="Lire la suite"
-          ><a href="lien_vers_la_page_de_l'article">Lire la suite</a></button
+        <a
+          class="btn-read-more"
+          use:link
+          href="/articles"
+          role="button"
+          aria-label="Aller à la page de l'article">Lire la suite</a
         >
       </footer>
     </section>
@@ -154,8 +162,12 @@
           <time datetime="2023-04-05">5 avril 2023</time> <span> || </span>
           <cite title="nom de l'auteur">Sarah Croche</cite>
         </aside>
-        <button class="btn-read-more" aria-label="Lire la suite"
-          ><a href="lien_vers_la_page_de_l'article">Lire la suite</a></button
+        <a
+          class="btn-read-more"
+          use:link
+          href="/articles"
+          role="button"
+          aria-label="Aller à la page de l'article">Lire la suite</a
         >
       </footer>
     </section>
@@ -183,8 +195,12 @@
           <time datetime="2023-04-05">5 avril 2023</time> <span> || </span>
           <cite title="nom de l'auteur">Sarah Croche</cite>
         </aside>
-        <button class="btn-read-more" aria-label="Lire la suite"
-          ><a href="lien_vers_la_page_de_l'article">Lire la suite</a></button
+        <a
+          class="btn-read-more"
+          use:link
+          href="/articles"
+          role="button"
+          aria-label="Aller à la page de l'article">Lire la suite</a
         >
       </footer>
     </section>
@@ -201,6 +217,9 @@
     background-color: $color-white;
     padding: 3rem;
     color: $color-black;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
     h2 {
       font-weight: bold;
       padding: 3rem;
@@ -209,11 +228,10 @@
       @media screen and (min-width: 1024px) {
         display: flex;
         flex-wrap: wrap;
-        justify-content: center;
+        justify-content: flex-start;
       }
       @media screen and (min-width: 1440px) {
         padding-inline: 5rem;
-        max-width: 1380px;
       }
 
       section {
@@ -302,18 +320,11 @@
               font-weight: bold;
             }
           }
-          button {
-            background-color: $color-greenlight;
-            border: 1px solid transparent;
-            border-radius: 5px;
-            font-size: 14px;
-            padding: 2rem;
-            margin: 2rem;
+          .btn-read-more {
+            @extend %button;
           }
-          .btn-read-more a {
-            text-decoration: none;
-            color: #312140;
-            font-family: $police;
+          .btn-read-more:hover {
+            background-color: $color-greenlight;
           }
         }
       }

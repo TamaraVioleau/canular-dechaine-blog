@@ -33,7 +33,7 @@
     spellcheck="true"
     placeholder="Ecrire ici pour commenter l'article"
   />
-  <div class="buttons">
+  <button>
     <input
       class="submit"
       type="submit"
@@ -42,7 +42,7 @@
       spellcheck="true"
       aria-label="Envoyer article"
     />
-  </div>
+</button>
 </div>
 
 <style lang="scss">
@@ -135,15 +135,22 @@
     padding: 2rem;
   }
 
-  .buttons {
+  button {
     display: flex;
     justify-content: center;
+    background: transparent;
+    border: none;     
+     max-width: 100%;
     .submit {
       @extend %button;
       min-width: 220px;
+
     }
     .submit:active {
       @extend %buttonactive;
     }
+    .submit:hover {
+            background-color: $color-greenlight;
+          }
   }
 </style>

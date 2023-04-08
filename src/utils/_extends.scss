@@ -9,6 +9,16 @@
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
+//Titre 
+%h1{
+
+}
+
+%p{
+  line-height: 2.4rem;
+  text-align: left;
+}
+
 //Affiche le soulignement des liens 
 %a-after{
   content: "";
