@@ -5,7 +5,7 @@
 <main>
   <article class="article">
     <img src="https://picsum.photos/900/400" alt="foto" />
-    <h2>La voiture autonome s'en va-t-en guerre</h2>
+    <h3>La voiture autonome s'en va-t-en guerre</h3>
     <p id="preview" aria-label="Texte de l'article">
       Alors que les voitures autonomes font leur entrée sur les routes du monde
       entier, certaines d'entre elles semblent avoir décidé de prendre leur
@@ -74,11 +74,8 @@
         @extend %glassmorphism;
       }
 
-      h2 {
-        text-align: center;
-        padding: 2rem;
-
-        font-weight: bolder;
+      h3 {
+        @extend %h3;
       }
       #preview {
         font-family: $police;

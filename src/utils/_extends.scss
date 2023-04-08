@@ -9,26 +9,33 @@
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
-//Titre 
-%h1{
-
+//Titre
+%h1 {
 }
 
 %h2 {
   font-size: 2.4rem;
   font-weight: bolder;
-  text-align: center;
   margin: 5rem;
+  line-height: 3rem;
 }
 
-%p{
+%h3 {
+  font-size: 2rem;
+  font-weight: bolder;
+  margin: 2rem;
+  text-align: center;
+  line-height: 2.8rem;
+}
+
+%p {
   line-height: 2.4rem;
   text-align: left;
   font-size: 1.6rem;
 }
 
-//Affiche le soulignement des liens 
-%a-after{
+//Affiche le soulignement des liens
+%a-after {
   content: "";
   position: absolute;
   left: 0;
@@ -41,7 +48,7 @@
   transform-origin: left; /* Modifie l'orientation du soulignement ici gauche à droite */
 }
 
-%ahoverafter{
+%ahoverafter {
   transform: scaleX(1); /* Affiche le soulignement au survol */
 }
 
@@ -61,16 +68,14 @@
   text-align: center;
 }
 //Bouton qui s'active au click pour les formulaire
-%buttonactive{
+%buttonactive {
   box-shadow: inset 4px 4px 6px -1px rgba(0, 0, 0, 0.15),
-  inset -4px -4px 6px -1px rgba(255, 255, 255, 0.7),
-  -0.5px -0.5px 0px rgba(255, 255, 255, 1),
-  0.5px 0.5px 0px rgba(0, 0, 0, 0.15),
-  0px 12px 10px -10px rgba(0, 0, 0, 0.05);
-border: 1px solid rgba(0, 0, 0, 0.01);
-transform: translateY(2px);
+    inset -4px -4px 6px -1px rgba(255, 255, 255, 0.7),
+    -0.5px -0.5px 0px rgba(255, 255, 255, 1),
+    0.5px 0.5px 0px rgba(0, 0, 0, 0.15), 0px 12px 10px -10px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.01);
+  transform: translateY(2px);
 }
-
 
 //Page profil authors and members, register
 %blocprofilregister {
@@ -117,4 +122,3 @@ transform: translateY(2px);
   font-weight: bold;
   max-width: 285px;
 }
-

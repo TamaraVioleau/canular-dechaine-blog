@@ -94,8 +94,7 @@
     padding: 3rem;
     color: $color-black;
     h2 {
-      font-weight: bold;
-      padding: 3rem;
+      @extend %h2;
     }
     .flex {
       @media screen and (min-width: 1024px) {
@@ -107,16 +106,14 @@
       .wrapper__left {
         @media screen and (min-width: 1024px) {
           max-width: 50%;
-          margin-top: 3rem;
+          padding-inline: 5rem;
         }
 
         section {
           @extend %glassmorphism;
           margin: 3rem;
           h3 {
-            text-align: center;
-            font-weight: bold;
-            padding: 2rem;
+            @extend %h3;
           }
           article {
             @media screen and (min-width: 770px) {
@@ -204,15 +201,13 @@
       .wrapper__right {
         @media screen and (min-width: 1024px) {
           max-width: 50%;
-          margin-top: 3rem;
+          padding-inline: 5rem;
         }
         section {
           @extend %glassmorphism;
           margin: 3rem;
           h3 {
-            text-align: center;
-            font-weight: bold;
-            padding: 2rem;
+            @extend %h3;
           }
           article {
             @media screen and (min-width: 770px) {

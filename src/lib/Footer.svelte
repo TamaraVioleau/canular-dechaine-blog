@@ -11,14 +11,14 @@
     aria-label="Aller à la page contact">Nous contacter</a
   >
   <div class="social">
-    <a href=""><i class="fa-brands fa-facebook" /></a>
-    <a href=""><i class="fa-brands fa-twitter" /></a>
-    <a href=""><i class="fa-brands fa-instagram" /></a>
+    <a href="/" aria-label="Facebook"><i class="fa-brands fa-facebook" alt="Facebook" /></a>
+    <a href="/" aria-label="Twitter"><i class="fa-brands fa-twitter" alt="Twitter" /></a>
+    <a href="/" aria-label="Instagram"><i class="fa-brands fa-instagram" alt="Instagram" /></a>
   </div>
   <ul>
-    <li><a href="">Mentions légales</a></li>
-    <li><a href="">Politique de confidentialité</a></li>
-    <li><a href="">A propos</a></li>
+    <li><a href="/" aria-label="Aller aux mentions légales">Mentions légales</a></li>
+    <li><a href="/" aria-label="Aller à la politique de confidentialité">Politique de confidentialité</a></li>
+    <li><a href="/" aria-label="Aller à la page à propos">A propos</a></li>
   </ul>
 </footer>
 

@@ -58,7 +58,7 @@
     <a  href="/"><i class="fa-solid fa-pen-to-square" /></a>
     <img src="https://picsum.photos/900/400" alt="foto" />
 
-    <h2>Le confinement, période propice à la créativité humoristique</h2>
+    <h3>Le confinement, période propice à la créativité humoristique</h3>
     <p id="paragraph" aria-label="Texte de l'article">
       Les réseaux sociaux ont été inondés de mèmes et de blagues sur la
       livraison des colis en ce moment. Entre les retards, les colis perdus et
@@ -99,6 +99,7 @@
     padding: 3rem;
     font-family: $police;
     background-color: $color-white;
+    color: $color-black;
     @media screen and (min-width: 580px) {
       padding: 3rem;
     }
@@ -151,10 +152,8 @@
         @extend %glassmorphism;
       }
 
-      h2 {
-        text-align: center;
-        padding: 2rem;
-        font-weight: bolder;
+      h3 {
+        @extend %h3;
       }
       #paragraph {
         font-family: $police;

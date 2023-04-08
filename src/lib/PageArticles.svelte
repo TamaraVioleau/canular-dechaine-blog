@@ -44,7 +44,7 @@
     {#each articles as article}
       <section aria-label="Article">
         <article>
-          <img src={article.image} alt="{article.alt}" />
+          <img src={article.image} alt={article.alt} />
           <h3 aria-label="Titre de l'article">{article.title}</h3>
           <p aria-label={article.content}>
             Lorem ipsum, dolor sit amet consectetur adipisicing elit.
@@ -223,8 +223,7 @@
     justify-content: center;
     flex-direction: column;
     h2 {
-      font-weight: bold;
-      padding: 3rem;
+      @extend %h2;
     }
     .wrapper {
       @media screen and (min-width: 1024px) {
@@ -277,26 +276,23 @@
           }
 
           h3 {
-            text-align: center;
-            font-weight: bold;
-            padding: 2rem;
+            @extend %h3;
           }
           p {
-            line-height: 2rem;
+            @extend %p;
             padding: 1rem;
-            text-align: left;
-            height: 112px;
+            height: 110px;
             margin: 1rem;
 
             display: -webkit-box;
-            -webkit-line-clamp: 5;
+            -webkit-line-clamp: 4;
             -webkit-box-orient: vertical;
             text-overflow: ellipsis;
             overflow: hidden;
             @media screen and (min-width: 1024px) {
               height: 172px;
               display: -webkit-box;
-              -webkit-line-clamp: 8;
+              -webkit-line-clamp: 7;
               -webkit-box-orient: vertical;
               overflow: hidden;
               text-overflow: ellipsis;

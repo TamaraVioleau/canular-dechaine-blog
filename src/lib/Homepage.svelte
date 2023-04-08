@@ -98,6 +98,7 @@
     font-family: $police;
     background-color: $color-white;
     padding: 3rem;
+    color: $color-black;
     @media screen and (min-width: 1024px) {
       display: flex;
       flex-direction: row;
@@ -107,21 +108,19 @@
     .wrapper__latest {
       @media screen and (min-width: 1024px) {
         max-width: 50%;
-        margin-top: 3rem;
+        padding-inline: 5rem;
       }
 
       h2 {
         @extend %h2;
+        text-align: center
       }
 
       section {
         @extend %glassmorphism;
         margin: 3rem;
         h3 {
-          text-align: center;
-          font-weight: bold;
-          color: $color-black;
-          padding: 2rem;
+          @extend %h3;
         }
         article {
           @media screen and (min-width: 770px) {
@@ -209,21 +208,20 @@
     .wrapper__like {
       @media screen and (min-width: 1024px) {
         max-width: 50%;
-        margin-top: 3rem;
+        padding-inline: 5rem;
         border-left: 1px solid black;
       }
 
       h2 {
   @extend %h2;
+  text-align: center;
       }
 
       section {
         @extend %glassmorphism;
         margin: 3rem;
         h3 {
-          text-align: center;
-          font-weight: bold;
-          padding: 2rem;
+  @extend %h3;
         }
         article {
           @media screen and (min-width: 770px) {
