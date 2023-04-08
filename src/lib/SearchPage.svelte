@@ -1,15 +1,16 @@
 <script>
+  import { link } from "svelte-spa-router";
 </script>
 
 <main>
-  <h2>Résultat de votre recherche pour [....]</h2>
+  <h2 aria-label="Titre de la section de recherche">Résultat de votre recherche pour [....]</h2>
   <div class="flex">
     <div class="wrapper__left">
       <section aria-label="Article">
-        <h3 aria-label="Titre de l'article">Titre article</h3>
+        <h3 id="article__title-left">Titre article</h3>
         <article>
           <img src="https://picsum.photos/900/400" alt="photo" />
-          <p aria-label="Texte de l'article">
+          <p id="article_p-left" aria-label="Texte de l'article">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non
             risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing
             nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas
@@ -25,29 +26,28 @@
             fermentum. Maecenas adipiscing ante non diam sodales hendrerit.
           </p>
         </article>
-        <footer class="footer__dateauthor">
+        <footer>
           <aside
-            class="aside__dateauthor"
             aria-label="Date de publication et auteur"
           >
             <time datetime="2023-04-05">5 avril 2023</time> <span> || </span>
             <cite title="nom de l'auteur">Sarah Croche</cite>
           </aside>
           <a
-            class="btn-read-more"
-            href="/articles"
-            role="button"
-            aria-label="Aller à la page de l'article">Lire la suite</a
-          >
+          class="btn-read-more"
+          use:link
+          href="/articles"
+          aria-labelledby="article__title-left">Lire la suite</a
+        >
         </footer>
       </section>
     </div>
     <div class="wrapper__right">
       <section aria-label="Article">
-        <h3 aria-label="Titre de l'article">Titre article</h3>
+        <h3 id="article__title-right">Titre article</h3>
         <article>
           <img src="https://picsum.photos/900/400" alt="photo" />
-          <p aria-label="Texte de l'article">
+          <p id="article_p-right" aria-label="Texte de l'article">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non
             risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing
             nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas
@@ -63,20 +63,19 @@
             fermentum. Maecenas adipiscing ante non diam sodales hendrerit.
           </p>
         </article>
-        <footer class="footer__dateauthor">
+        <footer>
           <aside
-            class="aside__dateauthor"
             aria-label="Date de publication et auteur"
           >
             <time datetime="2023-04-05">5 avril 2023</time> <span> || </span>
             <cite title="nom de l'auteur">Sarah Croche</cite>
           </aside>
           <a
-            class="btn-read-more"
-            href="/articles"
-            role="button"
-            aria-label="Aller à la page de l'article">Lire la suite</a
-          >
+          class="btn-read-more"
+          use:link
+          href="/articles"
+          aria-labelledby="article__title-left">Lire la suite</a
+        >
         </footer>
       </section>
     </div>
@@ -170,7 +169,7 @@
             }
           }
 
-          .footer__dateauthor {
+          footer {
             display: flex;
             padding: 1rem;
             margin: 1rem;
@@ -264,7 +263,7 @@
             }
           }
 
-          .footer__dateauthor {
+          footer{
             display: flex;
             padding: 1rem;
             margin: 1rem;

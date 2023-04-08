@@ -4,12 +4,14 @@
 
 <main>
   <div class="wrapper__latest">
-    <h2>Articles les plus récents</h2>
+    <h2 aria-label="Titre de la section des articles les plus récents">
+      Articles les plus récents
+    </h2>
     <section aria-label="Article">
-      <h3 aria-label="Titre de l'article">Titre article</h3>
+      <h3 id="article__title-left">Titre article</h3>
       <article>
-        <img src="https://picsum.photos/900/400" alt="photo" />
-        <p aria-label="Texte de l'article">
+        <img src="https://picsum.photos/900/400" alt="photo de l'article" />
+        <p id="article_p-left" aria-label="Texte de l'article">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non
           risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec,
           ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula
@@ -26,11 +28,8 @@
         </p>
       </article>
 
-      <footer class="footer__dateauthor">
-        <aside
-          class="aside__dateauthor"
-          aria-label="Date de publication et auteur"
-        >
+      <footer>
+        <aside aria-label="Date de publication et auteur">
           <time datetime="2023-04-05">5 avril 2023</time> <span> || </span>
           <cite title="nom de l'auteur">Sarah Croche</cite>
         </aside>
@@ -39,19 +38,20 @@
           class="btn-read-more"
           use:link
           href="/articles"
-          role="button"
-          aria-label="Aller à la page de l'article">Lire la suite</a
+          aria-labelledby="article__title-left">Lire la suite</a
         >
       </footer>
     </section>
   </div>
   <div class="wrapper__like">
-    <h2>Articles les plus aimés</h2>
+    <h2 aria-label="Titre de la section des articles les plus aimés">
+      Articles les plus aimés
+    </h2>
     <section aria-label="Article">
-      <h3 aria-label="Titre de l'article">Titre article</h3>
+      <h3 id="article__title-right">Titre article</h3>
       <article>
-        <img src="https://picsum.photos/900/400" alt="photo" />
-        <p aria-label="Texte de l'article">
+        <img src="https://picsum.photos/900/400" alt="photo de l'articlelink" />
+        <p id="article_p-right" aria-label="Texte de l'article">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non
           risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec,
           ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula
@@ -68,11 +68,8 @@
         </p>
       </article>
 
-      <footer class="footer__dateauthor">
-        <aside
-          class="aside__dateauthor"
-          aria-label="Date de publication et auteur"
-        >
+      <footer>
+        <aside aria-label="Date de publication et auteur">
           <time datetime="2023-04-05">5 avril 2023</time> <span> || </span>
           <cite title="nom de l'auteur">Sarah Croche</cite>
         </aside>
@@ -81,8 +78,7 @@
           class="btn-read-more"
           use:link
           href="/articles"
-          role="button"
-          aria-label="Aller à la page de l'article">Lire la suite</a
+          aria-labelledby="article__title-right">Lire la suite</a
         >
       </footer>
     </section>
@@ -113,7 +109,7 @@
 
       h2 {
         @extend %h2;
-        text-align: center
+        text-align: center;
       }
 
       section {
@@ -177,7 +173,7 @@
           }
         }
 
-        .footer__dateauthor {
+        footer {
           display: flex;
           padding: 1rem;
           margin: 1rem;
@@ -213,15 +209,15 @@
       }
 
       h2 {
-  @extend %h2;
-  text-align: center;
+        @extend %h2;
+        text-align: center;
       }
 
       section {
         @extend %glassmorphism;
         margin: 3rem;
         h3 {
-  @extend %h3;
+          @extend %h3;
         }
         article {
           @media screen and (min-width: 770px) {
@@ -278,7 +274,7 @@
           }
         }
 
-        .footer__dateauthor {
+        footer {
           display: flex;
           padding: 1rem;
           margin: 1rem;
