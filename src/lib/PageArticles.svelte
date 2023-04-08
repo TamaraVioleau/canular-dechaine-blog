@@ -1,4 +1,6 @@
 <script>
+  import { link } from "svelte-spa-router";
+
   export let params;
 
   // Initialise les variables pour stocker l'ID de la catégorie, le nom de la catégorie et les articles

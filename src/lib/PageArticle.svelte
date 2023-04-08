@@ -159,7 +159,7 @@
       #paragraph {
         font-family: $police;
         padding: 2rem;
-        line-height: 2rem;
+        @extend %p;
       }
 
       .footer__dateauthor {

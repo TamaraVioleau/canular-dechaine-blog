@@ -111,9 +111,7 @@
       }
 
       h2 {
-        text-align: center;
-        font-weight: bold;
-        padding: 3rem;
+        @extend %h2;
       }
 
       section {
@@ -212,12 +210,11 @@
       @media screen and (min-width: 1024px) {
         max-width: 50%;
         margin-top: 3rem;
+        border-left: 1px solid black;
       }
 
       h2 {
-        text-align: center;
-        font-weight: bold;
-        padding: 3rem;
+  @extend %h2;
       }
 
       section {

@@ -54,17 +54,16 @@
   @import "../utils/mixins";
   @import "../utils/variables";
   .write {
-    display: block;
+      display: flex;      
+      justify-content: center;
+      flex-direction: column;      
+      align-self: center;
     @extend %glassmorphism;
     margin: 3rem;
     padding: 2rem;
     @media screen and (min-width: 1024px) {
-      display: flex;
-      justify-content: center;
-      flex-direction: column;
       max-width: 910px;
       min-width: 910px;
-      align-self: center;
     }
   }
 
@@ -74,11 +73,11 @@
     width: 95%;
     margin: 2rem auto;
     resize: vertical;
-    font-size: 1.6rem;
     min-height: 100px;
     border-radius: 5px;
     border: 1px solid #ccc;
     padding: 2rem;
+    @extend %p;
   }
 
   .counter {
@@ -93,16 +92,16 @@
     justify-content: center;
     background: transparent;
     border: none;
+    max-width: 100%;
     .submit {
       @extend %button;
       min-width: 220px;
-      max-width: 100%;
     }
     .submit:active {
       @extend %buttonactive;
     }
     .submit:hover {
-            background-color: $color-greenlight;
-          }
+      background-color: $color-greenlight;
+    }
   }
 </style>

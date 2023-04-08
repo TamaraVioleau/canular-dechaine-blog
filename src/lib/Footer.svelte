@@ -42,7 +42,6 @@
 
     #button__contact {
       @extend %button;
-      padding: 2rem 5rem;
       max-width: 50%;
     }
     #button__contact:hover {

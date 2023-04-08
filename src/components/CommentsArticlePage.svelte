@@ -17,10 +17,7 @@
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt rerum
       esse cupiditate dolore magnam tempore placeat, sit iusto in itaque
       aspernatur, ipsa vel quisquam alias accusamus molestias dignissimos
-      laudantium unde! Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-      Possimus aut sequi magni tempore qui earum. Ad facere deleniti molestias
-      aliquid quod eius veritatis voluptate, deserunt accusamus, fugiat veniam
-      inventore tempora.
+      laudantium unde! 
     </p>
   </article>
 </section>
@@ -42,7 +39,7 @@
       spellcheck="true"
       aria-label="Envoyer article"
     />
-</button>
+  </button>
 </div>
 
 <style lang="scss">
@@ -67,10 +64,9 @@
       min-width: 910px;
       padding-inline: 15vw;
     }
-      @media screen and (min-width: 1440px) {
-        padding-inline: 10vw;
-      }
-
+    @media screen and (min-width: 1440px) {
+      padding-inline: 10vw;
+    }
   }
 
   .header__dateauthor {
@@ -100,25 +96,22 @@
     }
   }
   p {
-    line-height: 2rem;
+    @extend %p;
     padding: 1rem;
-    text-align: left;
     margin: 1rem;
   }
 
   .write {
-    display: block;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
     @extend %glassmorphism;
     margin: 3rem;
     padding: 2rem;
-
     @media screen and (min-width: 1024px) {
-      display: flex;
-      align-self: center;
-      justify-content: center;
-      flex-direction: column;
       max-width: 910px;
       min-width: 910px;
+      align-self: center;
     }
   }
 
@@ -128,29 +121,28 @@
     width: 95%;
     margin: 2rem auto;
     resize: vertical;
-    font-size: 1.6rem;
     min-height: 100px;
     border-radius: 5px;
     border: 1px solid #ccc;
     padding: 2rem;
+    @extend %p;
   }
 
   button {
     display: flex;
     justify-content: center;
     background: transparent;
-    border: none;     
-     max-width: 100%;
+    border: none;
+    max-width: 100%;
     .submit {
       @extend %button;
       min-width: 220px;
-
     }
     .submit:active {
       @extend %buttonactive;
     }
     .submit:hover {
-            background-color: $color-greenlight;
-          }
+      background-color: $color-greenlight;
+    }
   }
 </style>
