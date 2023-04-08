@@ -29,10 +29,12 @@
       </article>
 
       <footer>
-        <aside aria-label="Date de publication et auteur">
-          <time datetime="2023-04-05">5 avril 2023</time> <span> || </span>
-          <cite title="nom de l'auteur">Sarah Croche</cite>
-        </aside>
+ <aside
+        aria-label="Date de publication et auteur"
+      >
+        <time datetime="2023-04-05" aria-label="Date de publication">5 avril 2023</time> <span> || </span>
+        <cite title="nom de l'auteur" aria-label="Auteur">Sarah Croche</cite>
+      </aside>
 
         <a
           class="btn-read-more"
@@ -69,10 +71,12 @@
       </article>
 
       <footer>
-        <aside aria-label="Date de publication et auteur">
-          <time datetime="2023-04-05">5 avril 2023</time> <span> || </span>
-          <cite title="nom de l'auteur">Sarah Croche</cite>
-        </aside>
+ <aside
+        aria-label="Date de publication et auteur"
+      >
+        <time datetime="2023-04-05" aria-label="Date de publication">5 avril 2023</time> <span> || </span>
+        <cite title="nom de l'auteur" aria-label="Auteur">Sarah Croche</cite>
+      </aside>
 
         <a
           class="btn-read-more"

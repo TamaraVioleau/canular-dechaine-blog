@@ -3,13 +3,13 @@
 
 <section>
   <article>
-    <header class="header__dateauthor">
+    <header>
       <img src="src/assets/avatar-membres.png" alt="avatar du membre" />
       <aside
         class="aside__dateauthor"
         aria-label="Date de publication et auteur"
       >
-        <time datetime="2023-04-05">5 avril 2023</time> <span> || </span>
+        <time datetime="2023-04-05">5 avril 2023</time> <span aria-hidden="true"> || </span>
         <cite title="nom de l'auteur">Lucie Fer</cite>
       </aside>
     </header>
@@ -69,7 +69,7 @@
     }
   }
 
-  .header__dateauthor {
+header {
     display: flex;
     padding: 1rem;
     margin: 1rem;

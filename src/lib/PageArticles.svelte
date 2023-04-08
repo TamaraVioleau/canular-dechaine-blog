@@ -38,8 +38,6 @@
     const json = await response.json();
     categoryName = json.data.name;
   };
-
-
 </script>
 
 <main>
@@ -58,8 +56,8 @@
         </article>
         <footer>
           <aside aria-label="Date de publication et auteur">
-            <time datetime="2023-04-05">5 avril 2023</time> <span> || </span>
-            <cite title="nom de l'auteur">Sarah Croche</cite>
+            <time datetime="{article.date_created}" aria-label="Date de publication">{article.date_created}</time> <span> || </span>
+            <cite title="{article.users_pseudo}" aria-label="Auteur">{article.users_pseudo}</cite>
           </aside>
   
           <a
@@ -71,41 +69,6 @@
         </footer>
       </section>
     {/each}
-
-    <!-- SUITE DES ARTICLES -->
-    <section aria-label="Article">
-      <article>
-        <img src="https://picsum.photos/900/400" alt="photo" />
-        <h3 aria-label="Titre de l'article">Titre article</h3>
-        <p aria-label="Texte de l'article">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis
-          fugiat aspernatur, alias iusto cumque repudiandae porro quam assumenda
-          eveniet deserunt earum labore numquam. Lorem ipsum, dolor sit amet
-          consectetur adipisicing elit. Perspiciatis fugiat aspernatur, sit amet
-          consectetur adipisicing elit. Lorem ipsum, dolor sit amet fugiat
-          aspernatur, sit amet.Lorem ipsum, dolor sit amet consectetur
-          adipisicing elit. Perspiciatis fugiat aspernatur, alias iusto cumque
-          repudiandae porro quam assumenda eveniet deserunt earum labore
-          numquam.
-        </p>
-      </article>
-      <footer class="footer__dateauthor">
-        <aside
-          class="aside__dateauthor"
-          aria-label="Date de publication et auteur"
-        >
-          <time datetime="2023-04-05">5 avril 2023</time> <span> || </span>
-          <cite title="nom de l'auteur">Sarah Croche</cite>
-        </aside>
-        <a
-          class="btn-read-more"
-          use:link
-          href="/articles"
-          role="button"
-          aria-label="Aller à la page de l'article">Lire la suite</a
-        >
-      </footer>
-    </section>
   </div>
 </main>
 

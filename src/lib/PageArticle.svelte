@@ -53,10 +53,10 @@
 </script>
 
 <main>
-  <article class="article">
+  <article>
     <!-- doit apparaitre seulement pour les auteurs -->
-    <a  href="/"><i class="fa-solid fa-pen-to-square" /></a>
-    <img src="https://picsum.photos/900/400" alt="foto" />
+    <a aria-label="Éditer l'article"  href="/"><i class="fa-solid fa-pen-to-square" /></a>
+    <img src="https://picsum.photos/900/400" alt="photo de l'article" />
 
     <h3>Le confinement, période propice à la créativité humoristique</h3>
     <p id="paragraph" aria-label="Texte de l'article">
@@ -71,13 +71,12 @@
       l'espace-temps. Mystère.
     </p>
 
-    <footer class="footer__dateauthor">
+    <footer>
       <aside
-        class="aside__dateauthor"
         aria-label="Date de publication et auteur"
       >
-        <time datetime="2023-04-05">5 avril 2023</time> <span> || </span>
-        <cite title="nom de l'auteur">Sarah Croche</cite>
+        <time datetime="2023-04-05" aria-label="Date de publication">5 avril 2023</time> <span aria-hidden="true"> || </span>
+        <cite title="nom de l'auteur" aria-label="Auteur">Sarah Croche</cite>
       </aside>
       <div class="heart" class:active={isActive}>
         <span class="heart-count" />
@@ -161,7 +160,7 @@
         @extend %p;
       }
 
-      .footer__dateauthor {
+      footer {
         display: flex;
         flex-wrap: wrap;
         padding: 1rem;
@@ -206,8 +205,8 @@
         }
       }
 
-      .footer__dateauthor > *:nth-child(1),
-      .footer__dateauthor > *:nth-child(2) {
+      footer > *:nth-child(1),
+      footer > *:nth-child(2) {
         width: 100%;
       }
     }
