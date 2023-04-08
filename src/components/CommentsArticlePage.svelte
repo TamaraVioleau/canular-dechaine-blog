@@ -39,7 +39,7 @@
       type="submit"
       name="submit"
       value="Envoyer"
-      spellcheck="false"
+      spellcheck="true"
       aria-label="Envoyer article"
     />
   </div>
@@ -57,7 +57,7 @@
     padding: 2rem;
     align-self: center;
     @media screen and (min-width: 770px) {
-      padding-inline: 15vw;
+      padding-inline: 17vw;
     }
     @media screen and (min-width: 1024px) {
       display: flex;
@@ -65,7 +65,12 @@
       flex-direction: column;
       max-width: 910px;
       min-width: 910px;
+      padding-inline: 15vw;
     }
+      @media screen and (min-width: 1440px) {
+        padding-inline: 10vw;
+      }
+
   }
 
   .header__dateauthor {

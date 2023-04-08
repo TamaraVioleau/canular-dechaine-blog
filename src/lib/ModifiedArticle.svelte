@@ -52,13 +52,18 @@
       padding: 2rem;
       margin: 3rem;
       @extend %glassmorphism;
-      @media screen and (min-width: 770px) {
-      padding-inline: 15vw;
-    padding-top: 5rem;}
+    @media screen and (min-width: 770px) {
+        padding-inline: 17vw;
+        padding-top: 5rem;
+      }
       @media screen and (min-width: 1024px) {
+        padding-inline: 15vw;
         max-width: 910px;
         min-width: 910px;
         align-self: center;
+      }
+      @media screen and (min-width: 1440px) {
+        padding-inline: 10vw;
       }
 
       img {

@@ -1,5 +1,6 @@
 <script>
   import CommentsArticlePage from "../components/CommentsArticlePage.svelte";
+
   // Les fonctions onMount et onDestroy nous permettent de faire des choses spécifiques à des moments précis de l'application.
   // onMount nous permet de faire quelque chose dès que l'application est prête à être utilisée
   // onDestroy nous permet de faire quelque chose quand l'application se ferme ou qu'une partie de l'application est supprimée.
@@ -48,10 +49,13 @@
     // Supprime l'event listener pour éviter des fuites de mémoire
     heart.removeEventListener("click", toggleHeart);
   });
+  
 </script>
 
 <main>
   <article class="article">
+    <!-- doit apparaitre seulement pour les auteurs -->
+    <a  href="/"><i class="fa-solid fa-pen-to-square" /></a>
     <img src="https://picsum.photos/900/400" alt="foto" />
 
     <h2>Le confinement, période propice à la créativité humoristique</h2>
@@ -107,14 +111,38 @@
       margin: 3rem;
       @extend %glassmorphism;
       @media screen and (min-width: 770px) {
-      padding-inline: 15vw;
-    padding-top: 5rem;}
+        padding-inline: 17vw;
+        padding-top: 5rem;
+      }
       @media screen and (min-width: 1024px) {
+        padding-inline: 15vw;
         max-width: 910px;
         min-width: 910px;
         align-self: center;
       }
-
+      @media screen and (min-width: 1440px) {
+        padding-inline: 10vw;
+      }
+      a {
+        text-decoration: none;
+        color: $color-black;
+        .fa-pen-to-square {
+          position: absolute;
+          right: 0;
+          top: 3px;
+          margin: 3rem;
+          padding: 1rem;
+          font-size: 3rem;
+          border-radius: 100%;
+          z-index: 1;
+          background-color: rgba(255, 255, 255, 0.7);
+          transition: opacity 0.2s ease-in-out;
+          @media screen and (min-width: 770px) {
+            top: 0;
+            background-color: transparent;
+          }
+        }
+      }
       img {
         min-width: 100%;
         width: 100%;
