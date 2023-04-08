@@ -27,7 +27,7 @@
     name="textarea"
     id="textarea"
     maxlength={myMaxLength}
-    on:input={[handleInput, updatePreview]}
+    on:input={(event) => {handleInput(event); updatePreview();}}
     bind:value={text}
     spellcheck="true"
     placeholder="Ecrire ici pour modifier l'article"
@@ -58,13 +58,12 @@
     @extend %glassmorphism;
     margin: 3rem;
     padding: 2rem;
-
     @media screen and (min-width: 1024px) {
       display: flex;
       justify-content: center;
       flex-direction: column;
-      max-width: 965px;
-      min-width: 965px;
+      max-width: 910px;
+      min-width: 910px;
       align-self: center;
     }
   }
@@ -79,7 +78,7 @@
     min-height: 100px;
     border-radius: 5px;
     border: 1px solid #ccc;
-    padding: 1rem;
+    padding: 2rem;
   }
 
   .counter {

@@ -106,9 +106,12 @@
       padding: 2rem;
       margin: 3rem;
       @extend %glassmorphism;
+      @media screen and (min-width: 770px) {
+      padding-inline: 15vw;
+    padding-top: 5rem;}
       @media screen and (min-width: 1024px) {
-        max-width: 965px;
-        min-width: 965px;
+        max-width: 910px;
+        min-width: 910px;
         align-self: center;
       }
 

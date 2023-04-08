@@ -56,13 +56,15 @@
     margin: 3rem;
     padding: 2rem;
     align-self: center;
+    @media screen and (min-width: 770px) {
+      padding-inline: 15vw;
+    }
     @media screen and (min-width: 1024px) {
       display: flex;
       justify-content: center;
       flex-direction: column;
-      max-width: 965px;
-      min-width: 965px;
-
+      max-width: 910px;
+      min-width: 910px;
     }
   }
 
@@ -74,6 +76,9 @@
     img {
       max-width: 50px;
       margin-right: 2rem;
+      border-radius: 100%;
+      outline: 2px solid white;
+      box-shadow: 0 2px 10px 0 rgb(31 38 135 / 45%);
     }
     aside {
       display: flex;
@@ -107,8 +112,8 @@
       align-self: center;
       justify-content: center;
       flex-direction: column;
-      max-width: 965px;
-      min-width: 965px;
+      max-width: 910px;
+      min-width: 910px;
     }
   }
 
@@ -122,7 +127,7 @@
     min-height: 100px;
     border-radius: 5px;
     border: 1px solid #ccc;
-    padding: 1rem;
+    padding: 2rem;
   }
 
   .buttons {
