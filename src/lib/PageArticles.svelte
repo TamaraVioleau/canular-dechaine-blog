@@ -15,8 +15,6 @@
     getCategoryName();
     // Appelle la fonction 'getArticles()' pour récupérer les articles de la catégorie
     getArticles();
-
-
   }
 
   // Récupération des articles de la catégorie
@@ -48,18 +46,26 @@
     {#each articles as article}
       <section aria-label="Article">
         <article>
-          <img src={import.meta.env.VITE_URL_DIRECTUS + "/assets/" + article.image} alt={article.alt} />
+          <img
+            src={import.meta.env.VITE_URL_DIRECTUS + "/assets/" + article.image}
+            alt={article.alt}
+          />
           <h3 id="article__title-right">{article.title}</h3>
           <p id="article_p-right" aria-label="Texte de l'article">
-           {article.content} 
+            {article.content}
           </p>
         </article>
         <footer>
           <aside aria-label="Date de publication et auteur">
-            <time datetime="{article.date_created}" aria-label="Date de publication">{article.date_created}</time> <span> || </span>
-            <cite title="{article.users_pseudo}" aria-label="Auteur">{article.users_pseudo}</cite>
+            <time
+              datetime={article.date_created}
+              aria-label="Date de publication">{article.date_created}</time
+            > <span aria-hidden="true"> || </span>
+            <cite title={article.users_pseudo} aria-label="Auteur"
+              >{article.users_pseudo}</cite
+            >
           </aside>
-  
+
           <a
             class="btn-read-more"
             use:link
@@ -140,6 +146,11 @@
 
           h3 {
             @extend %h3;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            text-overflow: ellipsis;
+            overflow: hidden;
           }
           p {
             @extend %p;
@@ -153,7 +164,7 @@
             text-overflow: ellipsis;
             overflow: hidden;
             @media screen and (min-width: 1024px) {
-              height: 172px;
+              height: 175px;
               display: -webkit-box;
               -webkit-line-clamp: 7;
               -webkit-box-orient: vertical;

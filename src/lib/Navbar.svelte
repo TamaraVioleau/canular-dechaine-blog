@@ -163,7 +163,6 @@
           }
         }
         .navigation__login {
-          display: none;
           #login {
             display: none;
             display: flex;

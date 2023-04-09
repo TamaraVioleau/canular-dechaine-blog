@@ -30,9 +30,10 @@
 <Navbar />
 <Router {routes} />
 
-
+<SearchPage/>
 <PageArticle />
 <ModifiedArticle />
+<UpDown/>
 <Footer />
 
 <!-- 
@@ -44,5 +45,5 @@
 -->
 
 <!--
-<UpDown/>
+
  -->
