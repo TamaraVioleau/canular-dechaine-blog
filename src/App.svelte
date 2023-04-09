@@ -1,5 +1,5 @@
 <script>
-  import Router from "svelte-spa-router";
+ 
 
   import Navbar from "./lib/Navbar.svelte";
   import Homepage from "./lib/Homepage.svelte";
@@ -17,6 +17,8 @@
   import CommentsArticlePage from "./components/CommentsArticlePage.svelte";
   import UpDown from "./components/UpDown.svelte";
 
+  
+ import Router from "svelte-spa-router";
   const routes = {
     "/": Homepage,
     "/connexion": Register,
@@ -27,13 +29,15 @@
 
 <Navbar />
 <Router {routes} />
+
+<SearchPage/>
+<PageArticle />
+<ModifiedArticle />
+<UpDown/>
 <Footer />
 
 <!-- 
-  <SearchPage />
-<PageArticles />
-<PageArticle />
-  <ModifiedArticle /> 
+
   <Register />
 <PageProfilAuthors />
 <PageProfilMembers />
@@ -41,5 +45,5 @@
 -->
 
 <!--
-<UpDown/>
+
  -->

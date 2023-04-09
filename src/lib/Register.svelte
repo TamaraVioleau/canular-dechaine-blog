@@ -1,6 +1,6 @@
 <script>
   var details = document.querySelectorAll("details");
-  
+
   details.forEach(function (detail) {
     detail.addEventListener("click", function () {
       details.forEach(function (otherDetail) {
@@ -19,7 +19,6 @@
   // variable reload qui permet de déterminer si la page doit être rechargée après l'authentification
   export let reload = false;
 
-  
   // variables pour stocker les identifiants
   let email = "";
   let password = "";
@@ -42,7 +41,6 @@
     } else {
       // Naviguer vers la page d'accueil grace à svelte-spa-router
       push("/");
-      
     }
   };
 
@@ -111,8 +109,7 @@
           password: data.password,
           first_name: data.firstname,
           last_name: data.name,
-          status: "active" // définir le statut de l'utilisateur sur actif
-          
+          status: "active", // définir le statut de l'utilisateur sur actif
         }),
       });
 
@@ -162,7 +159,13 @@
 <main>
   <wrapper class="wrapper--left">
     <!-- dans action mettre le nom de la page (ex: /profil)  -->
-    <form on:submit={handleSubmitForm} action="" method="post" id="connexion" name="connexion">
+    <form
+      on:submit={handleSubmitForm}
+      action=""
+      method="post"
+      id="connexion"
+      name="connexion"
+    >
       <section class="section--login" aria-labelledby="login">
         <h1 id="login">Se connecter</h1>
 
@@ -170,9 +173,21 @@
           <summary>Voir le formulaire</summary>
           <article class="article--login" aria-label="formulaire de connexion">
             <label for="email">E-mail : </label>
-              <input type="email" name="email" bind:value={email} id="email" required/>
+            <input
+              type="email"
+              name="email"
+              bind:value={email}
+              id="email"
+              required
+            />
             <label for="pwd">Mot de passe : </label>
-            <input type="password" name="pwd" id="pwd" bind:value={password} required/>
+            <input
+              type="password"
+              name="pwd"
+              id="pwd"
+              bind:value={password}
+              required
+            />
           </article>
           <div class="buttons">
             <input
@@ -197,7 +212,13 @@
   </wrapper>
 
   <wrapper class="wrapper--right"
-    ><form on:submit={handleSubmit} action="" method="post" id="inscription" name="inscription">
+    ><form
+      on:submit={handleSubmit}
+      action=""
+      method="post"
+      id="inscription"
+      name="inscription"
+    >
       <section class="section--register" aria-labelledby="register">
         <h1 id="statistiques">S'enregistrer :</h1>
 
@@ -208,11 +229,29 @@
             aria-label="formulaire d'inscription"
           >
             <label for="pseudo">Pseudo : </label>
-            <input type="text" name="pseudo" id="pseudo" bind:value={pseudo} required/>
+            <input
+              type="text"
+              name="pseudo"
+              id="pseudo"
+              bind:value={pseudo}
+              required
+            />
             <label for="email">E-mail : </label>
-            <input type="email" name="email" id="email" bind:value={email} required/>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              bind:value={email}
+              required
+            />
             <label for="pwd">Mot de passe : </label>
-            <input type="password" name="pwd" id="pwd" bind:value={password} required/>
+            <input
+              type="password"
+              name="pwd"
+              id="pwd"
+              bind:value={password}
+              required
+            />
           </article>
           <div class="buttons">
             <input
