@@ -29,10 +29,8 @@
 
 <Navbar />
 <Router {routes} />
+<PageArticle/>
 
-<SearchPage/>
-<PageArticle />
-<ModifiedArticle />
 <Footer />
 
 <!-- 

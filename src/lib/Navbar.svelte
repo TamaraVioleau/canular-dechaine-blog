@@ -1,23 +1,24 @@
 <script>
   import { link } from "svelte-spa-router";
-
-  // JS pour le menu burger
-  let searchLinksVisible = false;
+      // JS pour le menu burger
+      let searchLinksVisible = false;
   const handleClick = () => {
     searchLinksVisible = !searchLinksVisible;
   };
-
-  //Lorsque l'utilisateur est connecté
+ //Lorsque l'utilisateur est connecté
   const isLogged = window.localStorage.getItem("token") != null;
   const logins = [
     {
+      iconlog: isLogged
+        ? "fa-solid fa-right-from-bracket"
+        : "fa-solid fa-right-to-bracket",
+      iconprofil: isLogged ? "iconprofil" : "",
       text: isLogged ? "Se déconnecter" : "Se connecter",
       url: "/connexion",
     },
   ];
 
   //Récupération des catégories de la BDD
-
   let categories = [];
 
   const getCategories = async () => {
@@ -29,7 +30,6 @@
     categories = json.data;
   };
   getCategories();
-
 </script>
 
 <nav>
@@ -49,18 +49,16 @@
         </form>
       </div>
 
-      <div class="navigation__login">
-        {#each logins as login}
+      {#each logins as login}<div class="navigation__login">
           <a use:link href={login.url} id="login">
-            <button type="submit" id="buttonlogin">{login.text}</button>
-            <img
-              src="src\assets\avatar-default.png"
-              alt="avatar par défaut"
-              id="avatar"
-            />
+            <button type="submit" id="buttonlogin">
+              <span id="logtext">{login.text}</span></button
+            >
+            <i id="iconlog" class={login.iconlog} />
           </a>
-        {/each}
-      </div>
+        </div>
+        <div id="iconprofil" class={login.iconprofil} />
+      {/each}
 
       <!-- ici le bouton du menu responsive -->
       <div id="menuicon" on:click={handleClick}>
@@ -68,6 +66,16 @@
       </div>
 
       <div class="searchandlinks" class:visible={searchLinksVisible}>
+        {#each logins as login}<div class="navigation__login--mobile">
+            <a use:link href={login.url} id="login--mobile">
+              <button type="submit" id="buttonlogin--mobile">
+                <span id="logtext--mobile">{login.text}</span></button
+              >
+              <i id="iconlog" class={login.iconlog} />
+            </a>
+          </div>
+        {/each}
+
         <div class="navigation__search" id="navigation__mobile">
           <!-- Ajout du chemin de la page dans action -->
           <form action="" id="formsearch">
@@ -84,9 +92,12 @@
         </div>
         <ul>
           {#each categories as category}
-          <li><a use:link href="/articles" value={category.id}>{category.name}</a></li>
+            <li>
+              <a use:link href="/articles" value={category.id}
+                >{category.name}</a
+              >
+            </li>
           {/each}
-          
         </ul>
       </div>
       <!-- ici fini le bouton du menu responsive -->
@@ -95,8 +106,10 @@
     <div class="gridlinks">
       <ul>
         {#each categories as category}
-          <li><a use:link href={`/articles/${category.id}`}>{category.name}</a></li>
-          {/each}
+          <li>
+            <a use:link href={`/articles/${category.id}`}>{category.name}</a>
+          </li>
+        {/each}
       </ul>
     </div>
   </div>
@@ -163,35 +176,69 @@
           }
         }
         .navigation__login {
-          #login {
-            display: none;
+          display: none;
+          @media screen and (min-width: 580px) {
             display: flex;
-            align-items: center;
-            width: auto;
-            height: 100%;
-            justify-content: right;
-            gap: 2rem;
-            padding: 0 3rem;
-            background: $color-greendark;
-            border: 1px solid white;
-            border-radius: 5px;
-            text-decoration: none;
-            box-shadow: 0 2px 5px 0 rgba(31, 38, 135, 0.45);
-
-            #buttonlogin {
-              border-radius: 10px;
-              border: none;
-              font-weight: bolder;
+            #login {
+              display: flex;
+              align-items: center;
+              width: auto;
               height: 100%;
-              background: none;
-              font-size: 1.8rem;
-              cursor: pointer;
-            }
-            #avatar {
-              height: 35px;
+              justify-content: right;
+              gap: 2rem;
+              padding: 0 3rem;
+              border: 1px solid white;
+              border-radius: 5px;
+              text-decoration: none;
+              box-shadow: 0 2px 5px 0 rgba(31, 38, 135, 0.45);
+              font-size: 3rem;
+
+              #buttonlogin {
+                border-radius: 10px;
+                border: none;
+                font-weight: bolder;
+                height: 100%;
+                background: none;
+                font-size: 1.8rem;
+                cursor: pointer;
+                display: none;
+                @media screen and (min-width: 1024px) {
+                  display: block;
+                }
+                #logtext {
+                }
+              }
+              #iconlog {
+                height: 3.5rem;
+                color: $color-black;
+                display: flex;
+                align-items: center;
+              }
             }
           }
         }
+
+        .iconprofil {
+          display: flex;
+          align-items: center;
+          width: auto;
+          height: 100%;
+          justify-content: right;
+          gap: 2rem;
+          padding: 0 3rem;
+          border: 1px solid white;
+          border-radius: 5px;
+          text-decoration: none;
+          box-shadow: 0 2px 5px 0 rgba(31, 38, 135, 0.45);
+          color: $color-black;
+          margin-left: 3rem;
+          font-size: 3rem;
+        }
+        .iconprofil::before {
+          content: "\f406";
+          font-family: "FontAwesome";
+        }
+
         #menu {
           font-size: 5rem;
           cursor: pointer;
@@ -265,8 +312,49 @@
     padding: 3rem;
     display: none;
 
+    .navigation__login--mobile {
+      margin: 2rem;
+      #login--mobile {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: auto;
+        height: 100%;
+        gap: 2rem;
+        padding: 2rem;
+        border: 1px solid white;
+        border-radius: 5px;
+        text-decoration: none;
+        box-shadow: 0 2px 5px 0 rgba(31, 38, 135, 0.45);
+        font-size: 3rem;
+        @media screen and (min-width: 580px) {
+          display: none;
+        }
+        #buttonlogin--mobile {
+          border-radius: 10px;
+          border: none;
+          font-weight: bolder;
+          height: 100%;
+          background: none;
+          font-size: 1.8rem;
+          cursor: pointer;
+        }
+        #logtext--mobile {
+          display: block;
+        }
+        #iconlog {
+          height: 3.5rem;
+          color: $color-black;
+          display: flex;
+          align-items: center;
+        }
+      }
+    }
+
     #navigation__mobile {
       display: flex;
+      justify-content: center;
+      
     }
     ul {
       li {
@@ -294,7 +382,6 @@
       }
     }
   }
-
   .searchandlinks.visible {
     display: block;
 
