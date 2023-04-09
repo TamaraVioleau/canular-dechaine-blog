@@ -22,17 +22,18 @@
 </script>
 
 <div class="write">
-  <label for="textarea" />
+  <label for="textarea"  id="textarea-label"/>
   <textarea
     name="textarea"
     id="textarea"
+    aria-labelledby="textarea-label counter"
     maxlength={myMaxLength}
     on:input={(event) => {handleInput(event); updatePreview();}}
     bind:value={text}
     spellcheck="true"
     placeholder="Ecrire ici pour modifier l'article"
   />
-  <p class="counter">
+ <p id="counter" aria-live="polite" aria-atomic="true">
     Nombre de caractères restant : <span id="characterCounter"
       >{charactersRemaining}</span
     >/<span id="maximum">{myMaxLength}</span>
@@ -80,7 +81,7 @@
     @extend %p;
   }
 
-  .counter {
+  #counter {
     position: relative;
     font-size: 1.2rem;
     display: flex;

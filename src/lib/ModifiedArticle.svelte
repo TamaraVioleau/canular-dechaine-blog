@@ -3,10 +3,10 @@
 </script>
 
 <main>
-  <article class="article">
-    <img src="https://picsum.photos/900/400" alt="foto" />
+  <article>
+    <img src="https://picsum.photos/900/400" alt="photo de l'article" />
     <h3>La voiture autonome s'en va-t-en guerre</h3>
-    <p id="preview" aria-label="Texte de l'article">
+    <p id="preview" aria-label="Texte de l'article" aria-live="polite" aria-atomic="true">
       Alors que les voitures autonomes font leur entrée sur les routes du monde
       entier, certaines d'entre elles semblent avoir décidé de prendre leur
       destin en main. En effet, plusieurs témoignages rapportent que des
