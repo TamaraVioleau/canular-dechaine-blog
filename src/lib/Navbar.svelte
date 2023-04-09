@@ -267,6 +267,7 @@
           display: flex;
           flex-wrap: wrap;
           justify-content: center;
+          text-align: center;
         }
         li {
           @media screen and (min-width: 770px) {
