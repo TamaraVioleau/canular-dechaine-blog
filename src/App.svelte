@@ -33,7 +33,6 @@
 <SearchPage/>
 <PageArticle />
 <ModifiedArticle />
-<UpDown/>
 <Footer />
 
 <!-- 
