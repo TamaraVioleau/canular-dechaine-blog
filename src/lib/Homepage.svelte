@@ -207,7 +207,8 @@
       }
     }
     .wrapper__like {
-      border-left: 1px solid $color-black;
+      @media screen and (min-width: 1024px) {
+      border-left: 1px solid $color-black;}
     }
   }
 </style>
