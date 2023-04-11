@@ -137,6 +137,7 @@ header {
     .submit {
       @extend %button;
       min-width: 220px;
+      box-shadow: 0 2px 5px 0 rgba(31, 38, 135, 0.45);
     }
     .submit:active {
       @extend %buttonactive;
