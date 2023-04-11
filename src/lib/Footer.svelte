@@ -1,14 +1,24 @@
+<script>
+  import { link } from "svelte-spa-router";
+</script>
+
 <footer>
-  <a href="/"> <button id="button__contact">Nous contacter</button></a>
+  <a
+    id="button__contact"
+    use:link
+    href="/"
+    role="button"
+    aria-label="Aller à la page contact">Nous contacter</a
+  >
   <div class="social">
-    <button><a href=""><i class="fa-brands fa-facebook" /></a></button>
-    <button><a href=""><i class="fa-brands fa-twitter" /></a></button>
-    <button><a href=""><i class="fa-brands fa-instagram" /></a></button>
+    <a href="/" aria-label="Facebook"><i class="fa-brands fa-facebook" alt="Facebook" /></a>
+    <a href="/" aria-label="Twitter"><i class="fa-brands fa-twitter" alt="Twitter" /></a>
+    <a href="/" aria-label="Instagram"><i class="fa-brands fa-instagram" alt="Instagram" /></a>
   </div>
   <ul>
-    <li><a href="">Mentions légales</a></li>
-    <li><a href="">Politique de confidentialité</a></li>
-    <li><a href="">A propos</a></li>
+    <li><a href="/" aria-label="Aller aux mentions légales">Mentions légales</a></li>
+    <li><a href="/" aria-label="Aller à la politique de confidentialité">Politique de confidentialité</a></li>
+    <li><a href="/" aria-label="Aller à la page à propos">A propos</a></li>
   </ul>
 </footer>
 
@@ -24,44 +34,57 @@
     @extend %glassmorphism;
     border-radius: 0;
     display: flex;
+    align-items: center;
     flex-direction: column;
     background-color: $color-white;
     padding: 6rem 3rem;
     row-gap: 6rem;
-    a {
-      display: flex;
-      place-content: center;
-      text-decoration: none;
-      position: relative;
-      color: $color-black;
-       #button__contact {     
-        cursor: pointer;
-        width: 100%;
-        padding: 2rem;
-        background: $color-greenlight;
-        border: 1px solid white;
-        border-radius: 5px;
-        font-size: 1.6rem;
-        font-weight: bold;
-        max-width: 310px;
-      }
+
+    #button__contact {
+      @extend %button;
+      max-width: 50%;
     }
+    #button__contact:hover {
+      background-color: $color-greenlight;
+    } 
 
     .social {
       display: flex;
-      gap: 4rem;
+      gap: 3rem;
       justify-content: center;
-      button {
-        background-color: transparent;
-        border: none;
-        a {
-          font-size: 5rem;
-          text-decoration: none;
-          position: relative;
-          color: $color-black;
-          i {
+      font-size: 5rem;
+
+      a {
+        display: flex;
+        height: 75px;
+        width: 75px;
+        margin: 0 15px;
+        border-radius: 8px;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;      
+        color: $color-black;
+        i {
+          transition: transform 0.5s;
+          a:hover {
+            transform: scale(0.9);
           }
         }
+      }
+      a:hover .fa-facebook {
+        transform: translateY(2px);
+        transition: transform 0.2s ease-in-out;
+        color: #3b5998;
+      }
+      a:hover .fa-twitter {
+        transform: translateY(2px);
+        transition: transform 0.2s ease-in-out;
+        color: #00acee;
+      }
+      a:hover .fa-instagram {
+        transform: translateY(2px);
+        transition: transform 0.2s ease-in-out;
+        color: #f14843;
       }
     }
 
@@ -91,19 +114,9 @@
         position: relative;
         color: $color-black;
         &:after {
-          content: "";
-          position: absolute;
-          left: 0;
-          bottom: -5px;
-          width: 100%;
-          height: 2px;
-          background-color: $color-greenlight;
-          transform: scaleX(0); /* Masque le soulignement au départ */
-          transition: transform 0.2s ease-in-out; /* Transition fluide */
-          transform-origin: left; /* Modifie l'orientation du soulignement ici gauche à droite */
-        }
+@extend %a-after;        }
         &:hover:after {
-          transform: scaleX(1); /* Affiche le soulignement au survol */
+@extend %ahoverafter;
         }
       }
     }

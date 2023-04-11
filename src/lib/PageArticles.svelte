@@ -1,4 +1,7 @@
 <script>
+  import { link } from "svelte-spa-router";
+  import UpDown from "../components/UpDown.svelte";
+
   export let params;
 
   // Initialise les variables pour stocker l'ID de la catégorie, le nom de la catégorie et les articles
@@ -37,159 +40,45 @@
 </script>
 
 <main>
-  <h2>Les articles pour la catégorie {categoryName}</h2>
+  <h2 aria-label="Titre de la section des articles les plus aimés">
+    Les articles pour la catégorie {categoryName}
+  </h2>
   <div class="wrapper">
     {#each articles as article}
       <section aria-label="Article">
         <article>
-          <img src={article.image} alt="{article.alt}" />
-          <h3 aria-label="Titre de l'article">{article.title}</h3>
-          <p aria-label={article.content}>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Perspiciatis fugiat aspernatur, alias iusto cumque repudiandae porro
-            quam assumenda eveniet deserunt earum labore numquam. Lorem ipsum,
-            dolor sit amet consectetur adipisicing elit. Perspiciatis fugiat
-            aspernatur, sit amet consectetur adipisicing elit. Lorem ipsum,
-            dolor sit amet fugiat aspernatur, sit amet.Lorem ipsum, dolor sit
-            amet consectetur adipisicing elit. Perspiciatis fugiat aspernatur,
-            alias iusto cumque repudiandae porro quam assumenda eveniet deserunt
-            earum labore numquam.
+          <img
+            src={import.meta.env.VITE_URL_DIRECTUS + "/assets/" + article.image}
+            alt={article.alt}
+          />
+          <h3 id="article__title-right">{article.title}</h3>
+          <p id="article_p-right" aria-label="Texte de l'article">
+            {article.content}
           </p>
         </article>
-        <footer class="footer__dateauthor">
-          <aside
-            class="aside__dateauthor"
-            aria-label="Date de publication et auteur"
-          >
-            <time datetime="2023-04-05">5 avril 2023</time> <span> || </span>
-            <cite title="nom de l'auteur">Sarah Croche</cite>
+        <footer>
+          <aside aria-label="Date de publication et auteur">
+            <time
+              datetime={article.date_created}
+              aria-label="Date de publication">{article.date_created}</time
+            > <span aria-hidden="true"> || </span>
+            <cite title={article.users_pseudo} aria-label="Auteur"
+              >{article.users_pseudo}</cite
+            >
           </aside>
-          <button class="btn-read-more" aria-label="Lire la suite"
-            ><a href="lien_vers_la_page_de_l'article">Lire la suite</a></button
+
+          <a
+            class="btn-read-more"
+            use:link
+            href="/articles"
+            aria-labelledby="article__title-right">Lire la suite</a
           >
         </footer>
       </section>
     {/each}
-
-    <!-- SUITE DES ARTICLES -->
-    <section aria-label="Article">
-      <article>
-        <img src="https://picsum.photos/900/400" alt="photo" />
-        <h3 aria-label="Titre de l'article">Titre article</h3>
-        <p aria-label="Texte de l'article">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis
-          fugiat aspernatur, alias iusto cumque repudiandae porro quam assumenda
-          eveniet deserunt earum labore numquam. Lorem ipsum, dolor sit amet
-          consectetur adipisicing elit. Perspiciatis fugiat aspernatur, sit amet
-          consectetur adipisicing elit. Lorem ipsum, dolor sit amet fugiat
-          aspernatur, sit amet.Lorem ipsum, dolor sit amet consectetur
-          adipisicing elit. Perspiciatis fugiat aspernatur, alias iusto cumque
-          repudiandae porro quam assumenda eveniet deserunt earum labore
-          numquam.
-        </p>
-      </article>
-      <footer class="footer__dateauthor">
-        <aside
-          class="aside__dateauthor"
-          aria-label="Date de publication et auteur"
-        >
-          <time datetime="2023-04-05">5 avril 2023</time> <span> || </span>
-          <cite title="nom de l'auteur">Sarah Croche</cite>
-        </aside>
-        <button class="btn-read-more" aria-label="Lire la suite"
-          ><a href="lien_vers_la_page_de_l'article">Lire la suite</a></button
-        >
-      </footer>
-    </section>
-    <section aria-label="Article">
-      <article>
-        <img src="https://picsum.photos/900/400" alt="photo" />
-        <h3 aria-label="Titre de l'article">Titre article</h3>
-        <p aria-label="Texte de l'article">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis
-          fugiat aspernatur, alias iusto cumque repudiandae porro quam assumenda
-          eveniet deserunt earum labore numquam. Lorem ipsum, dolor sit amet
-          consectetur adipisicing elit. Perspiciatis fugiat aspernatur, sit amet
-          consectetur adipisicing elit. Lorem ipsum, dolor sit amet fugiat
-          aspernatur, sit amet.Lorem ipsum, dolor sit amet consectetur
-          adipisicing elit. Perspiciatis fugiat aspernatur, alias iusto cumque
-          repudiandae porro quam assumenda eveniet deserunt earum labore
-          numquam.
-        </p>
-      </article>
-      <footer class="footer__dateauthor">
-        <aside
-          class="aside__dateauthor"
-          aria-label="Date de publication et auteur"
-        >
-          <time datetime="2023-04-05">5 avril 2023</time> <span> || </span>
-          <cite title="nom de l'auteur">Sarah Croche</cite>
-        </aside>
-        <button class="btn-read-more" aria-label="Lire la suite"
-          ><a href="lien_vers_la_page_de_l'article">Lire la suite</a></button
-        >
-      </footer>
-    </section>
-    <section aria-label="Article">
-      <article>
-        <img src="https://picsum.photos/900/400" alt="photo" />
-        <h3 aria-label="Titre de l'article">Titre article</h3>
-        <p aria-label="Texte de l'article">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis
-          fugiat aspernatur, alias iusto cumque repudiandae porro quam assumenda
-          eveniet deserunt earum labore numquam. Lorem ipsum, dolor sit amet
-          consectetur adipisicing elit. Perspiciatis fugiat aspernatur, sit amet
-          consectetur adipisicing elit. Lorem ipsum, dolor sit amet fugiat
-          aspernatur, sit amet.Lorem ipsum, dolor sit amet consectetur
-          adipisicing elit. Perspiciatis fugiat aspernatur, alias iusto cumque
-          repudiandae porro quam assumenda eveniet deserunt earum labore
-          numquam.
-        </p>
-      </article>
-      <footer class="footer__dateauthor">
-        <aside
-          class="aside__dateauthor"
-          aria-label="Date de publication et auteur"
-        >
-          <time datetime="2023-04-05">5 avril 2023</time> <span> || </span>
-          <cite title="nom de l'auteur">Sarah Croche</cite>
-        </aside>
-        <button class="btn-read-more" aria-label="Lire la suite"
-          ><a href="lien_vers_la_page_de_l'article">Lire la suite</a></button
-        >
-      </footer>
-    </section>
-    <section aria-label="Article">
-      <article>
-        <img src="https://picsum.photos/900/400" alt="photo" />
-        <h3 aria-label="Titre de l'article">Titre article</h3>
-        <p aria-label="Texte de l'article">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis
-          fugiat aspernatur, alias iusto cumque repudiandae porro quam assumenda
-          eveniet deserunt earum labore numquam. Lorem ipsum, dolor sit amet
-          consectetur adipisicing elit. Perspiciatis fugiat aspernatur, sit amet
-          consectetur adipisicing elit. Lorem ipsum, dolor sit amet fugiat
-          aspernatur, sit amet.Lorem ipsum, dolor sit amet consectetur
-          adipisicing elit. Perspiciatis fugiat aspernatur, alias iusto cumque
-          repudiandae porro quam assumenda eveniet deserunt earum labore
-          numquam.
-        </p>
-      </article>
-      <footer class="footer__dateauthor">
-        <aside
-          class="aside__dateauthor"
-          aria-label="Date de publication et auteur"
-        >
-          <time datetime="2023-04-05">5 avril 2023</time> <span> || </span>
-          <cite title="nom de l'auteur">Sarah Croche</cite>
-        </aside>
-        <button class="btn-read-more" aria-label="Lire la suite"
-          ><a href="lien_vers_la_page_de_l'article">Lire la suite</a></button
-        >
-      </footer>
-    </section>
   </div>
 </main>
+<UpDown/>
 
 <style lang="scss">
   @import "../utils/extends";
@@ -201,19 +90,20 @@
     background-color: $color-white;
     padding: 3rem;
     color: $color-black;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
     h2 {
-      font-weight: bold;
-      padding: 3rem;
+      @extend %h2;
     }
     .wrapper {
       @media screen and (min-width: 1024px) {
         display: flex;
         flex-wrap: wrap;
-        justify-content: center;
+        justify-content: flex-start;
       }
       @media screen and (min-width: 1440px) {
         padding-inline: 5rem;
-        max-width: 1380px;
       }
 
       section {
@@ -257,26 +147,28 @@
           }
 
           h3 {
-            text-align: center;
-            font-weight: bold;
-            padding: 2rem;
+            @extend %h3;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            text-overflow: ellipsis;
+            overflow: hidden;
           }
           p {
-            line-height: 2rem;
+            @extend %p;
             padding: 1rem;
-            text-align: left;
-            height: 112px;
+            height: 110px;
             margin: 1rem;
 
             display: -webkit-box;
-            -webkit-line-clamp: 5;
+            -webkit-line-clamp: 4;
             -webkit-box-orient: vertical;
             text-overflow: ellipsis;
             overflow: hidden;
             @media screen and (min-width: 1024px) {
-              height: 172px;
+              height: 175px;
               display: -webkit-box;
-              -webkit-line-clamp: 8;
+              -webkit-line-clamp: 7;
               -webkit-box-orient: vertical;
               overflow: hidden;
               text-overflow: ellipsis;
@@ -284,7 +176,7 @@
           }
         }
 
-        .footer__dateauthor {
+        footer {
           display: flex;
           padding: 1rem;
           margin: 1rem;
@@ -302,18 +194,11 @@
               font-weight: bold;
             }
           }
-          button {
-            background-color: $color-greenlight;
-            border: 1px solid transparent;
-            border-radius: 5px;
-            font-size: 14px;
-            padding: 2rem;
-            margin: 2rem;
+          .btn-read-more {
+            @extend %button;
           }
-          .btn-read-more a {
-            text-decoration: none;
-            color: #312140;
-            font-family: $police;
+          .btn-read-more:hover {
+            background-color: $color-greenlight;
           }
         }
       }
