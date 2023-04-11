@@ -19,6 +19,7 @@
 
   
  import Router from "svelte-spa-router";
+  import LegaleInformation from "./lib/LegaleInformation.svelte";
   const routes = {
     "/": Homepage,
     "/connexion": Register,
@@ -27,12 +28,13 @@
   };
 </script>
 
-<Navbar />
-<Router {routes} />
+
+<LegaleInformation />
+<!---<Router {routes} />
 <PageArticle/>
 <ModifiedArticle/>
 <SearchPage/>
-
+<Navbar />
   <Register />
 <PageProfilAuthors />
 <PageProfilMembers />
