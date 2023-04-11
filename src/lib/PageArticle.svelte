@@ -1,6 +1,7 @@
 <script>
-  import CommentsArticlePage from "../components/CommentsArticlePage.svelte";
+    import { link } from "svelte-spa-router";
 
+  import CommentsArticlePage from "../components/CommentsArticlePage.svelte";
   export let params = {};
   const article_id = params.article_id;
 
@@ -13,25 +14,6 @@
     console.log("json", json);
     return json.data;
   };
-
-  const updateLikes = async (article_id, likes) => {
-  const endpoint = import.meta.env.VITE_URL_DIRECTUS + "/items/articles/" + article_id;
-  const options = {
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      likes: likes
-    })
-  };
-  const response = await fetch(endpoint, options);
-  console.log("response", response);
-  const json = await response.json();
-  console.log("json", json);
-  return json.data;
-};
-
 
   // Les fonctions onMount et onDestroy nous permettent de faire des choses spécifiques à des moments précis de l'application.
   // onMount nous permet de faire quelque chose dès que l'application est prête à être utilisée
@@ -81,8 +63,6 @@
     // Supprime l'event listener pour éviter des fuites de mémoire
     heart.removeEventListener("click", toggleHeart);
   });
-
-
 </script>
 
 <main>
@@ -91,7 +71,8 @@
       <p>En chargement. Je cherche les données sur l'api...</p>
     {:then article}
       <!-- doit apparaitre seulement pour les auteurs -->
-      <a aria-label="Éditer l'article" href="/"
+      <a aria-label="Éditer l'article" use:link
+      href={`/modification/${article.id}`}
         ><i class="fa-solid fa-pen-to-square" /></a
       >
       <img
@@ -111,7 +92,7 @@
           > <span aria-hidden="true"> || </span>
 
           <cite title="nom de l'auteur" aria-label="Auteur"
-            >{article.author}</cite
+            >{article.users_id}</cite
           >
         </aside>
       </footer>{/await}
@@ -122,7 +103,7 @@
     </div>
   </article>
 
-  <CommentsArticlePage />
+  <CommentsArticlePage/>
 </main>
 
 <style lang="scss">

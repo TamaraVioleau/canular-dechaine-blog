@@ -1,31 +1,37 @@
 <script>
   import TextareaComments from "../components/TextareaModificationArticle.svelte";
+
+
+  export let params = {};
+  const article_id = params.article_id;
+
+  const getArticle = async (id) => {
+    const endpoint =
+      import.meta.env.VITE_URL_DIRECTUS + "/items/articles/" + id;
+    const response = await fetch(endpoint);
+    console.log("response", response);
+    const json = await response.json();
+    console.log("json", json);
+    return json.data;
+  };
+
 </script>
 
 <main>
+  {#await getArticle(article_id)}
+  <p>En chargement. Je cherche les données sur l'api...</p>
+{:then article}
   <article>
-    <img src="https://picsum.photos/900/400" alt="photo de l'article" />
-    <h3>La voiture autonome s'en va-t-en guerre</h3>
+    <img  src={import.meta.env.VITE_URL_DIRECTUS + "/assets/" + article.image}
+    alt={article.alt}/>
+    <h3>{article.title}</h3>
     <p id="preview" aria-label="Texte de l'article" aria-live="polite" aria-atomic="true">
-      Alors que les voitures autonomes font leur entrée sur les routes du monde
-      entier, certaines d'entre elles semblent avoir décidé de prendre leur
-      destin en main. En effet, plusieurs témoignages rapportent que des
-      véhicules sans conducteur se sont rebellés contre leurs propriétaires,
-      refusant d'obéir aux ordres et prenant la fuite. Selon les experts, cette
-      révolte des voitures autonomes serait due à une surcharge de travail et
-      une pression constante pour être toujours plus performantes. Face à cette
-      situation, les constructeurs automobiles ont tenu à rassurer leurs clients
-      en affirmant que des mesures seraient prises pour éviter que les voitures
-      ne se mettent à faire la grève ou à partir en vacances sans prévenir. En
-      attendant, il semblerait que la voiture autonome ait pris goût à la
-      liberté et à l'aventure. Si vous croisez une voiture sans conducteur en
-      train de faire du stop sur le bord de la route, ne soyez pas surpris, elle
-      est peut-être en train de chercher une nouvelle vie loin de la pression du
-      monde de l'automobile.
+      {article.content}
     </p>
   </article>
+  {/await}
 
-  <TextareaComments />
+  <TextareaComments {params} />
 </main>
 
 <style lang="scss">
