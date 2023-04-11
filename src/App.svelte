@@ -30,14 +30,17 @@
 <Navbar />
 <Router {routes} />
 <PageArticle/>
-
-<Footer />
-
-<!-- 
+<ModifiedArticle/>
+<SearchPage/>
 
   <Register />
 <PageProfilAuthors />
 <PageProfilMembers />
+<Footer />
+
+<!-- 
+
+
 
 -->
 
