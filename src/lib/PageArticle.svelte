@@ -6,7 +6,7 @@
   // onDestroy nous permet de faire quelque chose quand l'application se ferme ou qu'une partie de l'application est supprimée.
   // Importe les fonctions onMount et onDestroy de la librairie Svelte
   import { onMount, onDestroy } from "svelte";
-  import UpDown from "../components/UpDown.svelte";
+
 
   // Initialise les variables count et isActive en utilisant les données stockées dans localStorage, ou 0 et false si ces données ne sont pas encore présentes
   let count = localStorage.getItem("heartCount") || 0;
@@ -89,7 +89,7 @@
 
   <CommentsArticlePage />
 </main>
-<UpDown/>
+
 
 <style lang="scss">
   @import "../utils/extends";
