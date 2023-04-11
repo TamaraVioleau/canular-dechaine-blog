@@ -27,7 +27,7 @@
     "/": Homepage,
     "/connexion": Register,
     "/articles/:id": PageArticles,
-    "/article": PageArticle,
+    "/article/:article_id": PageArticle,
     "/profil-membre": PageProfilMembers
   };
 </script>
@@ -40,34 +40,13 @@
 
 <!-- 
 
-
 <PageArticle/>
 <ModifiedArticle/>
 <SearchPage/>
-<Register />
-  
-<PageProfilAuthors />
-<PageProfilMembers />
-
-
-<LegaleInformation />
-<!---<Router {routes} />
-<PageArticle/>
-<ModifiedArticle/>
-<SearchPage/>
-<Navbar />
   <Register />
 <PageProfilAuthors />
 <PageProfilMembers />
-<Footer />
-
-<!-- 
-
-
-
+<LegaleInformation />
 
 -->
 
-<!--
-
- -->

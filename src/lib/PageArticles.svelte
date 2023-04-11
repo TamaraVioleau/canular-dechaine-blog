@@ -1,8 +1,7 @@
 <script>
   import { link } from "svelte-spa-router";
-  import UpDown from "../components/UpDown.svelte";
 
-  export let params;
+ export let params;
 
   // Initialise les variables pour stocker l'ID de la catégorie, le nom de la catégorie et les articles
   let categoryId;
@@ -62,7 +61,7 @@
               datetime={article.date_created}
               aria-label="Date de publication">{article.date_created}</time
             > <span aria-hidden="true"> || </span>
-            <cite title={article.users_pseudo} aria-label="Auteur"
+            <cite title="nom de l'auteur" aria-label="Auteur"
               >{article.users_pseudo}</cite
             >
           </aside>
@@ -70,7 +69,7 @@
           <a
             class="btn-read-more"
             use:link
-            href="/articles"
+            href={`/article/${article.id}`}
             aria-labelledby="article__title-right">Lire la suite</a
           >
         </footer>
@@ -78,7 +77,7 @@
     {/each}
   </div>
 </main>
-<UpDown/>
+
 
 <style lang="scss">
   @import "../utils/extends";
