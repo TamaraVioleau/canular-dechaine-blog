@@ -1,6 +1,5 @@
 <script>
   import TextareaComments from "../components/TextareaModificationArticle.svelte";
-  import UpDown from "../components/UpDown.svelte";
 </script>
 
 <main>
@@ -28,7 +27,6 @@
 
   <TextareaComments />
 </main>
-<UpDown/>
 
 <style lang="scss">
   @import "../utils/extends";
