@@ -14,6 +14,25 @@
     return json.data;
   };
 
+  const updateLikes = async (article_id, likes) => {
+  const endpoint = import.meta.env.VITE_URL_DIRECTUS + "/items/articles/" + article_id;
+  const options = {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      likes: likes
+    })
+  };
+  const response = await fetch(endpoint, options);
+  console.log("response", response);
+  const json = await response.json();
+  console.log("json", json);
+  return json.data;
+};
+
+
   // Les fonctions onMount et onDestroy nous permettent de faire des choses spécifiques à des moments précis de l'application.
   // onMount nous permet de faire quelque chose dès que l'application est prête à être utilisée
   // onDestroy nous permet de faire quelque chose quand l'application se ferme ou qu'une partie de l'application est supprimée.
@@ -62,13 +81,15 @@
     // Supprime l'event listener pour éviter des fuites de mémoire
     heart.removeEventListener("click", toggleHeart);
   });
+
+
 </script>
 
 <main>
-  {#await getArticle(article_id)}
-    <p>En chargement. Je cherche les données sur l'api...</p>
-  {:then article}
-    <article>
+  <article>
+    {#await getArticle(article_id)}
+      <p>En chargement. Je cherche les données sur l'api...</p>
+    {:then article}
       <!-- doit apparaitre seulement pour les auteurs -->
       <a aria-label="Éditer l'article" href="/"
         ><i class="fa-solid fa-pen-to-square" /></a
@@ -93,16 +114,15 @@
             >{article.author}</cite
           >
         </aside>
-        <div class="heart" class:active={isActive}>
-          <span class="heart-count" />
-          <i class="fa-regular fa-heart" id="heart-empty" />
-          <i class="fa-solid fa-heart hidden" id="heart-filled" />
-        </div>
-      </footer>
-    </article>
+      </footer>{/await}
+    <div class="heart" class:active={isActive}>
+      <span class="heart-count" />
+      <i class="fa-regular fa-heart" id="heart-empty" />
+      <i class="fa-solid fa-heart hidden" id="heart-filled" />
+    </div>
+  </article>
 
-    <CommentsArticlePage article_id={article_id} />
-  {/await}
+  <CommentsArticlePage />
 </main>
 
 <style lang="scss">
@@ -195,35 +215,35 @@
             font-weight: bold;
           }
         }
-        .heart {
-          display: flex;
-          cursor: pointer;
-          font-size: 4rem;
-          justify-content: right;
-          margin-top: 2rem;
-          color: rgb(229 62 62);
-          #heart-filled {
-            display: none;
-          }
-
-          &.active #heart-empty {
-            display: none;
-          }
-
-          &.active #heart-filled {
-            display: inline-block;
-          }
-
-          .heart-count {
-            margin-right: 1rem;
-            font-size: 2rem;
-          }
-        }
       }
 
       footer > *:nth-child(1),
       footer > *:nth-child(2) {
         width: 100%;
+      }
+      .heart {
+        display: flex;
+        cursor: pointer;
+        font-size: 4rem;
+        justify-content: right;
+        margin-top: 2rem;
+        color: rgb(229 62 62);
+        #heart-filled {
+          display: none;
+        }
+
+        &.active #heart-empty {
+          display: none;
+        }
+
+        &.active #heart-filled {
+          display: inline-block;
+        }
+
+        .heart-count {
+          margin-right: 1rem;
+          font-size: 2rem;
+        }
       }
     }
   }
