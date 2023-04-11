@@ -20,6 +20,7 @@
     "/connexion": Register,
     "/articles/:id": PageArticles,
     "/article/:article_id": PageArticle,
+    "/modification/:article_id": ModifiedArticle,
     "/profil-membre": PageProfilMembers,
   };
 </script>
