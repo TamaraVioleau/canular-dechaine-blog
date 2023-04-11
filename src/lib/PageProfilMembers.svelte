@@ -1,3 +1,47 @@
+<script>
+  import { onMount } from "svelte";
+
+  // Récupère l'URL de l'API à partir de la variable d'environnement VITE_URL_DIRECTUS
+  const API_BASE_URL = import.meta.env.VITE_URL_DIRECTUS;
+
+  // Initialise un objet vide qui contiendra les données de l'utilisateur
+  let userData = {};
+
+  // Exécute la fonction lors du montage du composant
+  onMount(async () => {
+    // Récupère le token d'authentification de l'utilisateur depuis le stockage local du navigateur
+    const token = window.localStorage.getItem("token");
+    console.log(token);
+
+    // Si le token n'existe pas, redirige l'utilisateur vers la page de connexion
+    if (!token) {
+      // Redirigez l'utilisateur vers la page de connexion si nécessaire
+    } else {
+      // Sinon, effectue une requête pour récupérer les données de l'utilisateur
+      try {
+        const response = await fetch(`${API_BASE_URL}/users/me`, {
+          headers: {
+            "Authorization": `Bearer ${token}`,
+          },
+        });
+
+        // Si la requête a réussi, met à jour l'objet userData avec les données de l'utilisateur
+        if (response.ok) {
+          userData = await response.json();
+          userData = userData.data;
+        } else {
+          console.error("Failed to fetch user data");
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  });
+</script>
+
+
+<!-- Affichez les informations de l'utilisateur ici -->
+
 <main>
   <!-- dans action mettre le nom de la page (ex: /profil)  -->
   <form action="" method="post" id="informations" name="informations">
@@ -12,24 +56,20 @@
             alt="avatar par défaut des auteurs"
           />
           <article class="article__pseudostatut">
-            <h1 id="userpseudo">Lucie Fer</h1>
-            <h2 id="userstatut">Membre</h2>
+            <h1 id="userpseudo">{userData.pseudo}</h1>
+            <h2 id="userstatut"></h2>
           </article>
         </header>
         <article
           class="article__infoperso"
-          aria-label="informations personnelles"
-        >
-          <label for="nom">Nom : </label>
-          <input type="text" name="nom" id="nom" />
-          <label for="prénom">Prénom : </label>
-          <input type="text" name="prénom" id="prénom" />
+          aria-label="informations personnelles">
+      
           <label for="email">E-mail : </label>
-          <input type="email" name="E-mail" id="email" />
+          <input type="email" name="E-mail" id="email" value="{userData.mail}"/>
           <label for="pwd">Mot de passe : </label>
-          <input type="password" name="pwd" id="pwd" />
+          <input type="password" name="pwd" id="pwd" value="{userData.password}"/>
           <label for="DateEnregistrement">Date d'enregistrement : </label>
-          <p id="DateEnregistrement">Ici la date d'enregistrement</p>
+          <p id="DateEnregistrement">{userData.date_enregistrement}</p>
         </article>
       </section>
       <div class="buttons">

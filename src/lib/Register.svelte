@@ -39,12 +39,13 @@
 
     // Enregistre le token d'authentification dans le local storage
     window.localStorage.setItem("token", token);
+    console.log("Token:", token);
 
     // Si la variable "reload" est vraie, on recharge la page
     if (reload) {
       location.reload();
     } else { // Sinon, on redirige l'utilisateur vers la page d'accueil
-      push("/");
+      push("/profil-membre");
     }
   };
 
@@ -93,6 +94,7 @@ const handleSubmit = async (event) => {
   try {
     const token = await register(data); // Appel de la fonction "register" qui envoie les données à l'API
     window.localStorage.setItem("token", token); // Stockage du token dans le localStorage
+    console.log("Token:", token);
     push("/profil-membre"); // Redirection vers la page du profil membre
   } catch (error) {
     console.error(error); // Affichage d'une erreur éventuelle dans la console
