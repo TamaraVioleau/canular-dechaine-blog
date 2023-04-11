@@ -1,0 +1,7 @@
+POST http://0.0.0.0:8055/auth/login
+content-type: application/json
+
+{
+    "email": "admin@example.com",
+    "password": "1234"
+}
