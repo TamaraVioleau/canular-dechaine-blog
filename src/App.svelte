@@ -33,14 +33,14 @@
 <ModifiedArticle/>
 <SearchPage/>
 
-  <Register />
+  
 <PageProfilAuthors />
 <PageProfilMembers />
 <Footer />
 
 <!-- 
 
-
+<Register />
 
 -->
 
