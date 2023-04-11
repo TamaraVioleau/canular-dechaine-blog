@@ -24,6 +24,7 @@
     "/connexion": Register,
     "/articles/:id": PageArticles,
     "/article": PageArticle,
+    "/profil-membre": PageProfilMembers
   };
 </script>
 
