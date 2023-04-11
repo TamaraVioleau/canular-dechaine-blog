@@ -1,12 +1,24 @@
 <script>
   import CommentsArticlePage from "../components/CommentsArticlePage.svelte";
 
+  export let params = {};
+  const article_id = params.article_id;
+
+  const getArticle = async (id) => {
+    const endpoint =
+      import.meta.env.VITE_URL_DIRECTUS + "/items/articles/" + id;
+    const response = await fetch(endpoint);
+    console.log("response", response);
+    const json = await response.json();
+    console.log("json", json);
+    return json.data;
+  };
+
   // Les fonctions onMount et onDestroy nous permettent de faire des choses spécifiques à des moments précis de l'application.
   // onMount nous permet de faire quelque chose dès que l'application est prête à être utilisée
   // onDestroy nous permet de faire quelque chose quand l'application se ferme ou qu'une partie de l'application est supprimée.
   // Importe les fonctions onMount et onDestroy de la librairie Svelte
   import { onMount, onDestroy } from "svelte";
-
 
   // Initialise les variables count et isActive en utilisant les données stockées dans localStorage, ou 0 et false si ces données ne sont pas encore présentes
   let count = localStorage.getItem("heartCount") || 0;
@@ -50,46 +62,48 @@
     // Supprime l'event listener pour éviter des fuites de mémoire
     heart.removeEventListener("click", toggleHeart);
   });
-  
 </script>
 
 <main>
-  <article>
-    <!-- doit apparaitre seulement pour les auteurs -->
-    <a aria-label="Éditer l'article"  href="/"><i class="fa-solid fa-pen-to-square" /></a>
-    <img src="https://picsum.photos/900/400" alt="photo de l'article" />
-
-    <h3>Le confinement, période propice à la créativité humoristique</h3>
-    <p id="paragraph" aria-label="Texte de l'article">
-      Les réseaux sociaux ont été inondés de mèmes et de blagues sur la
-      livraison des colis en ce moment. Entre les retards, les colis perdus et
-      les livraisons aléatoires, certains ont commencé à se demander si les
-      livreurs ne seraient pas mieux en train de livrer eux-mêmes leurs propres
-      colis. Et puis, nous avons tous vu le fameux message "Votre colis a été
-      livré" alors que vous attendez encore patiemment sur votre porche.
-      Peut-être que les livreurs ont découvert une nouvelle forme de
-      téléportation ou qu'ils ont finalement réussi à contourner les lois de
-      l'espace-temps. Mystère.
-    </p>
-
-    <footer>
-      <aside
-        aria-label="Date de publication et auteur"
+  {#await getArticle(article_id)}
+    <p>En chargement. Je cherche les données sur l'api...</p>
+  {:then article}
+    <article>
+      <!-- doit apparaitre seulement pour les auteurs -->
+      <a aria-label="Éditer l'article" href="/"
+        ><i class="fa-solid fa-pen-to-square" /></a
       >
-        <time datetime="2023-04-05" aria-label="Date de publication">5 avril 2023</time> <span aria-hidden="true"> || </span>
-        <cite title="nom de l'auteur" aria-label="Auteur">Sarah Croche</cite>
-      </aside>
-      <div class="heart" class:active={isActive}>
-        <span class="heart-count" />
-        <i class="fa-regular fa-heart" id="heart-empty" />
-        <i class="fa-solid fa-heart hidden" id="heart-filled" />
-      </div>
-    </footer>
-  </article>
+      <img
+        src={import.meta.env.VITE_URL_DIRECTUS + "/assets/" + article.image}
+        alt={article.alt}
+      />
 
-  <CommentsArticlePage />
+      <h3>{article.title}</h3>
+      <p id="paragraph" aria-label="Texte de l'article">
+        {article.content}
+      </p>
+
+      <footer>
+        <aside aria-label="Date de publication et auteur">
+          <time datetime={article.date_created} aria-label="Date de publication"
+            >{article.date_created}</time
+          > <span aria-hidden="true"> || </span>
+
+          <cite title="nom de l'auteur" aria-label="Auteur"
+            >{article.author}</cite
+          >
+        </aside>
+        <div class="heart" class:active={isActive}>
+          <span class="heart-count" />
+          <i class="fa-regular fa-heart" id="heart-empty" />
+          <i class="fa-solid fa-heart hidden" id="heart-filled" />
+        </div>
+      </footer>
+    </article>
+
+    <CommentsArticlePage article_id={article_id} />
+  {/await}
 </main>
-
 
 <style lang="scss">
   @import "../utils/extends";

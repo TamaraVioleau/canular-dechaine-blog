@@ -23,7 +23,7 @@
     "/": Homepage,
     "/connexion": Register,
     "/articles/:id": PageArticles,
-    "/article": PageArticle,
+    "/article/:article_id": PageArticle,
   };
 </script>
 
