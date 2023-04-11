@@ -29,17 +29,18 @@
 
 <Navbar />
 <Router {routes} />
-
+<PageArticle/>
+<ModifiedArticle/>
 <SearchPage/>
-<PageArticle />
-<ModifiedArticle />
-<Footer />
-
-<!-- 
 
   <Register />
 <PageProfilAuthors />
 <PageProfilMembers />
+<Footer />
+
+<!-- 
+
+
 
 -->
 

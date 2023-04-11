@@ -22,18 +22,21 @@
 </script>
 
 <div class="write">
-  <label for="textarea"  id="textarea-label"/>
+  <label for="textarea" id="textarea-label" />
   <textarea
     name="textarea"
     id="textarea"
     aria-labelledby="textarea-label counter"
     maxlength={myMaxLength}
-    on:input={(event) => {handleInput(event); updatePreview();}}
+    on:input={(event) => {
+      handleInput(event);
+      updatePreview();
+    }}
     bind:value={text}
     spellcheck="true"
     placeholder="Ecrire ici pour modifier l'article"
   />
- <p id="counter" aria-live="polite" aria-atomic="true">
+  <p id="counter" aria-live="polite" aria-atomic="true">
     Nombre de caractères restant : <span id="characterCounter"
       >{charactersRemaining}</span
     >/<span id="maximum">{myMaxLength}</span>
@@ -55,10 +58,10 @@
   @import "../utils/mixins";
   @import "../utils/variables";
   .write {
-      display: flex;      
-      justify-content: center;
-      flex-direction: column;      
-      align-self: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-self: center;
     @extend %glassmorphism;
     margin: 3rem;
     padding: 2rem;
@@ -97,6 +100,7 @@
     .submit {
       @extend %button;
       min-width: 220px;
+      box-shadow: 0 2px 5px 0 rgba(31, 38, 135, 0.45);
     }
     .submit:active {
       @extend %buttonactive;
