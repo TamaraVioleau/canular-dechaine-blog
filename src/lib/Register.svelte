@@ -20,7 +20,13 @@
   let email = ""; // Variable pour stocker l'e-mail saisi par l'utilisateur
   let password = ""; // Variable pour stocker le mot de passe saisi par l'utilisateur
 
+
   const isLogged = window.localStorage.getItem("token") != null; // Vérifie si l'utilisateur est déjà connecté
+
+  // variables pour stocker les identifiants
+  let email = "";
+  let password = "";
+
 
   if (isLogged) {
     // Si l'utilisateur est déjà connecté
@@ -40,8 +46,13 @@
       // Si la page doit être rechargée
       location.reload(); // Recharge la page
     } else {
+
       // Sinon
       push("/"); // Redirige l'utilisateur vers la page d'accueil
+
+      // Naviguer vers la page d'accueil grace à svelte-spa-router
+      push("/");
+
     }
   };
 
@@ -85,12 +96,45 @@ const handleSubmit = async (event) => {
     pwd: pwd,
   };
 
+
   try {
     const token = await register(data); // Appel de la fonction "register" qui envoie les données à l'API
     window.localStorage.setItem("token", token); // Stockage du token dans le localStorage
     push("/profil-membre"); // Redirection vers la page du profil membre
   } catch (error) {
     console.error(error); // Affichage d'une erreur éventuelle dans la console
+
+  async function register(data) {
+    const endpoint = import.meta.env.VITE_URL_DIRECTUS + "/users";
+
+    try {
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: data.email,
+          password: data.password,
+          first_name: data.firstname,
+          last_name: data.name,
+          status: "active", // définir le statut de l'utilisateur sur actif
+        }),
+      });
+
+      if (response.ok) {
+        const json = await response.json();
+
+        const token = await getDirectusToken(data.email, data.password);
+
+        return token;
+      } else {
+        throw new Error("Failed to register user");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+
   }
 };
 
@@ -212,7 +256,11 @@ async function register(data) {
               type="email"
               name="email"
               id="email"
+
               bind:value={mail}
+
+              bind:value={email}
+
               required
             />
             <label for="pwd">Mot de passe : </label>
@@ -220,7 +268,11 @@ async function register(data) {
               type="password"
               name="pwd"
               id="pwd"
+
               bind:value={pwd}
+
+              bind:value={password}
+
               required
             />
           </article>
