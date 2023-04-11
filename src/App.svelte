@@ -19,14 +19,35 @@
 
   
  import Router from "svelte-spa-router";
+
+
   import LegaleInformation from "./lib/LegaleInformation.svelte";
+
   const routes = {
     "/": Homepage,
     "/connexion": Register,
     "/articles/:id": PageArticles,
     "/article": PageArticle,
+    "/profil-membre": PageProfilMembers
   };
 </script>
+
+
+<Navbar />
+<Router {routes} />
+
+<Footer />
+
+<!-- 
+
+
+<PageArticle/>
+<ModifiedArticle/>
+<SearchPage/>
+<Register />
+  
+<PageProfilAuthors />
+<PageProfilMembers />
 
 
 <LegaleInformation />
@@ -41,6 +62,7 @@
 <Footer />
 
 <!-- 
+
 
 
 

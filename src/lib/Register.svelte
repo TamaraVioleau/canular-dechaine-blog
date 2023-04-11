@@ -11,44 +11,57 @@
     });
   });
 
-  /////////// login ///////////
+  import { push } from "svelte-spa-router"; // Importation de la fonction push pour rediriger vers une autre page
 
-  //fonction push qui permet de naviguer entre les différentes pages de l'application
-  import { push } from "svelte-spa-router";
+  export let reload = false; // Variable pour déterminer si la page doit être rechargée après la connexion
 
-  // variable reload qui permet de déterminer si la page doit être rechargée après l'authentification
-  export let reload = false;
+  ///////////// Login ///////////////
+
+  let email = ""; // Variable pour stocker l'e-mail saisi par l'utilisateur
+  let password = ""; // Variable pour stocker le mot de passe saisi par l'utilisateur
+
+
+  const isLogged = window.localStorage.getItem("token") != null; // Vérifie si l'utilisateur est déjà connecté
 
   // variables pour stocker les identifiants
   let email = "";
   let password = "";
 
-  // variable qui vérifie si un token est déjà présent dans le localStorage (si oui, token supprimé et rechargement de la page)
-  const isLogged = window.localStorage.getItem("token") != null;
+
   if (isLogged) {
-    window.localStorage.removeItem("token");
-    location.reload();
+    // Si l'utilisateur est déjà connecté
+    window.localStorage.removeItem("token"); // Supprime le token d'authentification de la mémoire locale
+    location.reload(); // Recharge la page pour s'assurer que l'utilisateur est déconnecté
   }
 
-  // Fonction appelée lors de la soumission du formulaire et qui appelle la fonction login pour obtenir un token pour le stocker dans le localStorage
   const handleSubmitForm = async (event) => {
-    event.preventDefault();
-    const token = await login();
-    window.localStorage.setItem("token", token);
+    // Fonction appelée lorsque le formulaire de connexion est soumis
+    event.preventDefault(); // Empêche la page de se recharger
+
+    const token = await login(); // Appelle la fonction login pour récupérer le token d'authentification
+
+    window.localStorage.setItem("token", token); // Stocke le token d'authentification dans la mémoire locale
 
     if (reload) {
-      location.reload();
+      // Si la page doit être rechargée
+      location.reload(); // Recharge la page
     } else {
+
+      // Sinon
+      push("/"); // Redirige l'utilisateur vers la page d'accueil
+
       // Naviguer vers la page d'accueil grace à svelte-spa-router
       push("/");
+
     }
   };
 
-  // fonction login qui permet de récupérer le token
   const login = async () => {
-    const endpoint = import.meta.env.VITE_URL_DIRECTUS + "/auth/login";
+    // Fonction pour se connecter
+    const endpoint = import.meta.env.VITE_URL_DIRECTUS + "/auth/login"; // URL de l'API pour la connexion
 
     const response = await fetch(endpoint, {
+      // Envoie une requête à l'API
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -59,41 +72,37 @@
       }),
     });
 
-    // Extraction du contenu du body de la réponse au format json
-    const json = await response.json();
+    const json = await response.json(); // Extrait le contenu de la réponse au format JSON
 
-    // Lit uniquement le token du json
-    const token = json.data.access_token;
-    return token;
+    const token = json.data.access_token; // Récupère le token d'authentification depuis le JSON
+
+    return token; // Retourne le token
   };
 
-  /////////// Register ///////////////
+  //////////// Register /////////////
 
-  let pseudo = "";
-  let name = "";
-  let firstname = "";
-  let mail = "";
-  let pwd = "";
+  // Initialisation des variables pour stocker les données du formulaire
+let pseudo = "";
+let mail = "";
+let pwd = "";
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+// Fonction qui gère la soumission du formulaire
+const handleSubmit = async (event) => {
+  event.preventDefault(); // Empêche le formulaire d'être envoyé
 
-    const data = {
-      pseudo: pseudo,
-      name: name,
-      firstname: firstname,
-      mail: mail,
-      pwd: pwd,
-    };
-
-    try {
-      const token = await register(data);
-
-      // Rediriger vers la page de confirmation d'inscription avec le jeton d'accès API Directus
-    } catch (error) {
-      console.error(error);
-    }
+  const data = { // Création de l'objet qui contient les données du formulaire
+    pseudo: pseudo,
+    mail: mail,
+    pwd: pwd,
   };
+
+
+  try {
+    const token = await register(data); // Appel de la fonction "register" qui envoie les données à l'API
+    window.localStorage.setItem("token", token); // Stockage du token dans le localStorage
+    push("/profil-membre"); // Redirection vers la page du profil membre
+  } catch (error) {
+    console.error(error); // Affichage d'une erreur éventuelle dans la console
 
   async function register(data) {
     const endpoint = import.meta.env.VITE_URL_DIRECTUS + "/users";
@@ -125,35 +134,41 @@
     } catch (error) {
       console.error(error);
     }
+
   }
-  async function getDirectusToken(mail, pwd) {
-    const endpoint = import.meta.env.VITE_URL_DIRECTUS + "/auth/authenticate";
+};
 
-    try {
-      const response = await fetch(endpoint, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          mail: mail,
-          pwd: pwd,
-        }),
-      });
+// Fonction qui envoie les données du formulaire à l'API pour enregistrer un nouvel utilisateur
+async function register(data) {
+  const endpoint = import.meta.env.VITE_URL_DIRECTUS + "/users"; // URL de l'API pour enregistrer un nouvel utilisateur
+  const membersRoleID = "213b3c24-fb05-446d-ab79-fd05adbbd6e2"; // ID du rôle "members" dans l'API Directus
 
-      if (response.ok) {
-        const json = await response.json();
+  try {
+    const response = await fetch(endpoint, { // Envoi des données à l'API avec la méthode POST
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json", // Format des données envoyées
+      },
+      body: JSON.stringify({ // Encodage des données du formulaire en JSON
+        email: data.mail,
+        password: data.pwd,
+        pseudo: data.pseudo,
+        role: membersRoleID,
+        status: "active", // Statut du nouvel utilisateur
+      }),
+    });
 
-        const token = "Bearer " + json.data.token;
-
-        return token;
-      } else {
-        throw new Error("Failed to generate Directus token");
-      }
-    } catch (error) {
-      console.error(error);
+    if (response.ok) { // Si la réponse de l'API est OK
+      const json = await response.json(); // Extraction des données de la réponse au format JSON
+      const token = json.data.access_token; // Récupération du token d'authentification
+      return token; // Retourne le token pour qu'il soit stocké dans le localStorage
+    } else {
+      throw new Error("Failed to register user"); // Sinon, affiche une erreur
     }
+  } catch (error) {
+    console.error(error); // Affiche une erreur éventuelle dans la console
   }
+}
 </script>
 
 <main>
@@ -241,7 +256,11 @@
               type="email"
               name="email"
               id="email"
+
+              bind:value={mail}
+
               bind:value={email}
+
               required
             />
             <label for="pwd">Mot de passe : </label>
@@ -249,7 +268,11 @@
               type="password"
               name="pwd"
               id="pwd"
+
+              bind:value={pwd}
+
               bind:value={password}
+
               required
             />
           </article>
