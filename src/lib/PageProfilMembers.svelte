@@ -65,7 +65,7 @@
           aria-label="informations personnelles">
       
           <label for="email">E-mail : </label>
-          <input type="email" name="E-mail" id="email" value="{userData.mail}"/>
+          <input type="email" name="E-mail" id="email" value="{userData.email}"/>
           <label for="pwd">Mot de passe : </label>
           <input type="password" name="pwd" id="pwd" value="{userData.password}"/>
           <label for="DateEnregistrement">Date d'enregistrement : </label>
