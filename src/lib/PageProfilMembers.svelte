@@ -51,14 +51,6 @@
         aria-labelledby="userpseudo userstatut"
       >
 
-      <header aria-label="avatar pseudo statut">
-        
-        <article class="article__pseudostatut">
-          <h1 id="userpseudo">{userData.pseudo}</h1>
-          <h2 id="userstatut">{userData.roles}</h2>
-        </article>
-      </header>
-
         <header aria-label="avatar pseudo statut">
           <img
             src={import.meta.env.VITE_URL_DIRECTUS + "/assets/" + userData.imgprofil}
