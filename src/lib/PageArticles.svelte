@@ -1,6 +1,5 @@
 <script>
   import { link } from "svelte-spa-router";
-  import { onMount } from "svelte";
 
   export let params;
 
@@ -29,34 +28,6 @@
     const json = await response.json();
     categoryName = json.data.name;
   };
-
-  let userData = {};
-
-  onMount(async () => {
-    const token = window.localStorage.getItem("token");
-
-    if (!token) {
-      // Redirigez l'utilisateur vers la page de connexion si nécessaire
-    } else {
-      try {
-        const response = await fetch(`${API_BASE_URL}/users/me`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        if (response.ok) {
-          const json = await response.json();
-          userData = json.data;
-        } else {
-          console.error("Failed to fetch user data");
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    }
-  });
-
 </script>
 
 <main>
@@ -88,7 +59,7 @@
             })}
           </time><span aria-hidden="true"> || </span>
             <cite title="nom de l'auteur" aria-label="Auteur"
-              >{userData.pseudo}</cite
+              >{article.users_id}</cite
             >
           </aside>
 
