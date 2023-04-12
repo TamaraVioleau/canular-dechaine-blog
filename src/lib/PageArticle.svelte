@@ -1,5 +1,5 @@
 <script>
-    import { link } from "svelte-spa-router";
+  import { link } from "svelte-spa-router";
 
   import CommentsArticlePage from "../components/CommentsArticlePage.svelte";
   export let params = {};
@@ -14,6 +14,7 @@
     console.log("json", json);
     return json.data;
   };
+
 
   // Les fonctions onMount et onDestroy nous permettent de faire des choses spécifiques à des moments précis de l'application.
   // onMount nous permet de faire quelque chose dès que l'application est prête à être utilisée
@@ -87,9 +88,15 @@
 
       <footer>
         <aside aria-label="Date de publication et auteur">
-          <time datetime={article.date_created} aria-label="Date de publication"
-            >{article.date_created}</time
-          > <span aria-hidden="true"> || </span>
+          <time
+          datetime={article.date_created}
+          aria-label="Date de publication">
+          {new Date(article.date_created).toLocaleDateString("fr-FR", {
+            day: "numeric",
+            month: "numeric",
+            year: "numeric"
+          })}
+        </time> <span aria-hidden="true"> || </span>
 
           <cite title="nom de l'auteur" aria-label="Auteur"
             >{article.users_id}</cite
