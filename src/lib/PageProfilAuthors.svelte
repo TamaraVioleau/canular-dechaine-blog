@@ -104,7 +104,11 @@
           <label for="pwd">Mot de passe : </label>
           <input type="password" name="pwd" id="pwd" />
           <label for="DateEnregistrement">Date d'enregistrement : </label>
-          <p id="DateEnregistrement">Ici la date d'enregistrement</p>
+          <p id="DateEnregistrement"> {new Date(userData.date_created).toLocaleDateString("fr-FR", {
+            day: "numeric",
+            month: "numeric",
+            year: "numeric"
+          })}</p>
         </article>
       </section>
       <section class="section__statistics" aria-labelledby="statistiques">
