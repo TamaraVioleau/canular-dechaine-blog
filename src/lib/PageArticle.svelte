@@ -87,9 +87,15 @@
 
       <footer>
         <aside aria-label="Date de publication et auteur">
-          <time datetime={article.date_created} aria-label="Date de publication"
-            >{article.date_created}</time
-          > <span aria-hidden="true"> || </span>
+          <time
+          datetime={article.date_created}
+          aria-label="Date de publication">
+          {new Date(article.date_created).toLocaleDateString("fr-FR", {
+            day: "numeric",
+            month: "numeric",
+            year: "numeric"
+          })}
+        </time> <span aria-hidden="true"> || </span>
 
           <cite title="nom de l'auteur" aria-label="Auteur"
             >{article.users_id}</cite
