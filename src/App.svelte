@@ -24,9 +24,6 @@
     "/profil-membre": PageProfilMembers,
 
     "/profil-auteur": PageProfilAuthors
-
-    "/profil-auteur": PageProfilAuthors,
-
   };
 </script>
 
