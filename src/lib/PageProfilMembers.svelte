@@ -71,7 +71,11 @@
           <label for="pwd">Mot de passe : </label>
           <input type="password" name="pwd" id="pwd" value="{userData.password}"/>
           <label for="DateEnregistrement">Date d'enregistrement : </label>
-          <p id="DateEnregistrement">{userData.date_created}</p>
+          <p id="DateEnregistrement"> {new Date(userData.date_created).toLocaleDateString("fr-FR", {
+            day: "numeric",
+            month: "numeric",
+            year: "numeric"
+          })}</p>
         </article>
       </section>
       <div class="buttons">
