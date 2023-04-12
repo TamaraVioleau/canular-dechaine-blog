@@ -38,10 +38,6 @@
     }
   });
 </script>
-
-
-<!-- Affichez les informations de l'utilisateur ici -->
-
 <main>
   <!-- dans action mettre le nom de la page (ex: /profil)  -->
   <form action="" method="post" id="informations" name="informations">
