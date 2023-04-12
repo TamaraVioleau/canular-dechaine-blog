@@ -50,26 +50,23 @@
         class="section__informations"
         aria-labelledby="userpseudo userstatut"
       >
-        <header aria-label="avatar pseudo statut">
-          <img
-            src="src/assets/avatar-membres.png"
-            alt="avatar par défaut des auteurs"
-          />
-          <article class="article__pseudostatut">
-            <h1 id="userpseudo">{userData.pseudo}</h1>
-            <h2 id="userstatut"></h2>
-          </article>
-        </header>
+      <header aria-label="avatar pseudo statut">
+        
+        <article class="article__pseudostatut">
+          <h1 id="userpseudo">{userData.pseudo}</h1>
+          <h2 id="userstatut">{userData.roles}</h2>
+        </article>
+      </header>
         <article
           class="article__infoperso"
           aria-label="informations personnelles">
       
           <label for="email">E-mail : </label>
-          <input type="email" name="E-mail" id="email" value="{userData.mail}"/>
+          <input type="email" name="E-mail" id="email" value="{userData.email}"/>
           <label for="pwd">Mot de passe : </label>
           <input type="password" name="pwd" id="pwd" value="{userData.password}"/>
           <label for="DateEnregistrement">Date d'enregistrement : </label>
-          <p id="DateEnregistrement">{userData.date_enregistrement}</p>
+          <p id="DateEnregistrement">{userData.date_created}</p>
         </article>
       </section>
       <div class="buttons">
