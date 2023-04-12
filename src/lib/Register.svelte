@@ -31,49 +31,74 @@
   }
 
   // Fonction appelée lors de la soumission du formulaire de login
-  const handleSubmitForm = async (event) => {
-    event.preventDefault(); // Empêche la soumission du formulaire
+const handleSubmitForm = async (event) => {
+  event.preventDefault(); // Empêche la soumission du formulaire
 
-    // Appelle la fonction "login" qui retourne un token d'authentification
-    const token = await login();
+  // Appelle la fonction "login" qui retourne un objet contenant le token d'authentification et l'ID du rôle
+  const { token, roleID } = await login();
 
-    // Enregistre le token d'authentification dans le local storage
-    window.localStorage.setItem("token", token);
-    console.log("Token:", token);
+  // Enregistre le token d'authentification dans le local storage
+  window.localStorage.setItem("token", token);
+  console.log("Token:", token);
 
-    // Si la variable "reload" est vraie, on recharge la page
-    if (reload) {
-      location.reload();
-    } else { // Sinon, on redirige l'utilisateur vers la page d'accueil
+  // Si la variable "reload" est vraie, on recharge la page
+  if (reload) {
+    location.reload();
+  } else {
+    // Redirige l'utilisateur vers la page de profil correspondante en fonction de l'ID du rôle
+    if (roleID === "213b3c24-fb05-446d-ab79-fd05adbbd6e2") {
       push("/profil-membre");
+    } else if (roleID === "645cbe7e-cdf9-409c-bc58-863ce065dfbb") {
+      push("/profil-auteur");
+    } else {
+      console.error("Unknown role ID:", roleID);
     }
-  };
+  }
+};
 
-  // Fonction qui envoie une requête de login au serveur et retourne le token d'authentification
-  const login = async () => {
-    const endpoint = import.meta.env.VITE_URL_DIRECTUS + "/auth/login"; // URL de l'API de login
 
-    // Envoie une requête de type "POST" avec les données de login au format JSON
-    const response = await fetch(endpoint, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: email,
-        password: password,
-      }),
-    });
+  // Fonction qui envoie une requête de login au serveur et retourne le token d'authentification et l'ID du rôle
+const login = async () => {
+  const endpoint = import.meta.env.VITE_URL_DIRECTUS + "/auth/login"; // URL de l'API de login
 
-    // Extrait le contenu de la réponse au format JSON
-    const json = await response.json();
+  // Envoie une requête de type "POST" avec les données de login au format JSON
+  const response = await fetch(endpoint, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email: email,
+      password: password,
+    }),
+  });
 
-    // Récupère le token d'authentification depuis le JSON
-    const token = json.data.access_token;
+  // Extrait le contenu de la réponse au format JSON
+  const json = await response.json();
 
-    // Retourne le token d'authentification
-    return token;
-  };
+  // Récupère le token d'authentification depuis le JSON
+  const token = json.data.access_token;
+
+  // Envoie une requête pour obtenir les informations de l'utilisateur connecté avec le token d'authentification
+  const userResponse = await fetch(import.meta.env.VITE_URL_DIRECTUS + "/users/me", {
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`,
+    },
+  });
+
+  // Extrait les informations de l'utilisateur connecté au format JSON
+  const userJson = await userResponse.json();
+  console.log("User data:", userJson);
+
+  // Récupère l'ID du rôle depuis les informations de l'utilisateur connecté
+  const roleID = userJson.data.role;
+
+  // Retourne un objet contenant le token d'authentification et l'ID du rôle
+  return { token, roleID };
+};
+
+
   //////////// Register /////////////
 
  // Initialisation des variables pour stocker les données du formulaire
