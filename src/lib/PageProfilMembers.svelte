@@ -52,7 +52,7 @@
       >
         <header aria-label="avatar pseudo statut">
           <img
-            src="src/assets/avatar-membres.png"
+            src={import.meta.env.VITE_URL_DIRECTUS + "/assets/" + userData.imgprofil}
             alt="avatar par défaut des auteurs"
           />
           <article class="article__pseudostatut">
@@ -69,7 +69,7 @@
           <label for="pwd">Mot de passe : </label>
           <input type="password" name="pwd" id="pwd" value="{userData.password}"/>
           <label for="DateEnregistrement">Date d'enregistrement : </label>
-          <p id="DateEnregistrement">{userData.date_enregistrement}</p>
+          <p id="DateEnregistrement">{userData.date_created}</p>
         </article>
       </section>
       <div class="buttons">
