@@ -53,7 +53,7 @@
         <header aria-label="avatar pseudo statut">
           <img
             src={import.meta.env.VITE_URL_DIRECTUS + "/assets/" + userData.imgprofil}
-            alt="avatar par défaut des auteurs"
+            alt="avatar par défaut des membres"
           />
           <article class="article__pseudostatut">
             <h1 id="userpseudo">{userData.pseudo}</h1>
