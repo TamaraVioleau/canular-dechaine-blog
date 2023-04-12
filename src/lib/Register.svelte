@@ -31,11 +31,11 @@
   }
 
   // Fonction appelée lors de la soumission du formulaire de login
-const handleSubmitForm = async (event) => {
+  const handleSubmitForm = async (event) => {
   event.preventDefault(); // Empêche la soumission du formulaire
 
   // Appelle la fonction "login" qui retourne un objet contenant le token d'authentification et l'ID du rôle
-  const { token, roleID } = await login();
+  const { token, roleID } = await login(email, password);
 
   // Enregistre le token d'authentification dans le local storage
   window.localStorage.setItem("token", token);
@@ -56,9 +56,8 @@ const handleSubmitForm = async (event) => {
   }
 };
 
-
   // Fonction qui envoie une requête de login au serveur et retourne le token d'authentification et l'ID du rôle
-const login = async () => {
+  const login = async (email, password) => {
   const endpoint = import.meta.env.VITE_URL_DIRECTUS + "/auth/login"; // URL de l'API de login
 
   // Envoie une requête de type "POST" avec les données de login au format JSON
@@ -68,9 +67,9 @@ const login = async () => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      email: email,
-      password: password,
-    }),
+    email: email,
+    password: password,
+  }),
   });
 
   // Extrait le contenu de la réponse au format JSON
@@ -110,14 +109,15 @@ let pwd = "";
 const handleSubmit = async (event) => {
   event.preventDefault(); // Empêche le formulaire d'être envoyé
 
-  const data = { // Création de l'objet qui contient les données du formulaire
+  const data = {
     pseudo: pseudo,
     mail: mail,
     pwd: pwd,
   };
 
   try {
-    const token = await register(data); // Appel de la fonction "register" qui envoie les données à l'API
+    await register(data); // Appel de la fonction "register" qui envoie les données à l'API
+    const { token, roleID } = await login(mail, pwd); // Appelle la fonction "login" pour obtenir le jeton d'authentification et l'ID du rôle
     window.localStorage.setItem("token", token); // Stockage du token dans le localStorage
     console.log("Token:", token);
     push("/profil-membre"); // Redirection vers la page du profil membre
@@ -125,6 +125,7 @@ const handleSubmit = async (event) => {
     console.error(error); // Affichage d'une erreur éventuelle dans la console
   }
 };
+
 
 // Fonction qui envoie les données du formulaire à l'API pour enregistrer un nouvel utilisateur
 async function register(data) {
