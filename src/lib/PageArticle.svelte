@@ -15,7 +15,6 @@
     return json.data;
   };
 
-
   // Les fonctions onMount et onDestroy nous permettent de faire des choses spécifiques à des moments précis de l'application.
   // onMount nous permet de faire quelque chose dès que l'application est prête à être utilisée
   // onDestroy nous permet de faire quelque chose quand l'application se ferme ou qu'une partie de l'application est supprimée.

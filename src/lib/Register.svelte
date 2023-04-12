@@ -1,6 +1,5 @@
 <script>
   var details = document.querySelectorAll("details");
-
   details.forEach(function (detail) {
     detail.addEventListener("click", function () {
       details.forEach(function (otherDetail) {
@@ -10,37 +9,28 @@
       });
     });
   });
-
   // Importation de la fonction "push" depuis le module "svelte-spa-router"
   import { push } from "svelte-spa-router";
-
   // Déclaration de la variable "reload" initialisée à "false"
   export let reload = false;
-
   // Déclaration des variables "email" et "password" pour le formulaire de login
   let email = "";
   let password = "";
-
   // Vérifie si l'utilisateur est déjà connecté en vérifiant la présence du token d'authentification dans le local storage
   const isLogged = window.localStorage.getItem("token") != null;
-
   // Si l'utilisateur est déjà connecté, on supprime le token du local storage et on recharge la page
   if (isLogged) {
     window.localStorage.removeItem("token");
     location.reload();
   }
-
   // Fonction appelée lors de la soumission du formulaire de login
-const handleSubmitForm = async (event) => {
+  const handleSubmitForm = async (event) => {
   event.preventDefault(); // Empêche la soumission du formulaire
-
   // Appelle la fonction "login" qui retourne un objet contenant le token d'authentification et l'ID du rôle
-  const { token, roleID } = await login();
-
+  const { token, roleID } = await login(email, password);
   // Enregistre le token d'authentification dans le local storage
   window.localStorage.setItem("token", token);
   console.log("Token:", token);
-
   // Si la variable "reload" est vraie, on recharge la page
   if (reload) {
     location.reload();
@@ -55,12 +45,9 @@ const handleSubmitForm = async (event) => {
     }
   }
 };
-
-
   // Fonction qui envoie une requête de login au serveur et retourne le token d'authentification et l'ID du rôle
-const login = async () => {
+  const login = async (email, password) => {
   const endpoint = import.meta.env.VITE_URL_DIRECTUS + "/auth/login"; // URL de l'API de login
-
   // Envoie une requête de type "POST" avec les données de login au format JSON
   const response = await fetch(endpoint, {
     method: "POST",
@@ -68,17 +55,14 @@ const login = async () => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      email: email,
-      password: password,
-    }),
+    email: email,
+    password: password,
+  }),
   });
-
   // Extrait le contenu de la réponse au format JSON
   const json = await response.json();
-
   // Récupère le token d'authentification depuis le JSON
   const token = json.data.access_token;
-
   // Envoie une requête pour obtenir les informations de l'utilisateur connecté avec le token d'authentification
   const userResponse = await fetch(import.meta.env.VITE_URL_DIRECTUS + "/users/me", {
     headers: {
@@ -86,38 +70,30 @@ const login = async () => {
       "Authorization": `Bearer ${token}`,
     },
   });
-
   // Extrait les informations de l'utilisateur connecté au format JSON
   const userJson = await userResponse.json();
   console.log("User data:", userJson);
-
   // Récupère l'ID du rôle depuis les informations de l'utilisateur connecté
   const roleID = userJson.data.role;
-
   // Retourne un objet contenant le token d'authentification et l'ID du rôle
   return { token, roleID };
 };
-
-
   //////////// Register /////////////
-
  // Initialisation des variables pour stocker les données du formulaire
 let pseudo = "";
 let mail = "";
 let pwd = "";
-
 // Fonction qui gère la soumission du formulaire
 const handleSubmit = async (event) => {
   event.preventDefault(); // Empêche le formulaire d'être envoyé
-
-  const data = { // Création de l'objet qui contient les données du formulaire
+  const data = {
     pseudo: pseudo,
     mail: mail,
     pwd: pwd,
   };
-
   try {
-    const token = await register(data); // Appel de la fonction "register" qui envoie les données à l'API
+    await register(data); // Appel de la fonction "register" qui envoie les données à l'API
+    const { token, roleID } = await login(mail, pwd); // Appelle la fonction "login" pour obtenir le jeton d'authentification et l'ID du rôle
     window.localStorage.setItem("token", token); // Stockage du token dans le localStorage
     console.log("Token:", token);
     push("/profil-membre"); // Redirection vers la page du profil membre
@@ -125,12 +101,10 @@ const handleSubmit = async (event) => {
     console.error(error); // Affichage d'une erreur éventuelle dans la console
   }
 };
-
 // Fonction qui envoie les données du formulaire à l'API pour enregistrer un nouvel utilisateur
 async function register(data) {
   const endpoint = import.meta.env.VITE_URL_DIRECTUS + "/users"; // URL de l'API pour enregistrer un nouvel utilisateur
   const membersRoleID = "213b3c24-fb05-446d-ab79-fd05adbbd6e2"; // ID du rôle "members" dans l'API Directus
-
   try {
     const response = await fetch(endpoint, { // Envoi des données à l'API avec la méthode POST
       method: "POST",
@@ -145,7 +119,6 @@ async function register(data) {
         status: "active", // Statut du nouvel utilisateur
       }),
     });
-
     if (response.ok) { // Si la réponse de l'API est OK
       const json = await response.json(); // Extraction des données de la réponse au format JSON
       const token = json.data.access_token; // Récupération du token d'authentification
@@ -157,9 +130,7 @@ async function register(data) {
     console.error(error); // Affiche une erreur éventuelle dans la console
   }
 }
-
 </script>
-
 <main>
   <wrapper class="wrapper--left">
     <!-- dans action mettre le nom de la page (ex: /profil)  -->
@@ -172,7 +143,6 @@ async function register(data) {
     >
       <section class="section--login" aria-labelledby="login">
         <h1 id="login">Se connecter</h1>
-
         <details open>
           <summary>Voir le formulaire</summary>
           <article class="article--login" aria-label="formulaire de connexion">
@@ -214,7 +184,6 @@ async function register(data) {
       </section>
     </form>
   </wrapper>
-
   <wrapper class="wrapper--right"
     ><form
       on:submit={handleSubmit}
@@ -225,7 +194,6 @@ async function register(data) {
     >
       <section class="section--register" aria-labelledby="register">
         <h1 id="statistiques">S'enregistrer :</h1>
-
         <details>
           <summary>Voir le formulaire</summary>
           <article
@@ -279,15 +247,12 @@ async function register(data) {
     </form>
   </wrapper>
 </main>
-
 <style lang="scss">
   @import "../utils/extends";
   @import "../utils/mixins";
   @import "../utils/variables";
-
   main {
     @extend %blocprofilregister;
-
     .wrapper--left {
       min-width: 390px;
       form {
@@ -305,7 +270,6 @@ async function register(data) {
           min-width: 40%;
           min-width: 390px;
         }
-
         .section--login {
           @extend %glassmorphism;
           @extend %paddingprofilregister;
@@ -323,7 +287,6 @@ async function register(data) {
               cursor: pointer;
               font-weight: bold;
             }
-
             .article--login {
               margin-top: 2rem;
               padding: 1.5rem;
@@ -331,7 +294,6 @@ async function register(data) {
               flex-direction: column;
               max-width: 500px;
               margin: auto;
-
               label {
                 padding: 1rem 0;
                 font-weight: bolder;
@@ -350,7 +312,6 @@ async function register(data) {
             justify-content: center;
             margin-top: 2rem;
             gap: 1.5rem;
-
             input {
               @extend %inputformbutton;
             }
@@ -358,7 +319,6 @@ async function register(data) {
         }
       }
     }
-
     .wrapper--right {
       min-width: 390px;
       form {
@@ -383,7 +343,6 @@ async function register(data) {
           @media screen and (min-width: 1024px) {
             margin-top: 0;
           }
-
           h1 {
             font-size: 3rem;
             font-weight: bolder;
@@ -392,14 +351,12 @@ async function register(data) {
             line-height: 3rem;
             justify-content: center;
           }
-
           details {
             summary {
               padding: 2rem;
               cursor: pointer;
               font-weight: bold;
             }
-
             .article--register {
               margin-top: 2rem;
               padding: 1.5rem;
@@ -411,7 +368,6 @@ async function register(data) {
                 padding: 1rem 0;
                 font-weight: bolder;
               }
-
               input {
                 padding: 1rem;
                 background: $color-greenlight;
@@ -426,7 +382,6 @@ async function register(data) {
             justify-content: center;
             margin-top: 2rem;
             gap: 1.5rem;
-
             input {
               @extend %inputformbutton;
             }
