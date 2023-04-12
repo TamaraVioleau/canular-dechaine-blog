@@ -28,7 +28,7 @@
 
 <Navbar />
 <Router {routes} />
-
+<UpDown/>
 <Footer />
 
 <!-- 
