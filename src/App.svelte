@@ -22,13 +22,17 @@
     "/article/:article_id": PageArticle,
     "/modification/:article_id": ModifiedArticle,
     "/profil-membre": PageProfilMembers,
+
     "/profil-auteur": PageProfilAuthors
+
+    "/profil-auteur": PageProfilAuthors,
+
   };
 </script>
 
 <Navbar />
 <Router {routes} />
-
+<UpDown/>
 <Footer />
 
 <!-- 
