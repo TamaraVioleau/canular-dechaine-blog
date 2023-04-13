@@ -20,6 +20,7 @@
   
  import Router from "svelte-spa-router";
   import LegaleInformation from "./lib/LegaleInformation.svelte";
+  import ConnectedContact from "./lib/ConnectedContact.svelte";
   const routes = {
     "/": Homepage,
     "/connexion": Register,
@@ -29,7 +30,7 @@
 </script>
 
 
-<LegaleInformation />
+<ConnectedContact />
 <!---<Router {routes} />
 <PageArticle/>
 <ModifiedArticle/>
@@ -38,6 +39,7 @@
   <Register />
 <PageProfilAuthors />
 <PageProfilMembers />
+<LegaleInformation />
 <Footer />
 
 <!-- 
