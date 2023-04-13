@@ -1,6 +1,5 @@
 <script>
   import { link } from "svelte-spa-router";
-  import UpDown from "../components/UpDown.svelte";
 </script>
 
 <main>
@@ -89,7 +88,6 @@
     </section>
   </div>
 </main>
-<UpDown/>
 
 <style lang="scss">
   @import "../utils/extends";

@@ -1,9 +1,6 @@
 <script>
- 
-
   import Navbar from "./lib/Navbar.svelte";
   import Homepage from "./lib/Homepage.svelte";
-
   import PageArticles from "./lib/PageArticles.svelte";
   import PageProfilAuthors from "./lib/PageProfilAuthors.svelte";
   import PageProfilMembers from "./lib/PageProfilMembers.svelte";
@@ -13,41 +10,55 @@
   import PageArticle from "./lib/PageArticle.svelte";
   import ErrorPage from "./lib/ErrorPage.svelte";
   import Footer from "./lib/Footer.svelte";
-
   import CommentsArticlePage from "./components/CommentsArticlePage.svelte";
   import UpDown from "./components/UpDown.svelte";
-
-  
- import Router from "svelte-spa-router";
+  import Router from "svelte-spa-router";
   import LegaleInformation from "./lib/LegaleInformation.svelte";
+
   import ConnectedContact from "./lib/ConnectedContact.svelte";
+
+
   const routes = {
     "/": Homepage,
     "/connexion": Register,
     "/articles/:id": PageArticles,
-    "/article": PageArticle,
+    "/article/:article_id": PageArticle,
+    "/modification/:article_id": ModifiedArticle,
+    "/profil-membre": PageProfilMembers,
+
+    "/profil-auteur": PageProfilAuthors
   };
 </script>
 
-
-<ConnectedContact />
-<!---<Router {routes} />
-<PageArticle/>
-<ModifiedArticle/>
-<SearchPage/>
 <Navbar />
-  <Register />
-<PageProfilAuthors />
-<PageProfilMembers />
-<LegaleInformation />
+<Router {routes} />
+<UpDown/>
 <Footer />
 
 <!-- 
 
 
 
+<ConnectedContact />
+<!---<Router {routes} />
+
+<PageArticle/>
+<ModifiedArticle/>
+<SearchPage/>
+<Register />
+<PageProfilAuthors />
+<PageProfilMembers />
+<LegaleInformation />
+
+<Footer />
+
+<!-- 
+
+
+<Router {routes} />
+<PageArticle/>
+<ModifiedArticle/>
+
+
+
 -->
-
-<!--
-
- -->

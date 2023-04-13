@@ -1,38 +1,29 @@
 <script>
   import { link } from "svelte-spa-router";
-  import UpDown from "../components/UpDown.svelte";
 
   export let params;
 
-  // Initialise les variables pour stocker l'ID de la catégorie, le nom de la catégorie et les articles
   let categoryId;
   let categoryName;
   let articles = [];
 
-  // Le $: permet de réagir aux changements de params.id et mettre à jour categoryId, categoryName, et articles
   $: if (params.id) {
     categoryId = params.id;
-    // Appelle la fonction 'getCategoryName()' pour récupérer le nom de la catégorie
     getCategoryName();
-    // Appelle la fonction 'getArticles()' pour récupérer les articles de la catégorie
     getArticles();
   }
 
-  // Récupération des articles de la catégorie
+  const API_BASE_URL = import.meta.env.VITE_URL_DIRECTUS;
+
   const getArticles = async () => {
-    const endpoint = `${
-      import.meta.env.VITE_URL_DIRECTUS
-    }/items/articles?filter[categories_id][_eq]=${categoryId}`;
+    const endpoint = `${API_BASE_URL}/items/articles?filter[categories_id][_eq]=${categoryId}`;
     const response = await fetch(endpoint);
     const json = await response.json();
     articles = json.data;
   };
 
-  // Récupération du nom de la catégorie
   const getCategoryName = async () => {
-    const endpoint = `${
-      import.meta.env.VITE_URL_DIRECTUS
-    }/items/categories/${categoryId}`;
+    const endpoint = `${API_BASE_URL}/items/categories/${categoryId}`;
     const response = await fetch(endpoint);
     const json = await response.json();
     categoryName = json.data.name;
@@ -59,18 +50,23 @@
         <footer>
           <aside aria-label="Date de publication et auteur">
             <time
-              datetime={article.date_created}
-              aria-label="Date de publication">{article.date_created}</time
-            > <span aria-hidden="true"> || </span>
-            <cite title={article.users_pseudo} aria-label="Auteur"
-              >{article.users_pseudo}</cite
+            datetime={article.date_created}
+            aria-label="Date de publication">
+            {new Date(article.date_created).toLocaleDateString("fr-FR", {
+              day: "numeric",
+              month: "numeric",
+              year: "numeric"
+            })}
+          </time><span aria-hidden="true"> || </span>
+            <cite title="nom de l'auteur" aria-label="Auteur"
+              >{article.users_id}</cite
             >
           </aside>
 
           <a
             class="btn-read-more"
             use:link
-            href="/articles"
+            href={`/article/${article.id}`}
             aria-labelledby="article__title-right">Lire la suite</a
           >
         </footer>
@@ -78,7 +74,6 @@
     {/each}
   </div>
 </main>
-<UpDown/>
 
 <style lang="scss">
   @import "../utils/extends";

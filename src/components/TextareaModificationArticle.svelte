@@ -1,4 +1,42 @@
 <script>
+  export let params = {};
+  const article_id = params.article_id;
+
+  const getArticle = async (id) => {
+    const endpoint =
+      import.meta.env.VITE_URL_DIRECTUS + "/items/articles/" + id;
+    const response = await fetch(endpoint);
+    console.log("response", response);
+    const json = await response.json();
+    console.log("json", json);
+    return json.data;
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const endpoint =
+      import.meta.env.VITE_URL_DIRECTUS + "/items/articles/" + article_id;
+    let headers = {
+      "Content-Type": "application/json",
+    };
+    const token = localStorage.getItem("token");
+    if (token) {
+      headers["Authorization"] = "Bearer " + token;
+    }
+    const response = await fetch(endpoint, {
+      method: "PATCH",
+      headers: headers,
+      body: JSON.stringify({
+        content: text,
+      }),
+    });
+    console.log("response", response);
+    if (response.ok) {
+      window.location.hash = "/article/" + article_id;
+    }
+  };
+
+  let text = "";
   //SCRIPT COMPTEUR DE MOTS
   let myMaxLength = 500;
   // Initialiser le compteur de caractères à 0
@@ -14,14 +52,13 @@
   };
 
   //SCRIPT PREVIEW TEXTAREA
-  let text = "";
   function updatePreview() {
     const preview = document.getElementById("preview");
     preview.innerHTML = text;
   }
 </script>
 
-<div class="write">
+<form class="write" on:submit={handleSubmit}>
   <label for="textarea" id="textarea-label" />
   <textarea
     name="textarea"
@@ -51,7 +88,7 @@
       aria-label="Envoyer article"
     />
   </button>
-</div>
+</form>
 
 <style lang="scss">
   @import "../utils/extends";
