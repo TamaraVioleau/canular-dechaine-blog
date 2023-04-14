@@ -58,9 +58,9 @@
               year: "numeric"
             })}
           </time><span aria-hidden="true"> || </span>
-            <cite title="nom de l'auteur" aria-label="Auteur"
-              >{article.users_id}</cite
-            >
+          <cite title="{article.users_id.pseudo}" aria-label="Auteur"
+            >{article.users_id.pseudo}</cite
+          >
           </aside>
 
           <a

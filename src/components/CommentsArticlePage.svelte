@@ -20,7 +20,18 @@
     comments = json.data;
   };
 
+  const getUserInfo = async () => {
+    const response = await fetch(`${API_BASE_URL}/users/me`, {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    });
+    const json = await response.json();
+    return json.data;
+  };
+
   const postComment = async () => {
+    const userInfo = await getUserInfo();
     const response = await fetch(
       import.meta.env.VITE_URL_DIRECTUS + "/items/comments",
       {
@@ -32,6 +43,7 @@
         body: JSON.stringify({
           content: commentContent,
           articles_id: article_id,
+          users_id: userInfo.id,
         }),
       }
     );
@@ -40,17 +52,27 @@
   };
 
   const handleSubmitForm = async (event) => {
-    event.preventDefault();
-    const comment = await postComment();
-    comments.push(comment);
-    comments = [...comments];
-    commentContent = "";
-  };
+  event.preventDefault();
+  const userInfo = await getUserInfo();
+  const comment = await postComment();
+  comment.users_id = userInfo; // Ajoutez les informations de l'utilisateur au commentaire
+  comments.push(comment);
+  comments = [...comments];
+  commentContent = "";
+  scrollToComment(comment.id); // Faites défiler jusqu'au dernier commentaire ajouté
+};
+
+const scrollToComment = (commentId) => {
+  const commentElement = document.getElementById(`comment-${commentId}`);
+  if (commentElement) {
+    commentElement.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+};
 </script>
 
 <section>
-  {#each comments as comment}
-    <article>
+  {#each comments as comment, i (i)} 
+  <article id="comment-{comment.id}">
       <header>
         <img src="src\assets\avatar-membres.png" alt="avatar du membre" />
         <aside
@@ -65,7 +87,11 @@
             })}</time
           >
           <span aria-hidden="true"> || </span>
-          <cite title="nom de l'auteur">{comment.users_id.pseudo}</cite>
+          <cite title="nom de l'auteur">
+            {comment.users_id
+              ? comment.users_id.pseudo
+              : "Utilisateur inconnu"}</cite
+          >
         </aside>
       </header>
       <p>
@@ -170,41 +196,41 @@
       align-self: center;
     }
 
-    form{
-      display:flex;
-      flex-direction: column;
-   
-
-    #textarea {
-      display: block;
-      height: 15rem;
-      width: 95%;
-      margin: 2rem auto;
-      resize: vertical;
-      min-height: 100px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      padding: 2rem;
-      @extend %p;
-    }
-
-    button {
+    form {
       display: flex;
-      justify-content: center;
-      background: transparent;
-      border: none;
-      max-width: 100%;
-      .submit {
-        @extend %button;
-        min-width: 220px;
-        box-shadow: 0 2px 5px 0 rgba(31, 38, 135, 0.45);
+      flex-direction: column;
+
+      #textarea {
+        display: block;
+        height: 15rem;
+        width: 95%;
+        margin: 2rem auto;
+        resize: vertical;
+        min-height: 100px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        padding: 2rem;
+        @extend %p;
       }
-      .submit:active {
-        @extend %buttonactive;
+
+      button {
+        display: flex;
+        justify-content: center;
+        background: transparent;
+        border: none;
+        max-width: 100%;
+        .submit {
+          @extend %button;
+          min-width: 220px;
+          box-shadow: 0 2px 5px 0 rgba(31, 38, 135, 0.45);
+        }
+        .submit:active {
+          @extend %buttonactive;
+        }
+        .submit:hover {
+          background-color: $color-greenlight;
+        }
       }
-      .submit:hover {
-        background-color: $color-greenlight;
-      }
-    } }
+    }
   }
 </style>
