@@ -29,6 +29,10 @@
   };
 </script>
 
+
+<ErrorPage />
+
+
 <Navbar />
 <Router {routes} />
 <UpDown/>
@@ -39,6 +43,7 @@
 
 
 <ConnectedContact />
+
 <!---<Router {routes} />
 
 <PageArticle/>
@@ -50,6 +55,7 @@
 <LegaleInformation />
 
 <Footer />
+<LegaleInformation />
 
 <!-- 
 
