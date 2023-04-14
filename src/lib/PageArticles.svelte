@@ -16,7 +16,7 @@
   const API_BASE_URL = import.meta.env.VITE_URL_DIRECTUS;
 
   const getArticles = async () => {
-    const endpoint = `${API_BASE_URL}/items/articles?filter[categories_id][_eq]=${categoryId}`;
+    const endpoint = `${API_BASE_URL}/items/articles?filter[categories_id][_eq]=${categoryId}&fields=*,users_id.*,date_created`;
     const response = await fetch(endpoint);
     const json = await response.json();
     articles = json.data;
@@ -50,17 +50,18 @@
         <footer>
           <aside aria-label="Date de publication et auteur">
             <time
-            datetime={article.date_created}
-            aria-label="Date de publication">
-            {new Date(article.date_created).toLocaleDateString("fr-FR", {
-              day: "numeric",
-              month: "numeric",
-              year: "numeric"
-            })}
-          </time><span aria-hidden="true"> || </span>
-          <cite title="{article.users_id.pseudo}" aria-label="Auteur"
-            >{article.users_id.pseudo}</cite
-          >
+              datetime={article.date_created}
+              aria-label="Date de publication"
+            >
+              {new Date(article.date_created).toLocaleDateString("fr-FR", {
+                day: "numeric",
+                month: "numeric",
+                year: "numeric",
+              })}
+            </time><span aria-hidden="true"> || </span>
+            <cite title={article.users_id.pseudo} aria-label="Auteur"
+              >{article.users_id.pseudo}</cite
+            >
           </aside>
 
           <a
