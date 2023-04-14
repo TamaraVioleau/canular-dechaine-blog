@@ -1,7 +1,34 @@
 <script>
+  export let article_id;
+  let comments = [];
+  // Variable qui permet d'afficher le composant de Login si besoin
+  let isError = false;
+
+  const getComments = async (id) => {
+    // On récupère une partie de commentaires grace au filtrage
+    // https://docs.directus.io/reference/query.html#rest-api-1
+    const endpoint =
+      import.meta.env.VITE_URL_DIRECTUS +
+      "/items/comments?filter[space][_eq]=" +
+      id;
+    const response = await fetch(endpoint, {
+      headers: {
+        Authorization: "Bearer " + window.localStorage.getItem("token"),
+      },
+    });
+    // Vérifie que la réponse est bonne (status 200)
+    if (response.ok === false) {
+      isError = true;
+    }
+    const json = await response.json();
+    comments = json.data;
+  };
+      // Appelle la récupération des commentaires
+      getComments(article_id);
 </script>
 
 <section>
+  {#each comments as comment}
   <article>
     <header>
       <img src="src/assets/avatar-membres.png" alt="avatar du membre" />
@@ -9,7 +36,12 @@
         class="aside__dateauthor"
         aria-label="Date de publication et auteur"
       >
-        <time datetime="2023-04-05">5 avril 2023</time> <span aria-hidden="true"> || </span>
+        <time datetime="2023-04-05">  {new Date(comment.date_created).toLocaleDateString("fr-FR", {
+          day: "numeric",
+          month: "numeric",
+          year: "numeric"
+        })}</time>
+        <span aria-hidden="true"> || </span>
         <cite title="nom de l'auteur">Lucie Fer</cite>
       </aside>
     </header>
@@ -17,9 +49,10 @@
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt rerum
       esse cupiditate dolore magnam tempore placeat, sit iusto in itaque
       aspernatur, ipsa vel quisquam alias accusamus molestias dignissimos
-      laudantium unde! 
+      laudantium unde!
     </p>
   </article>
+  {/each}
 </section>
 
 <div class="write">
@@ -69,7 +102,7 @@
     }
   }
 
-header {
+  header {
     display: flex;
     padding: 1rem;
     margin: 1rem;

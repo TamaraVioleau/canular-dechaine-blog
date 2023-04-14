@@ -109,7 +109,7 @@
     </div>
   </article>
 
-  <CommentsArticlePage/>
+  <CommentsArticlePage {article_id}/>
 </main>
 
 <style lang="scss">
