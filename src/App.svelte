@@ -28,8 +28,8 @@
   };
 </script>
 
+<ErrorPage />
 
-<LegaleInformation />
 <!---<Router {routes} />
 <PageArticle/>
 <ModifiedArticle/>
@@ -39,6 +39,7 @@
 <PageProfilAuthors />
 <PageProfilMembers />
 <Footer />
+<LegaleInformation />
 
 <!-- 
 
