@@ -1,45 +1,101 @@
 <script>
+  import { link } from "svelte-spa-router";
+  export let article_id;
+  let comments = [];
+
+  let commentContent = "";
+
+  $: if (article_id) {
+    getComments();
+  }
+
+  const API_BASE_URL = import.meta.env.VITE_URL_DIRECTUS;
+
+  const getComments = async () => {
+    const endpoint = `${API_BASE_URL}/items/comments?filter[articles_id][_eq]=${article_id}&fields=content,users_id.*,date_created`;
+    console.log("URL d'endpoint pour les commentaires :", endpoint); // Log de débogage
+    const response = await fetch(endpoint);
+    const json = await response.json();
+    console.log("Réponse JSON :", json); // Log de débogage
+    comments = json.data;
+  };
+
+  const postComment = async () => {
+    const response = await fetch(
+      import.meta.env.VITE_URL_DIRECTUS + "/items/comments",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+        body: JSON.stringify({
+          content: commentContent,
+          articles_id: article_id,
+        }),
+      }
+    );
+    const json = await response.json();
+    return json.data;
+  };
+
+  const handleSubmitForm = async (event) => {
+    event.preventDefault();
+    const comment = await postComment();
+    comments.push(comment);
+    comments = [...comments];
+    commentContent = "";
+  };
 </script>
 
 <section>
-  <article>
-    <header>
-      <img src="src/assets/avatar-membres.png" alt="avatar du membre" />
-      <aside
-        class="aside__dateauthor"
-        aria-label="Date de publication et auteur"
-      >
-        <time datetime="2023-04-05">5 avril 2023</time> <span aria-hidden="true"> || </span>
-        <cite title="nom de l'auteur">Lucie Fer</cite>
-      </aside>
-    </header>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt rerum
-      esse cupiditate dolore magnam tempore placeat, sit iusto in itaque
-      aspernatur, ipsa vel quisquam alias accusamus molestias dignissimos
-      laudantium unde! 
-    </p>
-  </article>
+  {#each comments as comment}
+    <article>
+      <header>
+        <img src="src\assets\avatar-membres.png" alt="avatar du membre" />
+        <aside
+          class="aside__dateauthor"
+          aria-label="Date de publication et auteur"
+        >
+          <time datetime="2023-04-05">
+            {new Date(comment.date_created).toLocaleDateString("fr-FR", {
+              day: "numeric",
+              month: "numeric",
+              year: "numeric",
+            })}</time
+          >
+          <span aria-hidden="true"> || </span>
+          <cite title="nom de l'auteur">{comment.users_id.pseudo}</cite>
+        </aside>
+      </header>
+      <p>
+        {comment.content}
+      </p>
+    </article>
+  {/each}
 </section>
 
 <div class="write">
-  <label for="textarea" />
-  <textarea
-    name="textarea"
-    id="textarea"
-    spellcheck="true"
-    placeholder="Ecrire ici pour commenter l'article"
-  />
-  <button>
-    <input
-      class="submit"
-      type="submit"
-      name="submit"
-      value="Envoyer"
+  <form on:submit={handleSubmitForm}>
+    <label for="textarea" />
+    <textarea
+      bind:value={commentContent}
+      name="textarea"
+      id="textarea"
       spellcheck="true"
-      aria-label="Envoyer article"
+      placeholder="Ecrire ici pour commenter l'article"
     />
-  </button>
+    <button>
+      <input
+        class="submit"
+        type="submit"
+        name="submit"
+        value="Envoyer"
+        spellcheck="true"
+        aria-label="Envoyer article"
+      />
+    </button>
+  </form>
 </div>
 
 <style lang="scss">
@@ -69,7 +125,7 @@
     }
   }
 
-header {
+  header {
     display: flex;
     padding: 1rem;
     margin: 1rem;
@@ -113,37 +169,42 @@ header {
       min-width: 910px;
       align-self: center;
     }
-  }
 
-  #textarea {
-    display: block;
-    height: 15rem;
-    width: 95%;
-    margin: 2rem auto;
-    resize: vertical;
-    min-height: 100px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    padding: 2rem;
-    @extend %p;
-  }
+    form{
+      display:flex;
+      flex-direction: column;
+   
 
-  button {
-    display: flex;
-    justify-content: center;
-    background: transparent;
-    border: none;
-    max-width: 100%;
-    .submit {
-      @extend %button;
-      min-width: 220px;
-      box-shadow: 0 2px 5px 0 rgba(31, 38, 135, 0.45);
+    #textarea {
+      display: block;
+      height: 15rem;
+      width: 95%;
+      margin: 2rem auto;
+      resize: vertical;
+      min-height: 100px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      padding: 2rem;
+      @extend %p;
     }
-    .submit:active {
-      @extend %buttonactive;
-    }
-    .submit:hover {
-      background-color: $color-greenlight;
-    }
+
+    button {
+      display: flex;
+      justify-content: center;
+      background: transparent;
+      border: none;
+      max-width: 100%;
+      .submit {
+        @extend %button;
+        min-width: 220px;
+        box-shadow: 0 2px 5px 0 rgba(31, 38, 135, 0.45);
+      }
+      .submit:active {
+        @extend %buttonactive;
+      }
+      .submit:hover {
+        background-color: $color-greenlight;
+      }
+    } }
   }
 </style>

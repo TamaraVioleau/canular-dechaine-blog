@@ -6,8 +6,7 @@
   const article_id = params.article_id;
 
   const getArticle = async (id) => {
-    const endpoint =
-      import.meta.env.VITE_URL_DIRECTUS + "/items/articles/" + id;
+    const endpoint = `${import.meta.env.VITE_URL_DIRECTUS}/items/articles/${id}?fields=*,users_id.*,date_created`;
     const response = await fetch(endpoint);
     console.log("response", response);
     const json = await response.json();
@@ -98,7 +97,7 @@
         </time> <span aria-hidden="true"> || </span>
 
           <cite title="nom de l'auteur" aria-label="Auteur"
-            >{article.users_id}</cite
+            >{article.users_id.pseudo}</cite
           >
         </aside>
       </footer>{/await}
@@ -109,7 +108,7 @@
     </div>
   </article>
 
-  <CommentsArticlePage/>
+  <CommentsArticlePage {article_id}/>
 </main>
 
 <style lang="scss">
