@@ -9,7 +9,7 @@
     // https://docs.directus.io/reference/query.html#rest-api-1
     const endpoint =
       import.meta.env.VITE_URL_DIRECTUS +
-      "/items/comments?filter[space][_eq]=" +
+      "/items/comments?filter[article][_eq]=" +
       id;
     const response = await fetch(endpoint, {
       headers: {
