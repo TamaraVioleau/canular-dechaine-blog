@@ -97,7 +97,7 @@
           </li>
           {/each}
         </ul>
-      </div>
+      </div> 
       <!-- ici fini le bouton du menu responsive -->
     </div>
 
