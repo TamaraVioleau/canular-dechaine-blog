@@ -1,75 +1,109 @@
 <script>
+  import { link } from "svelte-spa-router";
   export let article_id;
   let comments = [];
-  // Variable qui permet d'afficher le composant de Login si besoin
-  let isError = false;
 
-  const getComments = async (id) => {
-    // On récupère une partie de commentaires grace au filtrage
-    // https://docs.directus.io/reference/query.html#rest-api-1
-    const endpoint =
-      import.meta.env.VITE_URL_DIRECTUS +
-      "/items/comments?filter[article][_eq]=" +
-      id;
-    const response = await fetch(endpoint, {
-      headers: {
-        Authorization: "Bearer " + window.localStorage.getItem("token"),
-      },
-    });
-    // Vérifie que la réponse est bonne (status 200)
-    if (response.ok === false) {
-      isError = true;
-    }
+  let commentContent = "";
+
+  $: if (article_id) {
+    getComments();
+  }
+
+  const API_BASE_URL = import.meta.env.VITE_URL_DIRECTUS;
+
+  const getComments = async () => {
+    const endpoint = `${API_BASE_URL}/items/comments?filter[articles_id][_eq]=${article_id}`;
+    console.log("URL d'endpoint pour les commentaires :", endpoint); // Log de débogage
+    const response = await fetch(endpoint);
     const json = await response.json();
+    console.log("Réponse JSON :", json); // Log de débogage
     comments = json.data;
+
+    // Vérifiez si 'json.data' est un tableau avant de l'affecter à 'comments'
+    if (Array.isArray(json.data)) {
+      comments = json.data;
+    } else {
+      console.error("La réponse de l'API n'est pas un tableau d'objets.");
+      comments = [];
+    }
   };
-      // Appelle la récupération des commentaires
-      getComments(article_id);
+
+  const postComment = async () => {
+    const response = await fetch(
+      import.meta.env.VITE_URL_DIRECTUS + "/items/comments",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+        body: JSON.stringify({
+          content: commentContent,
+          articles_id: article_id,
+        }),
+      }
+    );
+    const json = await response.json();
+    return json.data;
+  };
+
+  const handleSubmitForm = async (event) => {
+    event.preventDefault();
+    const comment = await postComment();
+    comments.push(comment);
+    comments = [...comments];
+    commentContent = "";
+  };
 </script>
 
 <section>
   {#each comments as comment}
-  <article>
-    <header>
-      <img src={import.meta.env.VITE_URL_DIRECTUS + "/assets/" + comment.image} alt="avatar du membre" />
-      <aside
-        class="aside__dateauthor"
-        aria-label="Date de publication et auteur"
-      >
-        <time datetime="2023-04-05">  {new Date(comment.date_created).toLocaleDateString("fr-FR", {
-          day: "numeric",
-          month: "numeric",
-          year: "numeric"
-        })}</time>
-        <span aria-hidden="true"> || </span>
-        <cite title="nom de l'auteur">Lucie Fer</cite>
-      </aside>
-    </header>
-    <p>
-      {comment.content}
-    </p>
-  </article>
+    <article>
+      <header>
+        <img src="src\assets\avatar-membres.png" alt="avatar du membre" />
+        <aside
+          class="aside__dateauthor"
+          aria-label="Date de publication et auteur"
+        >
+          <time datetime="2023-04-05">
+          {new Date(comment.date_created).toLocaleDateString("fr-FR", {
+            day: "numeric",
+            month: "numeric",
+            year: "numeric"
+          })}</time
+          >
+          <span aria-hidden="true"> || </span>
+          <cite title="nom de l'auteur">Lucie Fer</cite>
+        </aside>
+      </header>
+      <p>
+        {comment.content}
+      </p>
+    </article>
   {/each}
 </section>
 
 <div class="write">
-  <label for="textarea" />
-  <textarea
-    name="textarea"
-    id="textarea"
-    spellcheck="true"
-    placeholder="Ecrire ici pour commenter l'article"
-  />
-  <button>
-    <input
-      class="submit"
-      type="submit"
-      name="submit"
-      value="Envoyer"
+  <form on:submit={handleSubmitForm}>
+    <label for="textarea" />
+    <textarea
+      bind:value={commentContent}
+      name="textarea"
+      id="textarea"
       spellcheck="true"
-      aria-label="Envoyer article"
+      placeholder="Ecrire ici pour commenter l'article"
     />
-  </button>
+    <button>
+      <input
+        class="submit"
+        type="submit"
+        name="submit"
+        value="Envoyer"
+        spellcheck="true"
+        aria-label="Envoyer article"
+      />
+    </button>
+  </form>
 </div>
 
 <style lang="scss">

@@ -98,7 +98,7 @@
         </time> <span aria-hidden="true"> || </span>
 
           <cite title="nom de l'auteur" aria-label="Auteur"
-            >{article.users_id}</cite
+            >{article.user_created.pseudo}</cite
           >
         </aside>
       </footer>{/await}
