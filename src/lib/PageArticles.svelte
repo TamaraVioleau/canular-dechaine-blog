@@ -42,8 +42,8 @@
             src={import.meta.env.VITE_URL_DIRECTUS + "/assets/" + article.image}
             alt={article.alt}
           />
-          <h3 id="article__title-right">{article.title}</h3>
-          <p id="article_p-right" aria-label="Texte de l'article">
+          <h3 id="article__title">{article.title}</h3>
+          <p id="article_p" aria-label="Texte de l'article">
             {article.content}
           </p>
         </article>
