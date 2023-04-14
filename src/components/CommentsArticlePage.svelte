@@ -31,7 +31,7 @@
   {#each comments as comment}
   <article>
     <header>
-      <img src="src/assets/avatar-membres.png" alt="avatar du membre" />
+      <img src={import.meta.env.VITE_URL_DIRECTUS + "/assets/" + comment.image} alt="avatar du membre" />
       <aside
         class="aside__dateauthor"
         aria-label="Date de publication et auteur"
@@ -46,10 +46,7 @@
       </aside>
     </header>
     <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt rerum
-      esse cupiditate dolore magnam tempore placeat, sit iusto in itaque
-      aspernatur, ipsa vel quisquam alias accusamus molestias dignissimos
-      laudantium unde!
+      {comment.content}
     </p>
   </article>
   {/each}
