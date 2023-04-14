@@ -92,14 +92,12 @@
         </div>
         <ul>
           {#each categories as category}
-            <li>
-              <a use:link href="/articles" value={category.id}
-                >{category.name}</a
-              >
-            </li>
+          <li>
+            <a use:link href={`/articles/${category.id}`}>{category.name}</a>
+          </li>
           {/each}
         </ul>
-      </div>
+      </div> 
       <!-- ici fini le bouton du menu responsive -->
     </div>
 
