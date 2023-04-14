@@ -49,7 +49,8 @@
         </form>
       </div>
 
-      {#each logins as login}<div class="navigation__login">
+      {#each logins as login}
+      <div class="navigation__login">
           <a use:link href={login.url} id="login">
             <button type="submit" id="buttonlogin">
               <span id="logtext">{login.text}</span></button
