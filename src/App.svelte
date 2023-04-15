@@ -1,4 +1,10 @@
 <script>
+  import Router from "svelte-spa-router";
+  const onRouteLoaded = () => {
+    window.scrollTo(0, 0);
+  };
+
+ 
   import Navbar from "./lib/Navbar.svelte";
   import Homepage from "./lib/Homepage.svelte";
   import PageArticles from "./lib/PageArticles.svelte";
@@ -12,10 +18,12 @@
   import Footer from "./lib/Footer.svelte";
   import CommentsArticlePage from "./components/CommentsArticlePage.svelte";
   import UpDown from "./components/UpDown.svelte";
-  import Router from "svelte-spa-router";
-  import LegaleInformation from "./lib/LegaleInformation.svelte";
 
-  import ConnectedContact from "./lib/ConnectedContact.svelte";
+
+  import Contact from "./lib/Contact.svelte";
+  import LegalInformation from "./lib/LegalInformation.svelte";
+  import About from "./lib/About.svelte";
+
 
 
   const routes = {
@@ -25,39 +33,26 @@
     "/article/:article_id": PageArticle,
     "/modification/:article_id": ModifiedArticle,
     "/profil-membre": PageProfilMembers,
-    "/profil-auteur": PageProfilAuthors
+    "/profil-auteur": PageProfilAuthors,
+    "/contact": Contact,
+    "/mentions-legales": LegalInformation,
+    "/a-propos": About,
+
+
   };
 </script>
 
 <Navbar />
-<Router {routes} />
+<!-- onRouteLoaded permet le reload de la page et qui renvoie vers le haut -->
+<Router {routes} on:routeLoaded={onRouteLoaded} />
 <UpDown/>
 <Footer />
 
 <!-- 
-
-
-
-<ConnectedContact />
-
-<PageArticle/>
 <ModifiedArticle/>
 <SearchPage/>
 <Register />
-<PageProfilAuthors />
 <PageProfilMembers />
-<LegaleInformation />
 
-<Footer />
-<LegaleInformation />
-
-<!-- 
-
-
-<Router {routes} />
 <PageArticle/>
-<ModifiedArticle/>
-
-
-
 -->

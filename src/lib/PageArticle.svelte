@@ -27,7 +27,6 @@
   }
 </script>
 
-
 <main>
   <article>
     {#await getArticle(article_id)}
@@ -64,8 +63,7 @@
             >{article.users_id.pseudo}</cite
           >
         </aside>
-      </footer>
-      {/await}
+      </footer>{/await}
       <div class="heart" class:active={isActive} on:click={toggleHeart}>
         <span class="heart-count">{count}</span>
         <i class="fa-regular fa-heart" id="heart-empty" />

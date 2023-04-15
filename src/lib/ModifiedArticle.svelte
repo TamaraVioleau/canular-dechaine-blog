@@ -1,5 +1,5 @@
 <script>
-  import TextareaComments from "../components/TextareaModificationArticle.svelte";
+  import TextareaModification from "../components/TextareaModificationArticle.svelte";
 
 
   export let params = {};
@@ -31,7 +31,7 @@
   </article>
   {/await}
 
-  <TextareaComments {params} />
+  <TextareaModification {params} />
 </main>
 
 <style lang="scss">

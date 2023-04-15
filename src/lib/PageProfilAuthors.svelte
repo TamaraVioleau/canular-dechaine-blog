@@ -95,10 +95,7 @@
           class="article__infoperso"
           aria-label="informations personnelles"
         >
-          <label for="nom">Nom : </label>
-          <input type="text" name="nom" id="nom" />
-          <label for="prénom">Prénom : </label>
-          <input type="text" name="prénom" id="prénom" />
+
           <label for="email">E-mail : </label>
           <input type="email" name="E-mail" id="email" />
           <label for="pwd">Mot de passe : </label>
