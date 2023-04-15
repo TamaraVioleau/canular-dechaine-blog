@@ -30,8 +30,8 @@
       >
     </li>
     <li>
-      <a href="/" aria-label="Aller à la politique de confidentialité"
-        >Politique de confidentialité</a
+      <a href="/conditions-utilisations" aria-label="Aller aux conditions d'utilisation"
+        >Conditions d'utilisations</a
       >
     </li>
     <li><a     use:link
