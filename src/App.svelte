@@ -21,7 +21,7 @@
 
 
   import Contact from "./lib/Contact.svelte";
-  import LegaleInformation from "./lib/LegaleInformation.svelte";
+  import LegalInformation from "./lib/LegalInformation.svelte";
   import About from "./lib/About.svelte";
 
 
@@ -35,7 +35,7 @@
     "/profil-membre": PageProfilMembers,
     "/profil-auteur": PageProfilAuthors,
     "/contact": Contact,
-    "/mentions-legales": LegaleInformation,
+    "/mentions-legales": LegalInformation,
     "/a-propos": About,
 
 
