@@ -1,30 +1,20 @@
 <script>
   import { link } from "svelte-spa-router";
-
   import CommentsArticlePage from "../components/CommentsArticlePage.svelte";
+  
   export let params = {};
   const article_id = params.article_id;
 
   const getArticle = async (id) => {
     const endpoint = `${import.meta.env.VITE_URL_DIRECTUS}/items/articles/${id}?fields=*,users_id.*,date_created`;
     const response = await fetch(endpoint);
-    console.log("response", response);
     const json = await response.json();
-    console.log("json", json);
     return json.data;
   };
 
-  // Les fonctions onMount et onDestroy nous permettent de faire des choses spécifiques à des moments précis de l'application.
-  // onMount nous permet de faire quelque chose dès que l'application est prête à être utilisée
-  // onDestroy nous permet de faire quelque chose quand l'application se ferme ou qu'une partie de l'application est supprimée.
-  // Importe les fonctions onMount et onDestroy de la librairie Svelte
-  import { onMount, onDestroy } from "svelte";
-
-  // Initialise les variables count et isActive en utilisant les données stockées dans localStorage, ou 0 et false si ces données ne sont pas encore présentes
-  let count = localStorage.getItem("heartCount") || 0;
+  let count = parseInt(localStorage.getItem("heartCount")) || 0;
   let isActive = localStorage.getItem("heartActive") === "true";
 
-  // Fonction qui change l'état du coeur et met à jour le compteur de likes en fonction de l'état du coeur
   function toggleHeart() {
     if (isActive) {
       count -= 1;
@@ -32,37 +22,11 @@
       count += 1;
     }
     isActive = !isActive;
-    // Met à jour les données stockées dans localStorage avec les nouvelles valeurs de count et isActive
     localStorage.setItem("heartCount", count);
     localStorage.setItem("heartActive", isActive);
-    // Met à jour le texte du compteur de likes
-    document.querySelector(".heart-count").textContent = parseInt(count);
   }
-
-  // Utilise la fonction onMount pour exécuter du code dès que l'élément HTML est prêt à être utilisé
-  onMount(() => {
-    // Sélectionne l'élément HTML contenant le coeur
-    const heart = document.querySelector(".heart");
-    // Sélectionne l'élément HTML contenant le compteur de likes
-    const countEl = document.querySelector(".heart-count");
-    // Met à jour le texte du compteur de likes avec la valeur actuelle de count
-    countEl.textContent = count;
-    // Ajoute la classe "active" à l'élément HTML contenant le coeur si isActive est true
-    if (isActive) {
-      heart.classList.add("active");
-    }
-    // Ajoute un event listener pour écouter les clics sur l'élément HTML contenant le coeur et appeler la fonction toggleHeart
-    heart.addEventListener("click", toggleHeart);
-  });
-
-  // Utilise la fonction onDestroy pour exécuter du code quand l'élément HTML est supprimé
-  onDestroy(() => {
-    // Sélectionne l'élément HTML contenant le coeur
-    const heart = document.querySelector(".heart");
-    // Supprime l'event listener pour éviter des fuites de mémoire
-    heart.removeEventListener("click", toggleHeart);
-  });
 </script>
+
 
 <main>
   <article>
@@ -100,12 +64,13 @@
             >{article.users_id.pseudo}</cite
           >
         </aside>
-      </footer>{/await}
-    <div class="heart" class:active={isActive}>
-      <span class="heart-count" />
-      <i class="fa-regular fa-heart" id="heart-empty" />
-      <i class="fa-solid fa-heart hidden" id="heart-filled" />
-    </div>
+      </footer>
+      {/await}
+      <div class="heart" class:active={isActive} on:click={toggleHeart}>
+        <span class="heart-count">{count}</span>
+        <i class="fa-regular fa-heart" id="heart-empty" />
+        <i class="fa-solid fa-heart hidden" id="heart-filled" />
+      </div>
   </article>
 
   <CommentsArticlePage {article_id}/>
