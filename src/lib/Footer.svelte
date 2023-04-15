@@ -30,11 +30,11 @@
       >
     </li>
     <li>
-      <a href="/conditions-utilisations" aria-label="Aller aux conditions d'utilisation"
+      <a  use:link href="/conditions-utilisations" aria-label="Aller aux conditions d'utilisation"
         >Conditions d'utilisations</a
       >
     </li>
-    <li><a     use:link
+    <li><a  use:link
       href="/a-propos" aria-label="Aller à la page à propos">A propos</a></li>
   </ul>
 </footer>
