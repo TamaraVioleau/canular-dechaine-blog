@@ -23,6 +23,7 @@
   import Contact from "./lib/Contact.svelte";
   import LegalInformation from "./lib/LegalInformation.svelte";
   import About from "./lib/About.svelte";
+  import TermsOfUse from "./lib/TermsOfUse.svelte";
 
 
 
@@ -37,6 +38,7 @@
     "/contact": Contact,
     "/mentions-legales": LegalInformation,
     "/a-propos": About,
+    "/conditions-utilisations":TermsOfUse,
 
 
   };
