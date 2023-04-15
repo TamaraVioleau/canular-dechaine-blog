@@ -28,6 +28,16 @@
   line-height: 2.8rem;
 }
 
+%h4 {
+  font-size: 1.8rem;
+  font-weight: bolder;
+  margin: 2rem;
+  line-height: 2.8rem;
+  text-decoration: underline;
+  text-decoration-color: $color-greendark;
+  text-underline-offset:1rem;
+}
+
 %p {
   line-height: 2.4rem;
   text-align: left;

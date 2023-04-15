@@ -6,19 +6,36 @@
   <a
     id="button__contact"
     use:link
-    href="/"
+    href="/contact"
     role="button"
     aria-label="Aller à la page contact">Nous contacter</a
   >
   <div class="social">
-    <a href="/" aria-label="Facebook"><i class="fa-brands fa-facebook" alt="Facebook" /></a>
-    <a href="/" aria-label="Twitter"><i class="fa-brands fa-twitter" alt="Twitter" /></a>
-    <a href="/" aria-label="Instagram"><i class="fa-brands fa-instagram" alt="Instagram" /></a>
+    <a href="/" aria-label="Facebook"
+      ><i class="fa-brands fa-facebook" alt="Facebook" /></a
+    >
+    <a href="/" aria-label="Twitter"
+      ><i class="fa-brands fa-twitter" alt="Twitter" /></a
+    >
+    <a href="/" aria-label="Instagram"
+      ><i class="fa-brands fa-instagram" alt="Instagram" /></a
+    >
   </div>
   <ul>
-    <li><a href="/" aria-label="Aller aux mentions légales">Mentions légales</a></li>
-    <li><a href="/" aria-label="Aller à la politique de confidentialité">Politique de confidentialité</a></li>
-    <li><a href="/" aria-label="Aller à la page à propos">A propos</a></li>
+    <li>
+      <a
+        use:link
+        href="/mentions-legales"
+        aria-label="Aller aux mentions légales">Mentions légales</a
+      >
+    </li>
+    <li>
+      <a href="/" aria-label="Aller à la politique de confidentialité"
+        >Politique de confidentialité</a
+      >
+    </li>
+    <li><a     use:link
+      href="/a-propos" aria-label="Aller à la page à propos">A propos</a></li>
   </ul>
 </footer>
 
@@ -46,7 +63,7 @@
     }
     #button__contact:hover {
       background-color: $color-greenlight;
-    } 
+    }
 
     .social {
       display: flex;
@@ -62,7 +79,7 @@
         border-radius: 8px;
         align-items: center;
         justify-content: center;
-        text-decoration: none;      
+        text-decoration: none;
         color: $color-black;
         i {
           transition: transform 0.5s;
@@ -114,9 +131,10 @@
         position: relative;
         color: $color-black;
         &:after {
-@extend %a-after;        }
+          @extend %a-after;
+        }
         &:hover:after {
-@extend %ahoverafter;
+          @extend %ahoverafter;
         }
       }
     }
