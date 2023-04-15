@@ -74,19 +74,15 @@
 
     <h4>8. Loi applicable et juridiction</h4>
     <p class="paragraph" aria-label="Loi applicable et juridiction">
-      Si vous avez des questions concernant les présentes Conditions ou votre
-      utilisation du Site, n'hésitez pas à nous contacter à l'adresse e-mail
-      suivante : [adresse e-mail de contact]. Date de dernière mise à jour :
-      [date de la dernière mise à jour des conditions d'utilisation]
+        Les présentes Conditions sont régies par le droit français. Tout litige découlant de l'utilisation du Site sera soumis à la compétence exclusive des tribunaux français.
     </p>
 
     <h4>9. Contact</h4>
-    <p class="paragraph" aria-label="Loi applicable et juridiction">Si vous avez des questions concernant les présentes Conditions ou votre utilisation
+    <p class="paragraph" aria-label="Contact">Si vous avez des questions concernant les présentes Conditions ou votre utilisation
     du Site, n'hésitez pas à nous contacter à l'adresse e-mail suivante : [adresse
     e-mail de contact]. Date de dernière mise à jour : [date de la dernière mise
     à jour des conditions d'utilisation] </p>
 
-    <p class="paragraph" aria-label="contact" />
     <footer>
       <aside aria-label="Date de publication et auteur">
         <time datetime="24/04/2023" aria-label="Date de publication">
