@@ -54,7 +54,7 @@ const handleSearch = async (event) => {
 
 <nav>
   <a use:link href="/"
-    ><img src="src\assets\logo-site.png" alt="logo site" id="logo" /></a
+    ><img src="src\assets\logo-blog.png" alt="logo site" id="logo" /></a
   >
   
 
