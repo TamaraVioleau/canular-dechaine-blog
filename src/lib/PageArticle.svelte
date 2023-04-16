@@ -42,7 +42,7 @@
       {#if roleID === "645cbe7e-cdf9-409c-bc58-863ce065dfbb" || roleID === "e2a5bde2-09ab-44e4-8669-c9dc34c157e5"}
       <a aria-label="Éditer l'article" use:link href={`/modification/${article.id}`}><i class="{article.modification}" /></a>
     {/if}
-      <img
+ <img
         src={import.meta.env.VITE_URL_DIRECTUS + "/assets/" + article.image}
         alt={article.alt}
       />

@@ -59,7 +59,6 @@
     {/each}
   </ul>
 </footer>
-social
 <style lang="scss">
   @import "../utils/extends";
   @import "../utils/mixins";
