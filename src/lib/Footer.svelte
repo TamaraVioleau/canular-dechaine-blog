@@ -45,9 +45,9 @@
   >
 
   <div class="social">
-    {#each links_social as admin}
-      <a href={admin.url} aria-label={admin.text}
-        ><i class="fa-brands fa-{admin.text}" alt={admin.text} /></a
+    {#each links_social as social}
+      <a href={social.url} aria-label={social.text}
+        ><i class="fa-brands fa-{social.text}" alt={social.text} /></a
       >
     {/each}
   </div>
@@ -59,7 +59,7 @@
     {/each}
   </ul>
 </footer>
-
+social
 <style lang="scss">
   @import "../utils/extends";
   @import "../utils/mixins";
