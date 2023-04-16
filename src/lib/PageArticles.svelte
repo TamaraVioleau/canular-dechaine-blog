@@ -89,6 +89,7 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
+    min-height: 300px;
     h2 {
       @extend %h2;
     }

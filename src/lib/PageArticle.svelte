@@ -1,5 +1,5 @@
 <script>
-  import { link } from "svelte-spa-router";
+  import { link, push } from "svelte-spa-router";
   import CommentsArticlePage from "../components/CommentsArticlePage.svelte";
   
   //Récupération de l'article
@@ -29,7 +29,49 @@
   }
 
 
-  let roleID = window.localStorage.getItem('roleID');
+  // Renvoie le rôle de l'utilisateur actuellement connecté
+  const getCurrentUserRole = async () => {
+    const token = window.localStorage.getItem("token");
+    if (!token) {
+      return null;
+    }
+
+    const response = await fetch(`${import.meta.env.VITE_URL_DIRECTUS}/users/me`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+    const json = await response.json();
+    return json.data.role;
+  };
+  
+  // Appelle l'API pour obtenir le rôle de l'utilisateur connecté
+  const getUserRole = async () => {
+    const role = await getCurrentUserRole();
+    if (role === "645cbe7e-cdf9-409c-bc58-863ce065dfbb" || role === "e2a5bde2-09ab-44e4-8669-c9dc34c157e5") {
+      return role;
+    }
+    return null;
+  };
+
+  let roleID = null;
+
+  // Met à jour la variable "roleID" lorsque l'utilisateur connecté change
+  const handleStorageChange = (event) => {
+    if (event.key === "token") {
+      getUserRole().then((role) => {
+        roleID = role;
+      });
+    }
+  };
+  window.addEventListener("storage", handleStorageChange);
+
+  // Fonction appelée lorsque l'utilisateur clique sur l'icône de modification
+  const handleEditClick = () => {
+    // Redirige l'utilisateur vers la page de modification correspondante
+  push(`/modification/${article_id}`);
+  };
+
 
 </script>
 
@@ -39,9 +81,15 @@
       <p>En chargement. Je cherche les données sur l'api...</p>
     {:then article}
       <!-- doit apparaitre seulement pour les auteurs -->
-      {#if roleID === "645cbe7e-cdf9-409c-bc58-863ce065dfbb" || roleID === "e2a5bde2-09ab-44e4-8669-c9dc34c157e5"}
-      <a aria-label="Éditer l'article" use:link href={`/modification/${article.id}`}><i class="{article.modification}" /></a>
-    {/if}
+      {#await getUserRole()}
+        <p>Chargement...</p>
+      {:then role}
+        {#if role}
+          <span class="edit-icon"><a aria-label="Éditer l'article" on:click={handleEditClick}><i class="fa-solid fa-pen-to-square"/></a></span>
+        {/if}
+        {:catch error}
+        <p>Erreur : {error.message}</p>
+      {/await}
  <img
         src={import.meta.env.VITE_URL_DIRECTUS + "/assets/" + article.image}
         alt={article.alt}

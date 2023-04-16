@@ -40,11 +40,13 @@
   };
 </script>
 
-<Navbar />
-<!-- onRouteLoaded permet le reload de la page et qui renvoie vers le haut -->
-<Router {routes} on:routeLoaded={onRouteLoaded} />
-<UpDown />
-<Footer />
+
+  <Navbar />
+  <!-- onRouteLoaded permet le reload de la page et qui renvoie vers le haut -->
+  <Router {routes} on:routeLoaded={onRouteLoaded} />
+  <UpDown />
+  <Footer />
+
 
 <!-- 
 <ModifiedArticle/>
