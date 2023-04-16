@@ -76,6 +76,7 @@
     background-color: $color-white;
     padding: 3rem;
     color: $color-black;
+    min-height: 300px;
     h2 {
       @extend %h2;
     }
