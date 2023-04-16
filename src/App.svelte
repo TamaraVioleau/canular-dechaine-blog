@@ -36,6 +36,7 @@
     "/a-propos": About,
     "/conditions-utilisations": TermsOfUse,
     "/search/:query": SearchPage,
+    "*": ErrorPage,
   };
 </script>
 
