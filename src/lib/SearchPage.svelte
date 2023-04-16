@@ -1,26 +1,24 @@
 <script>
   import { link } from "svelte-spa-router";
- import { onMount } from "svelte";
- 
-const API_BASE_URL = import.meta.env.VITE_URL_DIRECTUS;
+  import { onMount } from "svelte";
 
-export let params;
+  export let params;
 
-let query;
-let articles = [];
+  let query;
+  let articles = [];
 
-onMount(async () => {
-  if (params.query) {
-    query = decodeURIComponent(params.query);
+      const API_BASE_URL = import.meta.env.VITE_URL_DIRECTUS;
 
-    const endpoint = `${API_BASE_URL}/items/articles?search=${query}`;
-    const response = await fetch(endpoint);
-    const json = await response.json();
-    articles = json.data;
-  }
-});
+  onMount(async () => {
+    if (params.query) {
+      query = decodeURIComponent(params.query);
+      const endpoint = `${API_BASE_URL}/items/articles?search=${query}&fields=*,users_id.*,date_created`;
+      const response = await fetch(endpoint);
+      const json = await response.json();
+      articles = json.data;
+    }
+  });
 </script>
-
 
 <main>
   <h2 aria-label="Titre de la section de recherche">
@@ -31,26 +29,37 @@ onMount(async () => {
       <section aria-label="Article">
         <h3 id="article__title-left">{article.title}</h3>
         <article>
-          <img src="https://picsum.photos/900/400" alt="photo" />
+          <img
+            src={import.meta.env.VITE_URL_DIRECTUS + "/assets/" + article.image}
+            alt={article.alt}
+          />
           <p id="article_p-left" aria-label="Texte de l'article">
             {article.content}
           </p>
         </article>
         <footer>
           <aside aria-label="Date de publication et auteur">
-            <time datetime="2023-04-05" aria-label="Date de publication"
-              >5 avril 2023</time
-            > <span aria-hidden="true"> || </span>
-            <cite title="nom de l'auteur" aria-label="Auteur">Sarah Croche</cite
+            <time
+              datetime={article.date_created}
+              aria-label="Date de publication"
+            >
+              {new Date(article.date_created).toLocaleDateString("fr-FR", {
+                day: "numeric",
+                month: "numeric",
+                year: "numeric",
+              })}
+            </time><span aria-hidden="true"> || </span>
+            <cite title={article.users_id.pseudo} aria-label="Auteur"
+              >{article.users_id.pseudo}</cite
             >
           </aside>
 
           <a
-          class="btn-read-more"
-          use:link
-          href={`/article/${article.id}`}
-          aria-labelledby="article__title-right">Lire la suite</a
-        >
+            class="btn-read-more"
+            use:link
+            href={`/article/${article.id}`}
+            aria-labelledby="article__title-right">Lire la suite</a
+          >
         </footer>
       </section>
     {/each}
@@ -86,6 +95,7 @@ onMount(async () => {
         @media screen and (min-width: 1024px) {
           max-width: 39vw;
         }
+        
         h3 {
           display: -webkit-box;
           -webkit-line-clamp: 1;

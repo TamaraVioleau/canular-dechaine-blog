@@ -5,6 +5,8 @@
   const handleClick = () => {
     searchLinksVisible = !searchLinksVisible;
   };
+
+
  //Lorsque l'utilisateur est connecté
   const isLogged = window.localStorage.getItem("token") != null;
   const logins = [
@@ -31,7 +33,7 @@
   };
   getCategories();
 
-  //barre de recherche
+  //Barre de recherche
   import { push } from "svelte-spa-router";
 
   let query = "";
@@ -47,13 +49,14 @@ const handleSearch = async (event) => {
 
   // Rediriger vers la page de recherche avec les articles trouvés
   push(`/search/${encodeURIComponent(query)}`);
-};
+  };
 </script>
 
 <nav>
   <a use:link href="/"
     ><img src="src\assets\logo-site.png" alt="logo site" id="logo" /></a
   >
+  
 
   <div class="nav__navigation">
     <div class="searchlogin">
