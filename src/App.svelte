@@ -4,7 +4,6 @@
     window.scrollTo(0, 0);
   };
 
- 
   import Navbar from "./lib/Navbar.svelte";
   import Homepage from "./lib/Homepage.svelte";
   import PageArticles from "./lib/PageArticles.svelte";
@@ -19,13 +18,10 @@
   import CommentsArticlePage from "./components/CommentsArticlePage.svelte";
   import UpDown from "./components/UpDown.svelte";
 
-
   import Contact from "./lib/Contact.svelte";
   import LegalInformation from "./lib/LegalInformation.svelte";
   import About from "./lib/About.svelte";
   import TermsOfUse from "./lib/TermsOfUse.svelte";
-
-
 
   const routes = {
     "/": Homepage,
@@ -38,16 +34,15 @@
     "/contact": Contact,
     "/mentions-legales": LegalInformation,
     "/a-propos": About,
-    "/conditions-utilisations":TermsOfUse,
-
-
+    "/conditions-utilisations": TermsOfUse,
+    "/search/:query": SearchPage,
   };
 </script>
 
 <Navbar />
 <!-- onRouteLoaded permet le reload de la page et qui renvoie vers le haut -->
 <Router {routes} on:routeLoaded={onRouteLoaded} />
-<UpDown/>
+<UpDown />
 <Footer />
 
 <!-- 

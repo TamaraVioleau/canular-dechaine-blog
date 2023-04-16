@@ -30,6 +30,24 @@
     categories = json.data;
   };
   getCategories();
+
+  //barre de recherche
+  import { push } from "svelte-spa-router";
+
+  let query = "";
+
+const handleSearch = async (event) => {
+  event.preventDefault();
+
+  const API_BASE_URL = import.meta.env.VITE_URL_DIRECTUS;
+  const endpoint = `${API_BASE_URL}/items/articles?search=${query}`;
+  const response = await fetch(endpoint);
+  const json = await response.json();
+  const articles = json.data;
+
+  // Rediriger vers la page de recherche avec les articles trouvés
+  push(`/search/${encodeURIComponent(query)}`);
+};
 </script>
 
 <nav>
@@ -41,8 +59,8 @@
     <div class="searchlogin">
       <div class="navigation__search">
         <!-- Ajout du chemin de la page dans action -->
-        <form action="" id="formsearch">
-          <input type="text" placeholder="Search.." name="search" id="search" />
+        <form on:submit|preventDefault={handleSearch} id="formsearch">
+          <input bind:value={query} type="text" placeholder="Search.." name="search" id="search" />
           <button type="submit" id="buttonsearch">
             <i class="fa-solid fa-magnifying-glass" />
           </button>
