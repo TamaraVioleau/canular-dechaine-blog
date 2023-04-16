@@ -2,6 +2,7 @@
   import { link } from "svelte-spa-router";
   import CommentsArticlePage from "../components/CommentsArticlePage.svelte";
   
+  //Récupération de l'article
   export let params = {};
   const article_id = params.article_id;
 
@@ -12,6 +13,7 @@
     return json.data;
   };
 
+  //Likes
   let count = parseInt(localStorage.getItem("heartCount")) || 0;
   let isActive = localStorage.getItem("heartActive") === "true";
 
@@ -25,6 +27,10 @@
     localStorage.setItem("heartCount", count);
     localStorage.setItem("heartActive", isActive);
   }
+
+
+  let roleID = window.localStorage.getItem('roleID');
+
 </script>
 
 <main>
@@ -33,10 +39,9 @@
       <p>En chargement. Je cherche les données sur l'api...</p>
     {:then article}
       <!-- doit apparaitre seulement pour les auteurs -->
-      <a aria-label="Éditer l'article" use:link
-      href={`/modification/${article.id}`}
-        ><i class="fa-solid fa-pen-to-square" /></a
-      >
+      {#if roleID === "645cbe7e-cdf9-409c-bc58-863ce065dfbb" || roleID === "e2a5bde2-09ab-44e4-8669-c9dc34c157e5"}
+      <a aria-label="Éditer l'article" use:link href={`/modification/${article.id}`}><i class="{article.modification}" /></a>
+    {/if}
       <img
         src={import.meta.env.VITE_URL_DIRECTUS + "/assets/" + article.image}
         alt={article.alt}

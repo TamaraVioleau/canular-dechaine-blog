@@ -1,5 +1,38 @@
 <script>
   import { link } from "svelte-spa-router";
+
+  const links_social = [
+    {
+      text: "facebook",
+      url: "https://www.facebook.com",
+    },
+    {
+      text: "twitter",
+      url: "https://twitter.com/",
+    },
+    {
+      text: "instagram",
+      url: "https://www.instagram.com/",
+    },
+  ];
+
+  const links_admin = [
+    {
+      text: "Mentions légales",
+      url: "/mentions-legales",
+      label: "Aller aux mentions légales",
+    },
+    {
+      text: "Conditions d'utilisations",
+      url: "/conditions-utilisations",
+      label: "Aller aux conditions d'utilisation",
+    },
+    {
+      text: "A propos",
+      url: "/a-propos",
+      label: "Aller à la page à propos",
+    },
+  ];
 </script>
 
 <footer>
@@ -10,35 +43,23 @@
     role="button"
     aria-label="Aller à la page contact">Nous contacter</a
   >
+
   <div class="social">
-    <a href="/" aria-label="Facebook"
-      ><i class="fa-brands fa-facebook" alt="Facebook" /></a
-    >
-    <a href="/" aria-label="Twitter"
-      ><i class="fa-brands fa-twitter" alt="Twitter" /></a
-    >
-    <a href="/" aria-label="Instagram"
-      ><i class="fa-brands fa-instagram" alt="Instagram" /></a
-    >
+    {#each links_social as social}
+      <a href={social.url} aria-label={social.text}
+        ><i class="fa-brands fa-{social.text}" alt={social.text} /></a
+      >
+    {/each}
   </div>
   <ul>
-    <li>
-      <a
-        use:link
-        href="/mentions-legales"
-        aria-label="Aller aux mentions légales">Mentions légales</a
-      >
-    </li>
-    <li>
-      <a  use:link href="/conditions-utilisations" aria-label="Aller aux conditions d'utilisation"
-        >Conditions d'utilisations</a
-      >
-    </li>
-    <li><a  use:link
-      href="/a-propos" aria-label="Aller à la page à propos">A propos</a></li>
+    {#each links_admin as admin}
+      <li>
+        <a use:link href={admin.url} aria-label={admin.label}>{admin.text}</a>
+      </li>
+    {/each}
   </ul>
 </footer>
-
+social
 <style lang="scss">
   @import "../utils/extends";
   @import "../utils/mixins";

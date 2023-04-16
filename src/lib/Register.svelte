@@ -41,6 +41,8 @@
         push("/profil-membre");
       } else if (roleID === "645cbe7e-cdf9-409c-bc58-863ce065dfbb") {
         push("/profil-auteur");
+      } else if (roleID === "e2a5bde2-09ab-44e4-8669-c9dc34c157e5") {
+        push("/");
       } else {
         console.error("Unknown role ID:", roleID);
       }
