@@ -17,7 +17,7 @@
 
     <p class="paragraph" aria-label="équipe fondatrice">
       L'équipe fondatrice du Canular Déchaîné est composée de Sébastien,
-      Frédérick et Tamara, trois passionnés d'actualité et d'humour, qui
+      Frédéric et Tamara, trois passionnés d'actualité et d'humour, qui
       souhaitent offrir une approche légère et décalée de l'information.
     </p>
 
@@ -35,7 +35,7 @@
     </p>
 
     <p class="paragraph" aria-label="Frédérick">
-      <strong>Frédérick : Lead Dev Back</strong>
+      <strong>Frédéric : Lead Dev Back</strong>
       Fred supervise la partie back-end. Il effectue les choix techniques sur la
       partie back et assure la bonne communication entre les différentes parties
       du projet.

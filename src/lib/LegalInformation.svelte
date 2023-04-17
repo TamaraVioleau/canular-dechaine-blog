@@ -9,7 +9,7 @@
       Le présent site est édité par <strong>Canular déchainé</strong>, dont le
       siège social est situé en <strong>France</strong>. Représentants légaux et
       directeurs de la publication :
-      <strong>Sébastien, Frédérick et Tamara.</strong>
+      <strong>Sébastien, Frédéric et Tamara.</strong>
     </p>
 
     <p class="paragraph" aria-label="Hébergement site">
