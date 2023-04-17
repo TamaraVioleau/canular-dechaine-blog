@@ -6,8 +6,7 @@
   const article_id = params.article_id;
 
   const getArticle = async (id) => {
-    const endpoint =
-      import.meta.env.VITE_URL_DIRECTUS + "/items/articles/" + id;
+    const endpoint = import.meta.env.VITE_URL_DIRECTUS + "/items/articles/" + id;
     const response = await fetch(endpoint);
     console.log("response", response);
     const json = await response.json();
