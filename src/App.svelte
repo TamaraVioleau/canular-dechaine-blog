@@ -17,7 +17,6 @@
   import Footer from "./lib/Footer.svelte";
   import CommentsArticlePage from "./components/CommentsArticlePage.svelte";
   import UpDown from "./components/UpDown.svelte";
-
   import Contact from "./lib/Contact.svelte";
   import LegalInformation from "./lib/LegalInformation.svelte";
   import About from "./lib/About.svelte";
@@ -53,6 +52,5 @@
 <SearchPage/>
 <Register />
 <PageProfilMembers />
-
 <PageArticle/>
 -->
