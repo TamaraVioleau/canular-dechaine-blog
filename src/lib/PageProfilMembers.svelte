@@ -1,5 +1,6 @@
 <script>
   import { onMount } from "svelte";
+  import StatsMembers from "../components/StatsMembers.svelte";
 
   // Récupère l'URL de l'API à partir de la variable d'environnement VITE_URL_DIRECTUS
   const API_BASE_URL = import.meta.env.VITE_URL_DIRECTUS;
@@ -101,25 +102,10 @@
         </div>
       </section>
     </wrapper>
-
-    <wrapper class="wrapper__right">
-      <section class="section__statistics" aria-labelledby="statistiques">
-        <article class="article__statistics">
-          <h3 id="statistiques">Statistiques :</h3>
-          <ol>
-            <li>
-              <h4>Tous mes commentaires :</h4>
-              <p>XX commentaires</p>
-            </li>
-            <li>
-              <h4>Tous mes likes :</h4>
-              <p>XX likes</p>
-            </li>
-          </ol>
-        </article>
-      </section>
-    </wrapper>
   </form>
+
+  <StatsMembers/>
+
 </main>
 
 <style lang="scss">
@@ -132,22 +118,22 @@
     @media screen and (min-width: 580px) {
       padding: 7.5rem;}
     form {
-      @media screen and (min-width: 580px) {
-        width: 95%;
-        margin: auto;
-      }
-      @media screen and (min-width: 770px) {
-        width: 90%;
-        margin: auto;
-      }
-      @media screen and (min-width: 1024px) {
-        display: flex;
-        justify-content: center;
-        gap: 10rem;
-        margin: auto;
-      }
-      @media screen and (min-width: 1200px) {
-      }
+      // @media screen and (min-width: 580px) {
+      //   width: 95%;
+      //   margin: auto;
+      // }
+      // @media screen and (min-width: 770px) {
+      //   width: 90%;
+      //   margin: auto;
+      // }
+      // @media screen and (min-width: 1024px) {
+      //   display: flex;
+      //   justify-content: center;
+      //   gap: 10rem;
+      //   margin: auto;
+      // }
+      // @media screen and (min-width: 1200px) {
+      // }
       .wrapper__left {
         min-width: 390px;
 
@@ -252,48 +238,7 @@
         }
         }
       }
-      .wrapper__right {
-        min-width: 390px;
-        .section__statistics {
-          @extend %glassmorphism;
-          @extend %paddingprofilregister;
-          margin-top: 2rem;
-          @media screen and (min-width: 580px) {
-            padding: 3.5rem;
-          }
-          @media screen and (min-width: 1024px) {
-            margin-top: 0;
-            min-height: 607px;
-          }
-          @media screen and (min-width: 1440px) {
-            margin-top: 0;
-            min-height: 506px;
-          }
 
-          .article__statistics {
-            background-color: $color-white;
-            padding: 1.5rem;
-            max-width: 500px;
-            margin: auto;
-            h3 {
-              font-size: 2rem;
-              font-weight: bolder;
-              margin-bottom: 2rem;
-            }
-            ol {
-              list-style: disc;
-              margin-left: 4rem;
-              li {
-                margin-bottom: 1rem;
-                h4 {
-                  font-weight: bold;
-                  margin-bottom: 1rem;
-                }
-              }
-            }
-          }
-        }
-      }
     }
   }
 </style>
