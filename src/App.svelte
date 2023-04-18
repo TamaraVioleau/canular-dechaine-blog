@@ -15,7 +15,6 @@
   import PageArticle from "./lib/PageArticle.svelte";
   import ErrorPage from "./lib/ErrorPage.svelte";
   import Footer from "./lib/Footer.svelte";
-  import CommentsArticlePage from "./components/CommentsArticlePage.svelte";
   import UpDown from "./components/UpDown.svelte";
   import Contact from "./lib/Contact.svelte";
   import LegalInformation from "./lib/LegalInformation.svelte";
