@@ -142,24 +142,24 @@
             >/<span id="maximum">{myMaxLength}</span>
           </p>
         </article>
+        <div class="buttons">
+          <input
+            class="submit"
+            type="submit"
+            name="submit"
+            value="Enregistrer"
+            spellcheck="false"
+            aria-label="Enregistrer les informations"
+          />
+          <input
+            class="reset"
+            type="reset"
+            name="reset"
+            value="Réinitialiser"
+            aria-label="Réinitialiser les informations"
+          />
+        </div>
       </section>
-      <div class="buttons">
-        <input
-          class="submit"
-          type="submit"
-          name="submit"
-          value="Enregistrer"
-          spellcheck="false"
-          aria-label="Enregistrer les informations"
-        />
-        <input
-          class="reset"
-          type="reset"
-          name="reset"
-          value="Réinitialiser"
-          aria-label="Réinitialiser les informations"
-        />
-      </div>
     </wrapper>
   </form>
 </main>
@@ -171,6 +171,9 @@
 
   main {
     @extend %blocprofilregister;
+    @media screen and (min-width: 580px) {
+      padding: 7.5rem;
+    }
     form {
       @media screen and (min-width: 580px) {
       }
@@ -193,6 +196,9 @@
           @media screen and (min-width: 1024px) {
             margin-top: 0;
           }
+          @media screen and (min-width: 1440px) {
+         min-height:820px;
+        }
 
           .article__writearticle {
             background-color: $color-white;
@@ -217,18 +223,15 @@
               width: 100%;
               padding: 1rem;
               font-size: 1.5rem;
-              max-width: 285px;
             }
             input {
               padding: 1rem;
               background: $color-greenlight;
               border: 1px solid white;
               border-radius: 5px;
-              max-width: 285px;
             }
             input[type="file"] {
               font-size: 1.5rem;
-              max-width: 285px;
             }
 
             #image {
@@ -248,14 +251,39 @@
         }
 
         .buttons {
-          @extend %glassmorphism;
-          margin-top: 2rem;
           display: flex;
+          flex-direction: column;
           justify-content: center;
+          align-items: center;
           padding: 2rem;
+          @media screen and (min-width: 770px) {
+            flex-direction: row;
+          }
+          @media screen and (min-width: 1024px) {
+            flex-direction: column;
+          }
+          @media screen and (min-width: 1440px) {
+            flex-direction: row;
+          }
+          .submit,
+          .reset {
+            @extend %button;
+            min-width: 220px;
+            box-shadow: 0 2px 5px 0 rgba(31, 38, 135, 0.45);
+          }
+          .submit:active,
+          .reset:active {
+            @extend %buttonactive;
+          }
+          .submit:hover,
+          .reset:hover {
+            background-color: $color-greenlight;
+          }
+
           @media screen and (min-width: 580px) {
             padding: 1.5rem 3.5rem;
           }
+
           input {
             @extend %inputformbutton;
           }

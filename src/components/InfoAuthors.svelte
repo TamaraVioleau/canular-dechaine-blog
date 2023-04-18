@@ -45,6 +45,12 @@
       aria-labelledby="userpseudo userstatut"
     >
       <header aria-label="avatar pseudo statut">
+        <img
+            src={import.meta.env.VITE_URL_DIRECTUS +
+              "/assets/" +
+              userData.imgprofil}
+            alt="avatar par défaut des membres"
+          />
         <article class="article__pseudostatut">
           <h1 id="userpseudo">{userData.pseudo}</h1>
           <h2 id="userstatut">{userData.roles}</h2>
@@ -67,6 +73,23 @@
           })}
         </p>
       </article>
+      <div class="buttons">
+        <input
+          class="submit"
+          type="submit"
+          name="submit"
+          value="Enregistrer"
+          spellcheck="false"
+          aria-label="Enregistrer les informations"
+        />
+        <input
+          class="reset"
+          type="reset"
+          name="reset"
+          value="Réinitialiser"
+          aria-label="Réinitialiser les informations"
+        />
+      </div>
     </section>
     <section class="section__statistics" aria-labelledby="statistiques">
       <article class="article__statistics">
@@ -117,7 +140,7 @@
           justify-content: center;
           align-items: center;
           line-height: 3rem;
-
+          padding: 1rem;
           img {
             height: 75px;
             margin-right: 2.5rem;
@@ -194,6 +217,41 @@
               }
             }
           }
+        }
+      }
+      .buttons {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem;
+        @media screen and (min-width: 770px) {
+          flex-direction: row;
+        }
+        @media screen and (min-width: 1024px) {
+          flex-direction: column;
+        }
+        .submit,
+        .reset {
+          @extend %button;
+          min-width: 220px;
+          box-shadow: 0 2px 5px 0 rgba(31, 38, 135, 0.45);
+        }
+        .submit:active,
+        .reset:active {
+          @extend %buttonactive;
+        }
+        .submit:hover,
+        .reset:hover {
+          background-color: $color-greenlight;
+        }
+
+        @media screen and (min-width: 580px) {
+          padding: 1.5rem 3.5rem;
+        }
+
+        input {
+          @extend %inputformbutton;
         }
       }
     }

@@ -165,6 +165,7 @@
         text-decoration: none;
         color: $color-black;
         .fa-pen-to-square {
+          cursor: pointer;
           position: absolute;
           right: 0;
           top: 3px;
