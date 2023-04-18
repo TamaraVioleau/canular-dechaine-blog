@@ -33,9 +33,8 @@
   let articles = [];
 
   let articleContent = "";
-  let articleTitle="";
+  let articleTitle = "";
   let selectedCategoryId = "";
-
 
   const API_BASE_URL = import.meta.env.VITE_URL_DIRECTUS;
 
@@ -73,14 +72,14 @@
   };
 
   const handleSubmitForm = async (event) => {
-  event.preventDefault();
-  const userInfo = await getUserInfo();
-  const article = await postComment();
-  article.users_id = userInfo; // Ajoutez les informations de l'utilisateur au commentaire
-  articles.push(article);
-  articles = [...articles];
-  articleContent = "";
-};
+    event.preventDefault();
+    const userInfo = await getUserInfo();
+    const article = await postComment();
+    article.users_id = userInfo; // Ajoutez les informations de l'utilisateur au commentaire
+    articles.push(article);
+    articles = [...articles];
+    articleContent = "";
+  };
 </script>
 
 <main>
@@ -101,7 +100,12 @@
         <article class="article__writearticle">
           <h3 id="ecrire-un-article">Ecrire un article :</h3>
           <label for="category"> Catégorie de l'article :</label>
-          <select id="category" name="category" bind:value={selectedCategoryId} required>
+          <select
+            id="category"
+            name="category"
+            bind:value={selectedCategoryId}
+            required
+          >
             <option value="">Choisir la catégorie</option>
             {#each categories as category}
               <option value={category.id}>{category.name}</option>
