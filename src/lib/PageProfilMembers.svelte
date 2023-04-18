@@ -56,7 +56,7 @@
           />
           <article class="article__pseudostatut">
             <h1 id="userpseudo">{userData.pseudo}</h1>
-            <h2 id="userstatut">statut membre</h2>
+            <h2 id="userstatut">Membre</h2>
           </article>
         </header>
 

@@ -34,6 +34,7 @@
 
   let articleContent = "";
   let articleTitle = "";
+  let articleAlt = "";
   let selectedCategoryId = "";
 
   const API_BASE_URL = import.meta.env.VITE_URL_DIRECTUS;
@@ -64,6 +65,7 @@
           content: articleContent,
           users_id: userInfo.id,
           categories_id: selectedCategoryId,
+          alt:  articleAlt,
         }),
       }
     );
@@ -126,6 +128,13 @@
             accept="image/png, image/jpeg, image/WebpImage"
             title="Importer une image"
             aria-label="Importer une image"
+          />
+          <label for="image">Description courte de l'image : </label>
+          <input
+            type="text"
+            name="description image"
+            id="description"
+            bind:value={articleAlt}
           />
           <label for="textarea">Contenu de l'article :</label>
           <textarea
