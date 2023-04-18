@@ -2,6 +2,7 @@
   import { onMount } from "svelte";
   const API_BASE_URL = import.meta.env.VITE_URL_DIRECTUS;
 
+  //Récupération du nombre d'articles
   let userData = {};
   let articleCount = "";
 

@@ -2,12 +2,14 @@
  import { onMount } from "svelte";
   const API_BASE_URL = import.meta.env.VITE_URL_DIRECTUS;
 
-  let userData = {};
-  let articleCount = "";
 
-  const getAuthorArticleCount = async (authorId) => {
+  //Récupération du nombre de commentaires
+  let userData = {};
+  let commentsCount = "";
+
+  const getAuthorCommentsCount = async (authorId) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/items/articles?filter[users_id][_eq]=${authorId}`);
+      const response = await fetch(`${API_BASE_URL}/items/comments?filter[users_id][_eq]=${authorId}`);
       if (response.ok) {
         const json = await response.json();
         return json.data.length;
@@ -39,7 +41,7 @@
           userData = userData.data;
 
           // Récupère le nombre d'articles écrits par l'auteur connecté
-          articleCount = await getAuthorArticleCount(userData.id);
+          commentsCount = await getAuthorCommentsCount(userData.id);
         } else {
           console.error("Failed to fetch user data");
         }
@@ -48,7 +50,6 @@
       }
     }
   });
-
 </script>
 
 <wrapper class="wrapper__right">
@@ -58,11 +59,11 @@
       <ol>
         <li>
           <h4>Tous mes commentaires :</h4>
-          <p>XX commentaires</p>
+          <p>{commentsCount} commentaires</p>
         </li>
         <li>
           <h4>Tous mes likes :</h4>
-          <p>{articleCount} articles</p>
+          <p>XX likes</p>
         </li>
       </ol>
     </article>
