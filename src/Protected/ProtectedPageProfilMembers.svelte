@@ -1,32 +1,47 @@
 <script>
   import { onMount } from "svelte";
-  import { checkAccess } from "./CheckAccess.svelte";
-  import PageProfilMembers from "../lib/PageProfilMembers.svelte";
   import ErrorPage from "../lib/ErrorPage.svelte";
+  import PageProfilMembers from "../lib/PageProfilMembers.svelte";
 
-  let userId;
-  onMount(async () => {
-    // Récupérez l'identifiant de l'utilisateur connecté depuis Directus
-    userId = await fetchUserIdFromDirectus();
-  });
 
-  const hasAccess = checkAccess("/profil-membre", userId);
-  const API_BASE_URL = import.meta.env.VITE_URL_DIRECTUS;
+  let hasAccess = false;
 
-  async function fetchUserIdFromDirectus() {
-    // Récupérez l'identifiant de l'utilisateur connecté depuis Directus
-    // Vous devez adapter cette fonction en fonction de la manière dont vous gérez l'authentification dans votre projet
-    const response = await fetch(`${API_BASE_URL}/users/me`);
-    const data = await response.json();
-
-    return data.id;
+onMount(async () => {
+  const role = await getUserRole();
+  if (role === "213b3c24-fb05-446d-ab79-fd05adbbd6e2") {
+    hasAccess = true;
   }
+});
+
+// Renvoie le rôle de l'utilisateur actuellement connecté
+const getCurrentUserRole = async () => {
+  const token = window.localStorage.getItem("token");
+  if (!token) {
+    return null;
+  }
+
+  const response = await fetch(`${import.meta.env.VITE_URL_DIRECTUS}/users/me`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+  const json = await response.json();
+  return json.data.role;
+};
+
+// Appelle l'API pour obtenir le rôle de l'utilisateur connecté
+const getUserRole = async () => {
+  const role = await getCurrentUserRole();
+  if (role === "213b3c24-fb05-446d-ab79-fd05adbbd6e2" || role === "e2a5bde2-09ab-44e4-8669-c9dc34c157e5") {
+    return role;
+  }
+  return null;
+};
 </script>
 
+
 {#if hasAccess}
-  <PageProfilMembers />
+<PageProfilMembers/>
 {:else}
-  <p>
-    <ErrorPage/>
-  </p>
+  <p><ErrorPage /></p>
 {/if}
