@@ -1,5 +1,6 @@
 <script>
   import InfoAuthors from "../components/InfoAuthors.svelte";
+  const API_BASE_URL = import.meta.env.VITE_URL_DIRECTUS;
 
   // JS pour le compteur de mots dans l'écriture d'un article
   // longueur maximale dans le textarea
@@ -21,7 +22,7 @@
   let categories = [];
 
   const getCategories = async () => {
-    const endpoint = import.meta.env.VITE_URL_DIRECTUS + "/items/categories";
+    const endpoint = `${API_BASE_URL}/items/categories`;
     const response = await fetch(endpoint);
     const json = await response.json();
 
@@ -31,13 +32,10 @@
   getCategories();
 
   let articles = [];
-
   let articleContent = "";
   let articleTitle = "";
   let articleAlt = "";
   let selectedCategoryId = "";
-
-  const API_BASE_URL = import.meta.env.VITE_URL_DIRECTUS;
 
   const getUserInfo = async () => {
     const response = await fetch(`${API_BASE_URL}/users/me`, {
@@ -51,9 +49,8 @@
 
   const postComment = async () => {
     const userInfo = await getUserInfo();
-    const categoriesId = await getCategories();
     const response = await fetch(
-      import.meta.env.VITE_URL_DIRECTUS + "/items/articles",
+      `${API_BASE_URL}/items/articles`,
       {
         method: "POST",
         headers: {
@@ -65,7 +62,7 @@
           content: articleContent,
           users_id: userInfo.id,
           categories_id: selectedCategoryId,
-          alt:  articleAlt,
+          alt: articleAlt,
         }),
       }
     );
@@ -80,7 +77,14 @@
     article.users_id = userInfo; // Ajoutez les informations de l'utilisateur au commentaire
     articles.push(article);
     articles = [...articles];
+    // Réinitialisez les valeurs des entrées après l'envoi du formulaire
+    articleTitle = "";
     articleContent = "";
+    articleAlt = "";
+    selectedCategoryId = "";
+    // Réinitialisez du compteur de caractères après l'envoi du formulaire
+    characterCount = 0;
+    charactersRemaining = myMaxLength;
   };
 </script>
 
@@ -118,6 +122,7 @@
             type="text"
             name="titre"
             id="titre"
+            required
             bind:value={articleTitle}
           />
           <label for="image">Image de l'article : </label>
@@ -135,6 +140,7 @@
             name="description image"
             id="description"
             bind:value={articleAlt}
+            required
           />
           <label for="textarea">Contenu de l'article :</label>
           <textarea
@@ -144,6 +150,7 @@
             on:input={handleInput}
             bind:value={articleContent}
             placeholder="Ecrit de la bonne humeur ici"
+            required
           />
           <p>
             Nombre de caractères restant : <span id="characterCounter"
@@ -206,8 +213,8 @@
             margin-top: 0;
           }
           @media screen and (min-width: 1440px) {
-         min-height:820px;
-        }
+            min-height: 820px;
+          }
 
           .article__writearticle {
             background-color: $color-white;

@@ -8,7 +8,9 @@
 
   const getAuthorArticleCount = async (authorId) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/items/articles?filter[users_id][_eq]=${authorId}`);
+      const response = await fetch(
+        `${API_BASE_URL}/items/articles?filter[users_id][_eq]=${authorId}`
+      );
       if (response.ok) {
         const json = await response.json();
         return json.data.length;
@@ -49,9 +51,49 @@
       }
     }
   });
+
+  //Modification des informations personnelles
+  async function updateUser(event) {
+    event.preventDefault();
+
+    const email = document.getElementById("email").value;
+    const pwd = document.getElementById("pwd").value;
+
+    try {
+      const response = await fetch(`${API_BASE_URL}/users/${userData.id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+        },
+        body: JSON.stringify({
+          email: email,
+          password: pwd,
+        }),
+      });
+
+      if (response.ok) {
+        const updatedUser = await response.json();
+        userData = updatedUser.data;
+        alert("Les informations de l'utilisateur ont été mises à jour");
+      } else {
+        console.error("Failed to update user data");
+        alert("Échec de la mise à jour des informations de l'utilisateur");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Échec de la mise à jour des informations de l'utilisateur");
+    }
+  }
 </script>
 
-<form action="" method="post">
+<form
+  action=""
+  method="post"
+  on:submit|preventDefault={updateUser}
+  id="informations"
+  name="informations"
+>
   <wrapper class="wrapper__left">
     <section
       class="section__informations"
@@ -59,11 +101,11 @@
     >
       <header aria-label="avatar pseudo statut">
         <img
-            src={import.meta.env.VITE_URL_DIRECTUS +
-              "/assets/" +
-              userData.imgprofil}
-            alt="avatar par défaut des membres"
-          />
+          src={import.meta.env.VITE_URL_DIRECTUS +
+            "/assets/" +
+            userData.imgprofil}
+          alt="avatar par défaut des membres"
+        />
         <article class="article__pseudostatut">
           <h1 id="userpseudo">{userData.pseudo}</h1>
           <h2 id="userstatut">Auteur</h2>

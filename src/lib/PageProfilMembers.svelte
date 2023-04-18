@@ -38,11 +38,51 @@
       }
     }
   });
+
+  //Modification des informations personnelles
+  async function updateUser(event) {
+    event.preventDefault();
+
+    const email = document.getElementById("email").value;
+    const pwd = document.getElementById("pwd").value;
+
+    try {
+      const response = await fetch(`${API_BASE_URL}/users/${userData.id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+        },
+        body: JSON.stringify({
+          email: email,
+          password: pwd,
+        }),
+      });
+
+      if (response.ok) {
+        const updatedUser = await response.json();
+        userData = updatedUser.data;
+        alert("Les informations de l'utilisateur ont été mises à jour");
+      } else {
+        console.error("Failed to update user data");
+        alert("Échec de la mise à jour des informations de l'utilisateur");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Échec de la mise à jour des informations de l'utilisateur");
+    }
+  }
 </script>
 
 <main>
   <!-- dans action mettre le nom de la page (ex: /profil)  -->
-  <form action="" method="post" id="informations" name="informations">
+  <form
+    action=""
+    method="post"
+    on:submit|preventDefault={updateUser}
+    id="informations"
+    name="informations"
+  >
     <wrapper class="wrapper__left">
       <section
         class="section__informations"
@@ -104,8 +144,7 @@
     </wrapper>
   </form>
 
-  <StatsMembers/>
-
+  <StatsMembers />
 </main>
 
 <style lang="scss">
@@ -116,24 +155,9 @@
   main {
     @extend %blocprofilregister;
     @media screen and (min-width: 580px) {
-      padding: 7.5rem;}
+      padding: 7.5rem;
+    }
     form {
-      // @media screen and (min-width: 580px) {
-      //   width: 95%;
-      //   margin: auto;
-      // }
-      // @media screen and (min-width: 770px) {
-      //   width: 90%;
-      //   margin: auto;
-      // }
-      // @media screen and (min-width: 1024px) {
-      //   display: flex;
-      //   justify-content: center;
-      //   gap: 10rem;
-      //   margin: auto;
-      // }
-      // @media screen and (min-width: 1200px) {
-      // }
       .wrapper__left {
         min-width: 390px;
 
@@ -199,46 +223,45 @@
           }
 
           .buttons {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          padding: 2rem;
-          @media screen and (min-width: 770px) {
-            flex-direction: row;
-          }
-          @media screen and (min-width: 1024px) {
+            display: flex;
             flex-direction: column;
-          }
-          @media screen and (min-width: 1440px) {
-            flex-direction: row;
-          }
-          .submit,
-          .reset {
-            @extend %button;
-            min-width: 220px;
-            box-shadow: 0 2px 5px 0 rgba(31, 38, 135, 0.45);
-          }
-          .submit:active,
-          .reset:active {
-            @extend %buttonactive;
-          }
-          .submit:hover,
-          .reset:hover {
-            background-color: $color-greenlight;
-          }
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            @media screen and (min-width: 770px) {
+              flex-direction: row;
+            }
+            @media screen and (min-width: 1024px) {
+              flex-direction: column;
+            }
+            @media screen and (min-width: 1440px) {
+              flex-direction: row;
+            }
+            .submit,
+            .reset {
+              @extend %button;
+              min-width: 220px;
+              box-shadow: 0 2px 5px 0 rgba(31, 38, 135, 0.45);
+            }
+            .submit:active,
+            .reset:active {
+              @extend %buttonactive;
+            }
+            .submit:hover,
+            .reset:hover {
+              background-color: $color-greenlight;
+            }
 
-          @media screen and (min-width: 580px) {
-            padding: 1.5rem 3.5rem;
-          }
+            @media screen and (min-width: 580px) {
+              padding: 1.5rem 3.5rem;
+            }
 
-          input {
-            @extend %inputformbutton;
+            input {
+              @extend %inputformbutton;
+            }
           }
-        }
         }
       }
-
     }
   }
 </style>
