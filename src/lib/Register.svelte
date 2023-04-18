@@ -1,5 +1,21 @@
 <script>
-  import { link } from "svelte-spa-router";
+  import { link } from "svelte-spa-router";   
+  
+  // // Fonction de validation pour les emails
+  //   function isValidEmail(email) {
+  //   const emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+  //   return emailRegex.test(email);
+  // }
+
+  // // Fonction de validation pour les mots de passe
+  // function isValidPassword(password) {
+  //   // Le mot de passe doit contenir au moins 8 caractères, dont au moins une lettre majuscule,
+  //   // une lettre minuscule, un chiffre et un caractère spécial.
+  //   const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$/;
+  //   return passwordRegex.test(password);
+  // }
+
+
   var details = document.querySelectorAll("details");
   details.forEach(function (detail) {
     detail.addEventListener("click", function () {
@@ -10,6 +26,8 @@
       });
     });
   });
+
+
   // Importation de la fonction "push" depuis le module "svelte-spa-router"
   import { push } from "svelte-spa-router";
   // Déclaration de la variable "reload" initialisée à "false"
@@ -26,7 +44,16 @@
   }
   // Fonction appelée lors de la soumission du formulaire de login
   const handleSubmitForm = async (event) => {
-    event.preventDefault(); // Empêche la soumission du formulaire
+    event.preventDefault();
+    // if (!isValidEmail(email)) {
+    //   alert("L'email est invalide");
+    //   return;
+    // }
+
+    // if (!isValidPassword(password)) {
+    //   alert("Le mot de passe est invalide");
+    //   return;
+    // }
     // Appelle la fonction "login" qui retourne un objet contenant le token d'authentification et l'ID du rôle
     const { token, roleID } = await login(email, password);
     // Enregistre le token d'authentification dans le local storage
@@ -91,7 +118,16 @@
   let pwd = "";
   // Fonction qui gère la soumission du formulaire
   const handleSubmit = async (event) => {
-    event.preventDefault(); // Empêche le formulaire d'être envoyé
+    event.preventDefault();
+    // if (!isValidEmail(mail)) {
+    //   alert("L'email est invalide");
+    //   return;
+    // }
+
+    // if (!isValidPassword(pwd)) {
+    //   alert("Le mot de passe est invalide");
+    //   return;
+    // }    
     const data = {
       pseudo: pseudo,
       mail: mail,

@@ -10,6 +10,9 @@
     const response = await fetch(endpoint);
     const json = await response.json();
     articles = json.data;
+
+    console.log("Réponse JSON :", json);
+
   };
 
   onMount(() => {

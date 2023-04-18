@@ -38,7 +38,7 @@
 
   let text = "";
   //SCRIPT COMPTEUR DE MOTS
-  let myMaxLength = 500;
+  let myMaxLength = 2500;
   // Initialiser le compteur de caractères à 0
   let characterCount = 0;
   // Initialiser les caractères restants avec la longueur maximale autorisée

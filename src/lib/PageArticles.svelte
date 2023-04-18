@@ -16,7 +16,7 @@
   const API_BASE_URL = import.meta.env.VITE_URL_DIRECTUS;
 
   const getArticles = async () => {
-    const endpoint = `${API_BASE_URL}/items/articles?filter[categories_id][_eq]=${categoryId}&fields=*,users_id.*,date_created`;
+    const endpoint = `${API_BASE_URL}/items/articles?filter[categories_id][_eq]=${categoryId}&fields=*,users_id.*,date_created&sort=-date_created`;
     const response = await fetch(endpoint);
     const json = await response.json();
     articles = json.data;
