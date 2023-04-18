@@ -21,7 +21,7 @@
       try {
         const response = await fetch(`${API_BASE_URL}/users/me`, {
           headers: {
-            "Authorization": `Bearer ${token}`,
+            Authorization: `Bearer ${token}`,
           },
         });
 
@@ -38,6 +38,7 @@
     }
   });
 </script>
+
 <main>
   <!-- dans action mettre le nom de la page (ex: /profil)  -->
   <form action="" method="post" id="informations" name="informations">
@@ -46,10 +47,11 @@
         class="section__informations"
         aria-labelledby="userpseudo userstatut"
       >
-
         <header aria-label="avatar pseudo statut">
           <img
-            src={import.meta.env.VITE_URL_DIRECTUS + "/assets/" + userData.imgprofil}
+            src={import.meta.env.VITE_URL_DIRECTUS +
+              "/assets/" +
+              userData.imgprofil}
             alt="avatar par défaut des membres"
           />
           <article class="article__pseudostatut">
@@ -60,37 +62,44 @@
 
         <article
           class="article__infoperso"
-          aria-label="informations personnelles">
-      
+          aria-label="informations personnelles"
+        >
           <label for="email">E-mail : </label>
-          <input type="email" name="E-mail" id="email" value="{userData.email}"/>
+          <input type="email" name="E-mail" id="email" value={userData.email} />
           <label for="pwd">Mot de passe : </label>
-          <input type="password" name="pwd" id="pwd" value="{userData.password}"/>
+          <input
+            type="password"
+            name="pwd"
+            id="pwd"
+            value={userData.password}
+          />
           <label for="DateEnregistrement">Date d'enregistrement : </label>
-          <p id="DateEnregistrement"> {new Date(userData.date_created).toLocaleDateString("fr-FR", {
-            day: "numeric",
-            month: "numeric",
-            year: "numeric"
-          })}</p>
+          <p id="DateEnregistrement">
+            {new Date(userData.date_created).toLocaleDateString("fr-FR", {
+              day: "numeric",
+              month: "numeric",
+              year: "numeric",
+            })}
+          </p>
         </article>
+        <div class="buttons">
+          <input
+            class="submit"
+            type="submit"
+            name="submit"
+            value="Enregistrer"
+            spellcheck="false"
+            aria-label="Enregistrer les informations"
+          />
+          <input
+            class="reset"
+            type="reset"
+            name="reset"
+            value="Réinitialiser"
+            aria-label="Réinitialiser les informations"
+          />
+        </div>
       </section>
-      <div class="buttons">
-        <input
-          class="submit"
-          type="submit"
-          name="submit"
-          value="Enregistrer"
-          spellcheck="false"
-          aria-label="Enregistrer les informations"
-        />
-        <input
-          class="reset"
-          type="reset"
-          name="reset"
-          value="Réinitialiser"
-          aria-label="Réinitialiser les informations"
-        />
-      </div>
     </wrapper>
 
     <wrapper class="wrapper__right">
@@ -120,6 +129,8 @@
 
   main {
     @extend %blocprofilregister;
+    @media screen and (min-width: 580px) {
+      padding: 7.5rem;}
     form {
       @media screen and (min-width: 580px) {
         width: 95%;
@@ -149,7 +160,7 @@
             justify-content: center;
             align-items: center;
             line-height: 3rem;
-
+            padding: 1rem;
             img {
               height: 75px;
               margin-right: 2.5rem;
@@ -191,28 +202,54 @@
               justify-content: center;
               margin-top: 2rem;
               gap: 1.5rem;
-            }           
-             input {
+            }
+            input {
               padding: 1rem;
-                background: $color-greenlight;
-                border: 1px solid white;
-                border-radius: 5px;
-                max-width: 285px;
+              background: $color-greenlight;
+              border: 1px solid white;
+              border-radius: 5px;
+              max-width: 285px;
             }
           }
-        }
-        .buttons {
-          @extend %glassmorphism;
-          margin-top: 2rem;
+
+          .buttons {
           display: flex;
+          flex-direction: column;
           justify-content: center;
+          align-items: center;
           padding: 2rem;
+          @media screen and (min-width: 770px) {
+            flex-direction: row;
+          }
+          @media screen and (min-width: 1024px) {
+            flex-direction: column;
+          }
+          @media screen and (min-width: 1440px) {
+            flex-direction: row;
+          }
+          .submit,
+          .reset {
+            @extend %button;
+            min-width: 220px;
+            box-shadow: 0 2px 5px 0 rgba(31, 38, 135, 0.45);
+          }
+          .submit:active,
+          .reset:active {
+            @extend %buttonactive;
+          }
+          .submit:hover,
+          .reset:hover {
+            background-color: $color-greenlight;
+          }
+
           @media screen and (min-width: 580px) {
             padding: 1.5rem 3.5rem;
           }
+
           input {
-            @extend    %inputformbutton;
+            @extend %inputformbutton;
           }
+        }
         }
       }
       .wrapper__right {
@@ -226,7 +263,11 @@
           }
           @media screen and (min-width: 1024px) {
             margin-top: 0;
-            min-height: 635px;
+            min-height: 607px;
+          }
+          @media screen and (min-width: 1440px) {
+            margin-top: 0;
+            min-height: 506px;
           }
 
           .article__statistics {
