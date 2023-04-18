@@ -1,47 +1,50 @@
-# Svelte + Vite
+# Résumé du projet
 
-This template should help get you started developing with Svelte in Vite.
+Le projet consiste en un site web humoristique qui parodie les sites d'informations en ligne. Les articles contiennent de fausses informations qui ne doivent pas être prises au premier degré, et qui touchent diverses thématiques telles que la politique, le sport, la société, les people, les sciences, le numérique et l'horoscope.
 
-## Recommended IDE Setup
+## Besoins et objectifs du projet
 
-[VS Code](https://code.visualstudio.com/) + [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode).
+Le projet a pour but de sensibiliser les gens à l'importance de l'analyse et de la vérification des informations, tout en proposant une approche humoristique et satirique. Nous souhaitons créer un nouveau type de journal qui se différencie des journaux traditionnels en proposant une approche humoristique et originale de l'actualité. Nous espérons également créer une communauté d'internautes qui apprécient l'humour et le second degré, et qui partagent cette vision du monde. La protection de la liberté d'expression est un aspect important du projet, tout comme la création d'un site accessible et responsive.
 
-## Need an official Svelte framework?
+Les objectifs du projet sont de créer des articles humoristiques, de fournir des faux articles pour divertir les internautes et les faire réfléchir sur les aspects sérieux de l'actualité, de générer du trafic et de l'engagement sur les pages du site, et de créer un site accessible et responsive.
 
-Check out [SvelteKit](https://github.com/sveltejs/kit#readme), which is also powered by Vite. Deploy anywhere with its serverless-first approach and adapt to various platforms, with out of the box support for TypeScript, SCSS, and Less, and easily-added support for mdsvex, GraphQL, PostCSS, Tailwind CSS, and more.
+## Thématiques et utilisateurs
 
-## Technical considerations
+Les articles touchent diverses thématiques telles que la politique, l'art, la cuisine, le sport, la société, les people, les sciences, le numérique et l'horoscope. Le site vise un public large et diversifié, en touchant plusieurs catégories d'âge et centres d'intérêt. Les utilisateurs peuvent être non-inscrits, inscrits ou auteurs, chacun ayant des fonctionnalités différentes sur le site.
 
-**Why use this over SvelteKit?**
+Nous souhaitons rendre le site accessible à tous les utilisateurs en prenant en compte leurs spécificités diverses et personnelles, notamment les handicaps.
 
-- It brings its own routing solution which might not be preferable for some users.
-- It is first and foremost a framework that just happens to use Vite under the hood, not a Vite app.
+## Équipe de conception
 
-This template contains as little as possible to get started with Vite + Svelte, while taking into account the developer experience with regards to HMR and intellisense. It demonstrates capabilities on par with the other `create-vite` templates and is a good starting point for beginners dipping their toes into a Vite + Svelte project.
+Le projet est conçu et réalisé par une équipe de cinq personnes :
 
-Should you later need the extended capabilities and extensibility provided by SvelteKit, the template has been structured similarly to SvelteKit so that it is easy to migrate.
+- Tamara, notre product manager / product owner, est responsable de la gestion globale du projet pour s’assurer que les objectifs sont atteints. Elle planifie les étapes nécessaires en coordonnant les équipes.
 
-**Why `global.d.ts` instead of `compilerOptions.types` inside `jsconfig.json` or `tsconfig.json`?**
+- Sébastien, notre lead dev front, supervise la partie front-end. Il effectue les choix techniques sur la partie front.
 
-Setting `compilerOptions.types` shuts out all other types not explicitly listed in the configuration. Using triple-slash references keeps the default TypeScript setting of accepting type information from the entire workspace, while also adding `svelte` and `vite/client` type information.
+- Fred, notre lead dev back, supervise la partie back-end. Il effectue les choix techniques sur la partie back.
 
-**Why include `.vscode/extensions.json`?**
+- L'équipe entière est Git Master, maîtrisant l'outil GIT et venant en aide s'il y a un souci avec celui-ci. Nous sommes les seuls développeurs autorisés à toucher à la branche master.
 
-Other templates indirectly recommend extensions via the README, but this file allows VS Code to prompt the user to install the recommended extension upon opening the project.
+- Enfin, chacun des membres de l'équipe est référent techno, s'informant et se documentant sur les technologies utilisées, leur sémantique et leur utilisation. Nous partageons régulièrement nos connaissances et expériences pour améliorer notre travail.
 
-**Why enable `checkJs` in the JS template?**
+## Technologies utilisées
 
-It is likely that most cases of changing variable types in runtime are likely to be accidental, rather than deliberate. This provides advanced typechecking out of the box. Should you like to take advantage of the dynamically-typed nature of JavaScript, it is trivial to change the configuration.
+Les technologies utilisées comprennent :
 
-**Why is HMR not preserving my local component state?**
+- Svelte pour le front-end, un framework JavaScript moderne et performant pour la création d'interfaces utilisateur web interactives
 
-HMR state preservation comes with a number of gotchas! It has been disabled by default in both `svelte-hmr` and `@sveltejs/vite-plugin-svelte` due to its often surprising behavior. You can read the details [here](https://github.com/rixo/svelte-hmr#svelte-hmr).
+- Vite pour le bundling, un outil nouvelle génération qui accélère le processus de développement en utilisant des fonctionnalités de pointe telles que la compilation en temps réel (JIT)
 
-If you have state that's important to retain within a component, consider creating an external store which would not be replaced by HMR.
+- Directus pour le back-end, un système de gestion de contenu headless open source qui permet aux développeurs de créer des API personnalisées pour les applications web et mobiles
 
-```js
-// store.js
-// An extremely simple external store
-import { writable } from 'svelte/store'
-export default writable(0)
-```
+- API REST Directus pour les requêtes HTTP standard
+Sass pour étendre les fonctionnalités de CSS
+
+## Accessibilité et responsivité
+
+Nous avons également pris en compte l'accessibilité pour rendre le parcours de l'utilisateur accessible à tous, en nous basant sur les normes a11y et RGAA 4.1, ainsi que la responsivité pour s'adapter à la lecture sur différents types d'appareils.
+
+## Mot de la fin
+
+En somme, notre équipe travaille en étroite collaboration pour créer un site web humoristique et accessible qui propose une approche unique de l'actualité. Nous sommes fiers de notre travail et espérons que notre projet sera apprécié par un public diversifié.
