@@ -47,6 +47,7 @@
         }),
       }
     );
+        
     const json = await response.json();
     return json.data;
   };
@@ -68,6 +69,9 @@ const scrollToComment = (commentId) => {
     commentElement.scrollIntoView({ behavior: "smooth", block: "center" });
   }
 };
+
+let isUserLoggedIn = localStorage.getItem("token") !== null;
+
 </script>
 
 <section>
@@ -100,7 +104,7 @@ const scrollToComment = (commentId) => {
     </article>
   {/each}
 </section>
-
+{#if isUserLoggedIn}
 <div class="write">
   <form on:submit={handleSubmitForm}>
     <label for="textarea" />
@@ -123,6 +127,11 @@ const scrollToComment = (commentId) => {
     </button>
   </form>
 </div>
+{:else}
+  <p id="connexion-message">
+    Rejoignez le club des bavards ! <a href="/connexion" use:link>Connectez-vous ou inscrivez-vous</a> pour partager vos pépites de sagesse humoristique en commentant l'article !
+  </p>
+{/if}
 
 <style lang="scss">
   @import "../utils/extends";
@@ -231,6 +240,27 @@ const scrollToComment = (commentId) => {
           background-color: $color-greenlight;
         }
       }
+    }
+  }
+
+  #connexion-message{
+    display: block;
+    @extend %glassmorphism;
+    margin: 3rem;
+    padding: 2rem;
+    align-self: center;
+    @media screen and (min-width: 770px) {
+      padding-inline: 17vw;
+    }
+    @media screen and (min-width: 1024px) {
+      justify-content: center;
+      flex-direction: column;
+      max-width: 910px;
+      min-width: 910px;
+      padding-inline: 15vw;
+    }
+    @media screen and (min-width: 1440px) {
+      padding-inline: 10vw;
     }
   }
 </style>
