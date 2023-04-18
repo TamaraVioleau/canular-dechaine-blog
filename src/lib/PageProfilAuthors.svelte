@@ -118,6 +118,7 @@
             type="text"
             name="titre"
             id="titre"
+            required
             bind:value={articleTitle}
           />
           <label for="image">Image de l'article : </label>
@@ -128,6 +129,7 @@
             accept="image/png, image/jpeg, image/WebpImage"
             title="Importer une image"
             aria-label="Importer une image"
+            
           />
           <label for="image">Description courte de l'image : </label>
           <input
@@ -135,6 +137,7 @@
             name="description image"
             id="description"
             bind:value={articleAlt}
+            required
           />
           <label for="textarea">Contenu de l'article :</label>
           <textarea
@@ -144,6 +147,7 @@
             on:input={handleInput}
             bind:value={articleContent}
             placeholder="Ecrit de la bonne humeur ici"
+            required
           />
           <p>
             Nombre de caractères restant : <span id="characterCounter"
