@@ -1,5 +1,6 @@
 <script>
   import Router from "svelte-spa-router";
+  
   const onRouteLoaded = () => {
     window.scrollTo(0, 0);
   };
@@ -20,15 +21,18 @@
   import LegalInformation from "./lib/LegalInformation.svelte";
   import About from "./lib/About.svelte";
   import TermsOfUse from "./lib/TermsOfUse.svelte";
+  import ProtectedPageProfilAuthors from "./Protected/ProtectedPageProfilAuthors.svelte";
+  import ProtectedPageProfilMembers from "./Protected/ProtectedPageProfilMembers.svelte";
 
+  
   const routes = {
     "/": Homepage,
     "/connexion": Register,
     "/articles/:id": PageArticles,
     "/article/:article_id": PageArticle,
     "/modification/:article_id": ModifiedArticle,
-    "/profil-membre": PageProfilMembers,
-    "/profil-auteur": PageProfilAuthors,
+    "/profil-membre": ProtectedPageProfilMembers,
+    "/profil-auteur": ProtectedPageProfilAuthors,
     "/contact": Contact,
     "/mentions-legales": LegalInformation,
     "/a-propos": About,
