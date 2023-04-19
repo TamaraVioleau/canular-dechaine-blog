@@ -94,13 +94,15 @@ const handleProfileIconClick = () => {
       <div class="navigation__search">
         <!-- Ajout du chemin de la page dans action -->
         <form on:submit|preventDefault={handleSearch} id="formsearch">
-          <input
-            bind:value={query}
-            type="text"
-            placeholder="Search.."
-            name="search"
-            id="search"
-          />
+          <label for="rechercher">
+            <input
+              bind:value={query}
+              type="text"
+              placeholder="Search.."
+              name="search"
+              id="search"
+            />
+          </label>
           <button type="submit" id="buttonsearch">
             <i class="fa-solid fa-magnifying-glass" />
           </button>
