@@ -1,20 +1,22 @@
 <script>
-  import { link } from "svelte-spa-router";   
-  
-// Fonction de validation pour les emails
-   function isValidEmail(email) {
-   const emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
-   return emailRegex.test(email);
- }
+  import { link } from "svelte-spa-router"; // Importer la fonction "link" du routeur svelte-spa-router pour créer des liens
+  import { push } from "svelte-spa-router"; // Importer la fonction "push" du routeur svelte-spa-router pour naviguer entre les pages
 
- // Fonction de validation pour les mots de passe
-   function isValidPassword(password) {
-  // Le mot de passe doit contenir au moins 8 caractères, dont au moins une lettre majuscule,
-   // une lettre minuscule, un chiffre et un caractère spécial.
-   const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$/;
-   return passwordRegex.test(password);
- }
+  // Fonction isValidEmail qui vérifie si l'argument email est un e-mail valide.
 
+  function isValidEmail(email) {
+    const emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+    return emailRegex.test(email);
+  }
+
+  // Fonction isValidPassword qui vérifie si l'argument password est un mot de passe valide.
+  function isValidPassword(password) {
+    // Le mot de passe doit contenir au moins 8 caractères, dont au moins une lettre majuscule,
+    // une lettre minuscule, un chiffre et un caractère spécial.
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$/;
+    return passwordRegex.test(password);
+  }
 
   var details = document.querySelectorAll("details");
   details.forEach(function (detail) {
@@ -27,16 +29,18 @@
     });
   });
 
+  /// LOGIN ///
 
-  // Importation de la fonction "push" depuis le module "svelte-spa-router"
-  import { push } from "svelte-spa-router";
   // Déclaration de la variable "reload" initialisée à "false"
   export let reload = false;
+
   // Déclaration des variables "email" et "password" pour le formulaire de login
   let email = "";
   let password = "";
+
   // Vérifie si l'utilisateur est déjà connecté en vérifiant la présence du token d'authentification dans le local storage
   const isLogged = window.localStorage.getItem("token") != null;
+
   // Si l'utilisateur est déjà connecté, on supprime le token du local storage et on recharge la page
   if (isLogged) {
     window.localStorage.removeItem("token");
@@ -45,22 +49,27 @@
   // Fonction appelée lors de la soumission du formulaire de login
   const handleSubmitForm = async (event) => {
     event.preventDefault();
-if (!isValidEmail(email)) {
-   alert("L'email est invalide");
- return;
- }
+    if (!isValidEmail(email)) {
+      alert("L'email est invalide");
+      return;
+    }
 
- if (!isValidPassword(password)) {
-   alert("Le mot de passe est invalide");
-   return;
-}
+    if (!isValidPassword(password)) {
+      alert("Le mot de passe est invalide");
+      return;
+    }
+
     // Appelle la fonction "login" qui retourne un objet contenant le token d'authentification et l'ID du rôle
     const { token, roleID } = await login(email, password);
-    // Enregistre le token d'authentification dans le local storage
-    window.localStorage.setItem("token", token);
-    window.localStorage.setItem("userType", roleID === "213b3c24-fb05-446d-ab79-fd05adbbd6e2" ? "member" : "author");
 
-    console.log("Token:", token);
+    // Stocke le token et le type d'utilisateur dans le localStorage.
+    window.localStorage.setItem("token", token);
+    window.localStorage.setItem(
+      "userType",
+      roleID === "213b3c24-fb05-446d-ab79-fd05adbbd6e2" ? "member" : "author"
+    );
+    //console.log("Token:", token);
+
     // Si la variable "reload" est vraie, on recharge la page
     if (reload) {
       location.reload();
@@ -77,9 +86,10 @@ if (!isValidEmail(email)) {
       }
     }
   };
-  // Fonction qui envoie une requête de login au serveur et retourne le token d'authentification et l'ID du rôle
+  // Fonction "login" qui permet de se connecter en utilisant les paramètres email et password.
   const login = async (email, password) => {
     const endpoint = import.meta.env.VITE_URL_DIRECTUS + "/auth/login"; // URL de l'API de login
+  
     // Envoie une requête de type "POST" avec les données de login au format JSON
     const response = await fetch(endpoint, {
       method: "POST",
@@ -91,6 +101,7 @@ if (!isValidEmail(email)) {
         password: password,
       }),
     });
+
     // Extrait le contenu de la réponse au format JSON
     const json = await response.json();
     // Récupère le token d'authentification depuis le JSON
@@ -113,23 +124,27 @@ if (!isValidEmail(email)) {
     // Retourne un objet contenant le token d'authentification et l'ID du rôle
     return { token, roleID };
   };
-  //////////// Register /////////////
+
+
+  /// REGISTER ///
+
   // Initialisation des variables pour stocker les données du formulaire
   let pseudo = "";
   let mail = "";
   let pwd = "";
+
   // Fonction qui gère la soumission du formulaire
   const handleSubmit = async (event) => {
     event.preventDefault();
- if (!isValidEmail(mail)) {
- alert("L'email est invalide");
-   return;
-}
+    if (!isValidEmail(mail)) {
+      alert("L'email est invalide");
+      return;
+    }
 
- if (!isValidPassword(pwd)) {
-    alert("Le mot de passe est invalide");
-       return;
-    }    
+    if (!isValidPassword(pwd)) {
+      alert("Le mot de passe est invalide");
+      return;
+    }
     const data = {
       pseudo: pseudo,
       mail: mail,
@@ -147,6 +162,7 @@ if (!isValidEmail(email)) {
       console.error(error); // Affichage d'une erreur éventuelle dans la console
     }
   };
+  
   // Fonction qui envoie les données du formulaire à l'API pour enregistrer un nouvel utilisateur
   async function register(data) {
     const endpoint = import.meta.env.VITE_URL_DIRECTUS + "/users"; // URL de l'API pour enregistrer un nouvel utilisateur
