@@ -2,16 +2,27 @@
   import { link } from "svelte-spa-router";
   import { onMount } from "svelte";
 
+  // Variable articles pour contenir la liste des articles récupérés.
   let articles = [];
 
   const API_BASE_URL = import.meta.env.VITE_URL_DIRECTUS;
+
+  // Fonction asynchrone getArticles pour récupérer les articles depuis l'API.
   const getArticles = async () => {
+
+    // Construit l'URL de l'API pour récupérer les articles triés par date de création décroissante, en limitant à 3 et en incluant certains champs spécifiques.
     const endpoint = `${API_BASE_URL}/items/articles?sort=-date_created&limit=3&fields=*,users_id.pseudo,date_created`;
+
+    // Effectue une requête fetch vers l'URL de l'API.
     const response = await fetch(endpoint);
+
+    // Attend la réponse et la convertit en objet JSON.
     const json = await response.json();
+
+    // Met à jour la variable articles avec les données récupérées.
     articles = json.data;
 
-    console.log("Réponse JSON :", json);
+    //console.log("Réponse JSON :", json);
 
   };
 
