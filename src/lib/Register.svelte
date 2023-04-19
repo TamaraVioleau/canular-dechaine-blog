@@ -1,20 +1,20 @@
 <script>
-  import { link } from "svelte-spa-router";   
-  
-// Fonction de validation pour les emails
-   function isValidEmail(email) {
-   const emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
-   return emailRegex.test(email);
- }
+  import { link } from "svelte-spa-router";
 
- // Fonction de validation pour les mots de passe
-   function isValidPassword(password) {
-  // Le mot de passe doit contenir au moins 8 caractères, dont au moins une lettre majuscule,
-   // une lettre minuscule, un chiffre et un caractère spécial.
-   const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$/;
-   return passwordRegex.test(password);
- }
+  // Fonction de validation pour les emails
+  function isValidEmail(email) {
+    const emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+    return emailRegex.test(email);
+  }
 
+  // Fonction de validation pour les mots de passe
+  function isValidPassword(password) {
+    // Le mot de passe doit contenir au moins 8 caractères, dont au moins une lettre majuscule,
+    // une lettre minuscule, un chiffre et un caractère spécial.
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$/;
+    return passwordRegex.test(password);
+  }
 
   var details = document.querySelectorAll("details");
   details.forEach(function (detail) {
@@ -26,7 +26,6 @@
       });
     });
   });
-
 
   // Importation de la fonction "push" depuis le module "svelte-spa-router"
   import { push } from "svelte-spa-router";
@@ -45,21 +44,27 @@
   // Fonction appelée lors de la soumission du formulaire de login
   const handleSubmitForm = async (event) => {
     event.preventDefault();
-if (!isValidEmail(email)) {
-   alert("L'email est invalide");
- return;
- }
+    if (!isValidEmail(email)) {
+      alert("L'email est invalide");
+      return;
+    }
 
- if (!isValidPassword(password)) {
-   alert("Le mot de passe est invalide");
-   return;
-}
+    if (!isValidPassword(password)) {
+      alert("Le mot de passe est invalide");
+      return;
+    }
     // Appelle la fonction "login" qui retourne un objet contenant le token d'authentification et l'ID du rôle
     const { token, roleID } = await login(email, password);
     // Enregistre le token d'authentification dans le local storage
     window.localStorage.setItem("token", token);
-    window.localStorage.setItem("userType", roleID === "213b3c24-fb05-446d-ab79-fd05adbbd6e2" ? "member" : "author");
-
+    window.localStorage.setItem(
+      "userType",
+      roleID === "213b3c24-fb05-446d-ab79-fd05adbbd6e2" ? "member" : "author"
+    );
+    window.localStorage.setItem(
+      "userType",
+      roleID === "213b3c24-fb05-446d-ab79-fd05adbbd6e2" ? "member" : "author"
+    );
     console.log("Token:", token);
     // Si la variable "reload" est vraie, on recharge la page
     if (reload) {
@@ -67,11 +72,14 @@ if (!isValidEmail(email)) {
     } else {
       // Redirige l'utilisateur vers la page de profil correspondante en fonction de l'ID du rôle
       if (roleID === "213b3c24-fb05-446d-ab79-fd05adbbd6e2") {
-        push("/profil-membre");
+        //on force la page à se rafraîchir lors de la redirection
+        window.location.href = "/profil-membre";
       } else if (roleID === "645cbe7e-cdf9-409c-bc58-863ce065dfbb") {
-        push("/profil-auteur");
+        //on force la page à se rafraîchir lors de la redirection
+        window.location.href = "/profil-auteur";
       } else if (roleID === "e2a5bde2-09ab-44e4-8669-c9dc34c157e5") {
-        push("/");
+        //on force la page à se rafraîchir lors de la redirection
+        window.location.href = "/";
       } else {
         console.error("Unknown role ID:", roleID);
       }
@@ -121,15 +129,15 @@ if (!isValidEmail(email)) {
   // Fonction qui gère la soumission du formulaire
   const handleSubmit = async (event) => {
     event.preventDefault();
- if (!isValidEmail(mail)) {
- alert("L'email est invalide");
-   return;
-}
+    if (!isValidEmail(mail)) {
+      alert("L'email est invalide");
+      return;
+    }
 
- if (!isValidPassword(pwd)) {
-    alert("Le mot de passe est invalide");
-       return;
-    }    
+    if (!isValidPassword(pwd)) {
+      alert("Le mot de passe est invalide");
+      return;
+    }
     const data = {
       pseudo: pseudo,
       mail: mail,
@@ -139,10 +147,9 @@ if (!isValidEmail(email)) {
       await register(data); // Appel de la fonction "register" qui envoie les données à l'API
       const { token, roleID } = await login(mail, pwd); // Appelle la fonction "login" pour obtenir le jeton d'authentification et l'ID du rôle
       window.localStorage.setItem("token", token); // Stockage du token dans le localStorage
-      window.localStorage.setItem("userType", "member");
-
       console.log("Token:", token);
-      push("/profil-membre"); // Redirection vers la page du profil membre
+      //on force la page à se rafraîchir lors de la redirection
+      window.location.href = "/profil-membre"; 
     } catch (error) {
       console.error(error); // Affichage d'une erreur éventuelle dans la console
     }
