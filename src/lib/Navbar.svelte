@@ -1,13 +1,14 @@
 <script>
+  import { onMount } from "svelte";
+
   import { link } from "svelte-spa-router";
-      // JS pour le menu burger
-      let searchLinksVisible = false;
+  // JS pour le menu burger
+  let searchLinksVisible = false;
   const handleClick = () => {
     searchLinksVisible = !searchLinksVisible;
   };
 
-
- //Lorsque l'utilisateur est connecté
+  //Lorsque l'utilisateur est connecté
   const isLogged = window.localStorage.getItem("token") != null;
   const logins = [
     {
@@ -38,32 +39,68 @@
 
   let query = "";
 
-const handleSearch = async (event) => {
-  event.preventDefault();
+  const handleSearch = async (event) => {
+    event.preventDefault();
 
-  const API_BASE_URL = import.meta.env.VITE_URL_DIRECTUS;
-  const endpoint = `${API_BASE_URL}/items/articles?search=${query}`;
-  const response = await fetch(endpoint);
-  const json = await response.json();
-  const articles = json.data;
+    const API_BASE_URL = import.meta.env.VITE_URL_DIRECTUS;
+    const endpoint = `${API_BASE_URL}/items/articles?search=${query}`;
+    const response = await fetch(endpoint);
+    const json = await response.json();
+    const articles = json.data;
 
-  // Rediriger vers la page de recherche avec les articles trouvés
-  push(`/search/${encodeURIComponent(query)}`);
+    // Rediriger vers la page de recherche avec les articles trouvés
+    push(`/search/${encodeURIComponent(query)}`);
   };
+
+  //icon profil redirection profil
+  let userRoleID = null;
+  onMount(async () => {
+  userRoleID = await getCurrentUserRole();
+});
+
+const getCurrentUserRole = async () => {
+  const token = window.localStorage.getItem("token");
+  if (!token) {
+    return null;
+  }
+
+  const response = await fetch(`${import.meta.env.VITE_URL_DIRECTUS}/users/me`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+  const json = await response.json();
+  return json.data.role;
+};
+
+const handleProfileIconClick = () => {
+  if (userRoleID === "213b3c24-fb05-446d-ab79-fd05adbbd6e2") {
+    push("/profil-membre");
+  } else if (userRoleID === "645cbe7e-cdf9-409c-bc58-863ce065dfbb" || userRoleID === "e2a5bde2-09ab-44e4-8669-c9dc34c157e5") {
+    push("/profil-auteur");
+  } else {
+    console.error("Unknown role ID:", userRoleID);
+  }
+};
 </script>
 
 <nav>
   <a use:link href="/"
     ><img src="src\assets\logo-blog.png" alt="logo site" id="logo" /></a
   >
-  
 
   <div class="nav__navigation">
     <div class="searchlogin">
       <div class="navigation__search">
         <!-- Ajout du chemin de la page dans action -->
         <form on:submit|preventDefault={handleSearch} id="formsearch">
-          <input bind:value={query} type="text" placeholder="Search.." name="search" id="search" />
+          <input
+            bind:value={query}
+            type="text"
+            placeholder="Search.."
+            name="search"
+            id="search"
+          />
           <button type="submit" id="buttonsearch">
             <i class="fa-solid fa-magnifying-glass" />
           </button>
@@ -71,7 +108,7 @@ const handleSearch = async (event) => {
       </div>
 
       {#each logins as login}
-      <div class="navigation__login">
+        <div class="navigation__login">
           <a use:link href={login.url} id="login">
             <button type="submit" id="buttonlogin">
               <span id="logtext">{login.text}</span></button
@@ -79,7 +116,13 @@ const handleSearch = async (event) => {
             <i id="iconlog" class={login.iconlog} />
           </a>
         </div>
-        <div id="iconprofil" class={login.iconprofil} />
+        {#if isLogged}
+          <div
+            id="iconprofil"
+            class={login.iconprofil}
+            on:click={handleProfileIconClick}
+          />
+        {/if}
       {/each}
 
       <!-- ici le bouton du menu responsive -->
@@ -114,12 +157,12 @@ const handleSearch = async (event) => {
         </div>
         <ul>
           {#each categories as category}
-          <li>
-            <a use:link href={`/articles/${category.id}`}>{category.name}</a>
-          </li>
+            <li>
+              <a use:link href={`/articles/${category.id}`}>{category.name}</a>
+            </li>
           {/each}
         </ul>
-      </div> 
+      </div>
       <!-- ici fini le bouton du menu responsive -->
     </div>
 
@@ -288,7 +331,7 @@ const handleSearch = async (event) => {
           flex-wrap: wrap;
           justify-content: center;
           text-align: center;
-         }
+        }
         li {
           @media screen and (min-width: 770px) {
             border-radius: 10px;
@@ -375,7 +418,6 @@ const handleSearch = async (event) => {
     #navigation__mobile {
       display: flex;
       justify-content: center;
-      
     }
     ul {
       li {
