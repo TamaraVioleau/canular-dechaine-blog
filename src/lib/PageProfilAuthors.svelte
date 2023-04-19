@@ -2,7 +2,8 @@
   import InfoAuthors from "../components/InfoAuthors.svelte";
   const API_BASE_URL = import.meta.env.VITE_URL_DIRECTUS;
 
-  // JS pour le compteur de mots dans l'écriture d'un article
+  // COMPTEUR DE MOTS POUR LA SAISIE D'UN ARTICLE
+
   // longueur maximale dans le textarea
   let myMaxLength = 2500;
   // Initialiser le compteur de caractères à 0
@@ -17,7 +18,9 @@
     charactersRemaining = myMaxLength - characterCount;
   };
 
-  //////////////// Requête pour récupérer les catégories /////////////////////////////////////////
+
+  // Requête pour récupérer les catégories pour les afficher dans le menu déroulant
+
   //création d'une variable qui récupère les informations sous forme de tableau
   let categories = [];
 
@@ -29,6 +32,7 @@
     // Récupération des données et incrémentation dans le tableau
     categories = json.data;
   };
+  // Appelle la fonction getCategories pour récupérer les catégories
   getCategories();
 
   let articles = [];
@@ -47,6 +51,7 @@
     return json.data;
   };
 
+  // Envoie le nouvel article à l'API
   const postComment = async () => {
     const userInfo = await getUserInfo();
     const response = await fetch(
@@ -70,6 +75,7 @@
     return json.data;
   };
 
+  // Gère la soumission du formulaire
   const handleSubmitForm = async (event) => {
     event.preventDefault();
     const userInfo = await getUserInfo();
