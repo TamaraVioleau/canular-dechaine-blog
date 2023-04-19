@@ -1,15 +1,19 @@
 <script>
-  import { onMount } from "svelte";
+  import { onMount } from "svelte"; // Importer onMount pour exécuter des actions lors de la création du composant
+  import { link } from "svelte-spa-router"; // Importer la fonction "link" du routeur svelte-spa-router pour créer des liens
+  import { push } from "svelte-spa-router"; // Importer la fonction "push" du routeur svelte-spa-router pour naviguer entre les pages
 
-  import { link } from "svelte-spa-router";
-  // JS pour le menu burger
+  // MENU BURGER
+  // Variable pour afficher ou masquer les liens de recherche
   let searchLinksVisible = false;
+  // Fonction pour basculer la visibilité des liens de recherche
   const handleClick = () => {
     searchLinksVisible = !searchLinksVisible;
   };
 
-  //Lorsque l'utilisateur est connecté
+  // Vérifier si l'utilisateur est connecté en vérifiant la présence d'un token dans le stockage local
   const isLogged = window.localStorage.getItem("token") != null;
+  // Création d'un tableau d'objets avec les informations de connexion
   const logins = [
     {
       iconlog: isLogged
@@ -21,70 +25,96 @@
     },
   ];
 
-  //Récupération des catégories de la BDD
+  //AFFICHAGE DES CATÉGORIES DANS LA NAVBAR
+  // Création d'un tableau d'objets avec les informations de connexion
   let categories = [];
 
+  // Fonction pour récupérer les catégories
   const getCategories = async () => {
+    // Récupérer l'URL de l'API
     const endpoint = import.meta.env.VITE_URL_DIRECTUS + "/items/categories";
+    // Envoyer une requête à l'API
     const response = await fetch(endpoint);
+    // Convertir la réponse en JSON
     const json = await response.json();
 
     // Récupération des données et incrémentation dans le tableau
     categories = json.data;
   };
+  // Appel de la fonction pour obtenir les catégories
   getCategories();
 
-  //Barre de recherche
-  import { push } from "svelte-spa-router";
-
+  //BARRE DE RECHERCHE
+  // Création d'une variable pour stocker la requête de recherche
   let query = "";
 
+  // Fonction pour gérer la soumission du formulaire de recherche
   const handleSearch = async (event) => {
+    // Empêcher le comportement par défaut de la soumission du formulaire
     event.preventDefault();
 
+    // Construire l'URL de l'API de recherche
     const API_BASE_URL = import.meta.env.VITE_URL_DIRECTUS;
     const endpoint = `${API_BASE_URL}/items/articles?search=${query}`;
+    // Envoyer une requête à l'API
     const response = await fetch(endpoint);
+    // Convertir la réponse en JSON
     const json = await response.json();
-    const articles = json.data;
+    console.log(json);
 
     // Rediriger vers la page de recherche avec les articles trouvés
     push(`/search/${encodeURIComponent(query)}`);
   };
 
-  //icon profil redirection profil
+  //RECUPERATION DU ROLE DE L'UTILISATEUR
+  // Création d'une variable pour stocker l'ID du rôle de l'utilisateur
   let userRoleID = null;
+
+  // Fonction pour obtenir le rôle de l'utilisateur lors de la création du composant
   onMount(async () => {
     userRoleID = await getCurrentUserRole();
   });
 
+  // Fonction pour obtenir le rôle de l'utilisateur actuel
   const getCurrentUserRole = async () => {
+    // Récupération du token présent dans le stockage local
     const token = window.localStorage.getItem("token");
+    // Si le token n'existe pas, retourner null
     if (!token) {
       return null;
     }
-
+    // Envoyer une requête à l'API pour obtenir les informations de l'utilisateur connecté
     const response = await fetch(
       `${import.meta.env.VITE_URL_DIRECTUS}/users/me`,
       {
         headers: {
+          // Inclure le token d'autorisation dans les en-têtes de la requête
           Authorization: `Bearer ${token}`,
         },
       }
     );
+    // Convertir la réponse en JSON
     const json = await response.json();
+    // Retourner l'ID du rôle de l'utilisateur
     return json.data.role;
   };
 
-  const handleProfileClick = () => {
-  const userType = window.localStorage.getItem("userType");
+  //REDIRECTION SUR LA PAGE PROFIL AU CLIC SUR L'ICONE
 
-  if (userType === "member") {
-    push("/profil-membre");
-  } else if (userType === "author") {
-    push("/profil-auteur");
-  }
-};
+  // Fonction pour gérer le clic sur le bouton du profil
+  const handleProfileClick = () => {
+    // Récupérer le type d'utilisateur du stockage local
+    const userType = window.localStorage.getItem("userType");
+
+    // Si l'utilisateur est un membre, naviguer vers le profil membre
+    if (userType === "member") {
+      push("/profil-membre");
+
+    // Si l'utilisateur est un auteur, naviguer vers le profil auteur
+    } else if (userType === "author") {
+      push("/profil-auteur");
+    }
+  };
 </script>
 
 <nav>
@@ -122,7 +152,11 @@
           </a>
         </div>
 
-        <div on:click={handleProfileClick} id="iconprofil" class={login.iconprofil} />
+        <div
+          on:click={handleProfileClick}
+          id="iconprofil"
+          class={login.iconprofil}
+        />
       {/each}
 
       <!-- ici le bouton du menu responsive -->

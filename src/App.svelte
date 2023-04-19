@@ -50,10 +50,3 @@
   <Footer />
 
 
-<!-- 
-<ModifiedArticle/>
-<SearchPage/>
-<Register />
-<PageProfilMembers />
-<PageArticle/>
--->
