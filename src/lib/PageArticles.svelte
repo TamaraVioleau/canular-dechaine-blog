@@ -1,12 +1,14 @@
 <script>
   import { link } from "svelte-spa-router";
 
+  // Exporte la variable "params" qui contient les paramètres de la route
   export let params;
 
   let categoryId;
   let categoryName;
   let articles = [];
 
+  // Réagit aux changements de la variable "params.id" et appelle les fonctions pour récupérer les données
   $: if (params.id) {
     categoryId = params.id;
     getCategoryName();
@@ -15,6 +17,7 @@
 
   const API_BASE_URL = import.meta.env.VITE_URL_DIRECTUS;
 
+  // Fonction pour récupérer les articles de la catégorie spécifiée
   const getArticles = async () => {
     const endpoint = `${API_BASE_URL}/items/articles?filter[categories_id][_eq]=${categoryId}&fields=*,users_id.*,date_created&sort=-date_created`;
     const response = await fetch(endpoint);
@@ -22,6 +25,7 @@
     articles = json.data;
   };
 
+  // Fonction pour récupérer le nom de la catégorie spécifiée
   const getCategoryName = async () => {
     const endpoint = `${API_BASE_URL}/items/categories/${categoryId}`;
     const response = await fetch(endpoint);
