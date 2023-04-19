@@ -58,6 +58,8 @@ if (!isValidEmail(email)) {
     const { token, roleID } = await login(email, password);
     // Enregistre le token d'authentification dans le local storage
     window.localStorage.setItem("token", token);
+    window.localStorage.setItem("userType", roleID === "213b3c24-fb05-446d-ab79-fd05adbbd6e2" ? "member" : "author");
+
     console.log("Token:", token);
     // Si la variable "reload" est vraie, on recharge la page
     if (reload) {
@@ -137,6 +139,8 @@ if (!isValidEmail(email)) {
       await register(data); // Appel de la fonction "register" qui envoie les données à l'API
       const { token, roleID } = await login(mail, pwd); // Appelle la fonction "login" pour obtenir le jeton d'authentification et l'ID du rôle
       window.localStorage.setItem("token", token); // Stockage du token dans le localStorage
+      window.localStorage.setItem("userType", "member");
+
       console.log("Token:", token);
       push("/profil-membre"); // Redirection vers la page du profil membre
     } catch (error) {
