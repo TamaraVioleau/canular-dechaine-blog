@@ -55,31 +55,34 @@
   //icon profil redirection profil
   let userRoleID = null;
   onMount(async () => {
-  userRoleID = await getCurrentUserRole();
-});
-
-const getCurrentUserRole = async () => {
-  const token = window.localStorage.getItem("token");
-  if (!token) {
-    return null;
-  }
-
-  const response = await fetch(`${import.meta.env.VITE_URL_DIRECTUS}/users/me`, {
-    headers: {
-      Authorization: `Bearer ${token}`
-    }
+    userRoleID = await getCurrentUserRole();
   });
-  const json = await response.json();
-  return json.data.role;
-};
 
-const handleProfileIconClick = () => {
-  if (userRoleID === "213b3c24-fb05-446d-ab79-fd05adbbd6e2") {
+  const getCurrentUserRole = async () => {
+    const token = window.localStorage.getItem("token");
+    if (!token) {
+      return null;
+    }
+
+    const response = await fetch(
+      `${import.meta.env.VITE_URL_DIRECTUS}/users/me`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const json = await response.json();
+    return json.data.role;
+  };
+
+  const handleProfileClick = () => {
+  const userType = window.localStorage.getItem("userType");
+
+  if (userType === "member") {
     push("/profil-membre");
-  } else if (userRoleID === "645cbe7e-cdf9-409c-bc58-863ce065dfbb" || userRoleID === "e2a5bde2-09ab-44e4-8669-c9dc34c157e5") {
+  } else if (userType === "author") {
     push("/profil-auteur");
-  } else {
-    console.error("Unknown role ID:", userRoleID);
   }
 };
 </script>
@@ -118,13 +121,8 @@ const handleProfileIconClick = () => {
             <i id="iconlog" class={login.iconlog} />
           </a>
         </div>
-        {#if isLogged}
-          <div
-            id="iconprofil"
-            class={login.iconprofil}
-            on:click={handleProfileIconClick}
-          />
-        {/if}
+
+        <div on:click={handleProfileClick} id="iconprofil" class={login.iconprofil} />
       {/each}
 
       <!-- ici le bouton du menu responsive -->
