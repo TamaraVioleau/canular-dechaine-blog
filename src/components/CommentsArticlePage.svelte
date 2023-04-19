@@ -1,16 +1,23 @@
 <script>
   import { link } from "svelte-spa-router";
+
+  // Déclare une variable exportable "article_id" pour recevoir l'ID de l'article en tant que prop
   export let article_id;
+
+  // Initialise un tableau vide pour stocker les commentaires
   let comments = [];
 
+  // Initialise une variable pour contenir le contenu du commentaire
   let commentContent = "";
 
+  // Exécute la fonction "getComments" si "article_id" change
   $: if (article_id) {
     getComments();
   }
 
   const API_BASE_URL = import.meta.env.VITE_URL_DIRECTUS;
 
+  // Récupère les commentaires d'un article
   const getComments = async () => {
     const endpoint = `${API_BASE_URL}/items/comments?filter[articles_id][_eq]=${article_id}&fields=content,users_id.*,date_created`;
     console.log("URL d'endpoint pour les commentaires :", endpoint); // Log de débogage
@@ -20,6 +27,7 @@
     comments = json.data;
   };
 
+  // Récupère les informations de l'utilisateur connecté
   const getUserInfo = async () => {
     const response = await fetch(`${API_BASE_URL}/users/me`, {
       headers: {
@@ -30,6 +38,7 @@
     return json.data;
   };
 
+  // Envoie le commentaire à l'API
   const postComment = async () => {
     const userInfo = await getUserInfo();
     const response = await fetch(
@@ -52,6 +61,7 @@
     return json.data;
   };
 
+  // Gère la soumission du formulaire
   const handleSubmitForm = async (event) => {
   event.preventDefault();
   const userInfo = await getUserInfo();
@@ -63,6 +73,7 @@
   scrollToComment(comment.id); // Faites défiler jusqu'au dernier commentaire ajouté
 };
 
+// Fait défiler la page jusqu'au commentaire spécifié
 const scrollToComment = (commentId) => {
   const commentElement = document.getElementById(`comment-${commentId}`);
   if (commentElement) {
@@ -70,6 +81,7 @@ const scrollToComment = (commentId) => {
   }
 };
 
+// Vérifie si l'utilisateur est connecté
 let isUserLoggedIn = localStorage.getItem("token") !== null;
 
 </script>
