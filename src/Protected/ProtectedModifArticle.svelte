@@ -7,7 +7,7 @@
   
   onMount(async () => {
     const role = await getUserRole();
-    if (role === "645cbe7e-cdf9-409c-bc58-863ce065dfbb") {
+    if (role === "645cbe7e-cdf9-409c-bc58-863ce065dfbb" || role === "e2a5bde2-09ab-44e4-8669-c9dc34c157e5") {
       hasAccess = true;
     }
   });
