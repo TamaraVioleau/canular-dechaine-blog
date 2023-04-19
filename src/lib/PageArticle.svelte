@@ -1,54 +1,69 @@
 <script>
   import { link, push } from "svelte-spa-router";
+
+  // Importe le composant CommentsArticlePage depuis le fichier CommentsArticlePage.svelte.
   import CommentsArticlePage from "../components/CommentsArticlePage.svelte";
-  
-  //Récupération de l'article
+
+  // Récupère les paramètres passés au composant et extrait l'ID de l'article.
   export let params = {};
   const article_id = params.article_id;
 
+  // Fonction asynchrone getArticle pour récupérer un article en fonction de son ID.
   const getArticle = async (id) => {
-    const endpoint = `${import.meta.env.VITE_URL_DIRECTUS}/items/articles/${id}?fields=*,users_id.*,date_created`;
+    const endpoint = `${
+      import.meta.env.VITE_URL_DIRECTUS
+    }/items/articles/${id}?fields=*,users_id.*,date_created`;
     const response = await fetch(endpoint);
     const json = await response.json();
     return json.data;
   };
 
-  //Likes
+  // LIKES //
   let count = parseInt(localStorage.getItem("heartCount")) || 0;
   let isActive = localStorage.getItem("heartActive") === "true";
 
+  // Fonction toggleHeart pour gérer l'état du bouton "J'aime" et le compteur de likes.
   function toggleHeart() {
+    // Si le bouton "J'aime" est actif, décrémente le compteur de likes.
     if (isActive) {
       count -= 1;
     } else {
+      // Sinon, incrémente le compteur de likes.
       count += 1;
     }
+    // Inverse l'état du bouton "J'aime".
     isActive = !isActive;
+
+    // Stocke le compteur de likes et l'état du bouton "J'aime" dans le localStorage.
     localStorage.setItem("heartCount", count);
     localStorage.setItem("heartActive", isActive);
   }
 
-
-  // Renvoie le rôle de l'utilisateur actuellement connecté
+  // Fonction asynchrone getCurrentUserRole pour récupérer le rôle de l'utilisateur actuellement connecté.
   const getCurrentUserRole = async () => {
     const token = window.localStorage.getItem("token");
     if (!token) {
       return null;
     }
-
-    const response = await fetch(`${import.meta.env.VITE_URL_DIRECTUS}/users/me`, {
-      headers: {
-        Authorization: `Bearer ${token}`
+    const response = await fetch(
+      `${import.meta.env.VITE_URL_DIRECTUS}/users/me`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       }
-    });
+    );
     const json = await response.json();
     return json.data.role;
   };
-  
-  // Appelle l'API pour obtenir le rôle de l'utilisateur connecté
+
+  // Fonction asynchrone getUserRole pour appeler l'API et obtenir le rôle de l'utilisateur connecté.
   const getUserRole = async () => {
     const role = await getCurrentUserRole();
-    if (role === "645cbe7e-cdf9-409c-bc58-863ce065dfbb" || role === "e2a5bde2-09ab-44e4-8669-c9dc34c157e5") {
+    if (
+      role === "645cbe7e-cdf9-409c-bc58-863ce065dfbb" ||
+      role === "e2a5bde2-09ab-44e4-8669-c9dc34c157e5"
+    ) {
       return role;
     }
     return null;
@@ -56,7 +71,7 @@
 
   let roleID = null;
 
-  // Met à jour la variable "roleID" lorsque l'utilisateur connecté change
+  // Fonction handleStorageChange pour mettre à jour la variable "roleID" lorsque l'utilisateur connecté change.
   const handleStorageChange = (event) => {
     if (event.key === "token") {
       getUserRole().then((role) => {
@@ -64,33 +79,47 @@
       });
     }
   };
+  // Ajoute un écouteur d'événements "storage" sur la fenêtre pour détecter les changements du token.
   window.addEventListener("storage", handleStorageChange);
+
 
   // Fonction appelée lorsque l'utilisateur clique sur l'icône de modification
   const handleEditClick = () => {
     // Redirige l'utilisateur vers la page de modification correspondante
-  push(`/modification/${article_id}`);
+    push(`/modification/${article_id}`);
   };
-
-
 </script>
 
 <main>
   <article>
-    {#await getArticle(article_id)}
+
+    <!-- Attente de la récupération de l'article -->
+    {#await getArticle(article_id)} 
+
+    <!-- Affiche un message pendant le chargement des données -->
       <p>En chargement. Je cherche les données sur l'api...</p>
+
+    <!-- Une fois les données récupérées, affiche l'article -->
     {:then article}
+
       <!-- doit apparaitre seulement pour les auteurs -->
       {#await getUserRole()}
         <p>Chargement...</p>
       {:then role}
+
+      <!-- Si l'utilisateur a un rôle (auteur ou admin) -->
         {#if role}
-          <span class="edit-icon"><a aria-label="Éditer l'article" on:click={handleEditClick}><i class="fa-solid fa-pen-to-square"/></a></span>
+        <!-- Affiche l'icône de modification -->
+          <span class="edit-icon"
+            ><a aria-label="Éditer l'article" on:click={handleEditClick}
+              ><i class="fa-solid fa-pen-to-square" /></a
+            ></span
+          >
         {/if}
-        {:catch error}
+      {:catch error}
         <p>Erreur : {error.message}</p>
       {/await}
- <img
+      <img
         src={import.meta.env.VITE_URL_DIRECTUS + "/assets/" + article.image}
         alt={article.alt}
       />
@@ -103,28 +132,29 @@
       <footer>
         <aside aria-label="Date de publication et auteur">
           <time
-          datetime={article.date_created}
-          aria-label="Date de publication">
-          {new Date(article.date_created).toLocaleDateString("fr-FR", {
-            day: "numeric",
-            month: "numeric",
-            year: "numeric"
-          })}
-        </time> <span aria-hidden="true"> || </span>
+            datetime={article.date_created}
+            aria-label="Date de publication"
+          >
+            {new Date(article.date_created).toLocaleDateString("fr-FR", {
+              day: "numeric",
+              month: "numeric",
+              year: "numeric",
+            })}
+          </time> <span aria-hidden="true"> || </span>
 
-          <cite title="{article.users_id.pseudo}" aria-label="Auteur"
+          <cite title={article.users_id.pseudo} aria-label="Auteur"
             >{article.users_id.pseudo}</cite
           >
         </aside>
       </footer>{/await}
-      <div class="heart" class:active={isActive} on:click={toggleHeart}>
-        <span class="heart-count">{count}</span>
-        <i class="fa-regular fa-heart" id="heart-empty" />
-        <i class="fa-solid fa-heart hidden" id="heart-filled" />
-      </div>
+    <div class="heart" class:active={isActive} on:click={toggleHeart}>
+      <span class="heart-count">{count}</span>
+      <i class="fa-regular fa-heart" id="heart-empty" />
+      <i class="fa-solid fa-heart hidden" id="heart-filled" />
+    </div>
   </article>
 
-  <CommentsArticlePage {article_id}/>
+  <CommentsArticlePage {article_id} />
 </main>
 
 <style lang="scss">
